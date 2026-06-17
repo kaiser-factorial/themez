@@ -1,0 +1,16 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Scope so the injected bundle styles don't fight the host showcase page.
+   The mount system wraps each demo in `.cyber-react-root`. */
+.cyber-react-root {
+  font-family: theme('fontFamily.mono');
+  color: theme('colors.foreground');
+}
+
+.cyber-react-root *,
+.cyber-react-root *::before,
+.cyber-react-root *::after {
+  box-sizing: border-box;
+}

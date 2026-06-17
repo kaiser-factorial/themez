@@ -28,8 +28,8 @@ jobs:
         run: npm install
         working-directory: ./cyber_theme/react-demo
 
-      - name: Build Vite project
-        run: npm run build
+      - name: Build full site (landing + showcases + React bundle) into ./dist
+        run: npm run build:site
         working-directory: ./cyber_theme/react-demo
 
       - name: Deploy to GitHub Pages (gh-pages branch)

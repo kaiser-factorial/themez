@@ -365,6 +365,21 @@
     .container { padding: 1rem; }
     .hero h1 { font-size: 1.6rem; }
   }
+
+  /* Component demo tabs (HTML | React) */
+  .component-demo { border: 1px solid var(--c-border); margin-top: 0.75rem; background: rgba(0,8,0,0.4); }
+  .demo-tabs { display: flex; border-bottom: 1px solid var(--c-border); background: rgba(0,255,65,0.03); }
+  .demo-tabs .tab {
+    font-family: var(--c-font); font-size: 0.65rem; font-weight: bold;
+    text-transform: uppercase; letter-spacing: 0.15em;
+    padding: 0.5rem 1rem; background: transparent; color: var(--c-secondary);
+    border: none; border-right: 1px solid var(--c-border); cursor: pointer;
+    transition: all 0.2s;
+  }
+  .demo-tabs .tab:hover { color: var(--c-text); background: rgba(0,255,65,0.05); }
+  .demo-tabs .tab.active { color: #000; background: var(--c-primary); }
+  .demo-panel { padding: 1.5rem; }
+  .react-panel:empty::after { content: 'Loading React component\2026'; color: var(--c-secondary); font-size: 0.7rem; }
 </style>
 </head>
 <body>
@@ -396,9 +411,8 @@
     <h1>CYBER THEME</h1>
     <p>Dark cyberpunk/terminal aesthetic. Neon green on deep black. Monospace throughout. Built for brain.vat.</p>
     <div style="margin-top:1.5rem;">
-      <a href="../primary_theme/components/SHOWCASE.html" class="btn" style="margin-right:0.5rem;">View Primary Theme →</a>
+      <a href="../../primary_theme/components/SHOWCASE.html" class="btn" style="margin-right:0.5rem;">View Primary Theme →</a>
       <a href="README.md" class="btn" style="margin-right:0.5rem;">Documentation</a>
-      <a href="react_demo.html" class="btn">React Demo</a>
     </div>
   </div>
 
@@ -428,115 +442,117 @@
   <!-- BADGES -->
   <div class="showcase-section" id="badges">
     <h2>Badges</h2>
-    <!-- BADGES WITH TABS -->
-    <section class="component-demo" id="demo-badges">
+    <section class="component-demo">
       <nav class="demo-tabs">
-        <button class="tab active" data-target="html-badges">HTML</button>
+        <button class="tab active" data-target="html-badges">HTML / CSS</button>
         <button class="tab" data-target="react-badges">React</button>
       </nav>
       <div id="html-badges" class="demo-panel">
-        <div class="row mt-1">
-          <span class="badge">Default</span>
-          <span class="badge badge-mauk">MAUK</span>
-          <span class="badge badge-abaci">ABACI</span>
-          <span class="badge badge-accent">Alert</span>
-        </div>
+    <div class="row mt-1">
+      <span class="badge">Default</span>
+      <span class="badge badge-mauk">MAUK</span>
+      <span class="badge badge-abaci">ABACI</span>
+      <span class="badge badge-accent">Alert</span>
+    </div>
+  
       </div>
-      <div id="react-badges" class="demo-panel" style="display:none;">
-        <!-- React badge component will mount here -->
-      </div>
+      <div id="react-badges" class="demo-panel react-panel" data-demo="badges" style="display:none;"></div>
     </section>
   </div>
 
-    <!-- ALERTS WITH TABS -->
-    <section class="component-demo" id="demo-alerts">
+  <!-- ALERTS -->
+  <div class="showcase-section" id="alerts">
+    <h2>Alerts</h2>
+    <section class="component-demo">
       <nav class="demo-tabs">
-        <button class="tab active" data-target="html-alerts">HTML</button>
+        <button class="tab active" data-target="html-alerts">HTML / CSS</button>
         <button class="tab" data-target="react-alerts">React</button>
       </nav>
       <div id="html-alerts" class="demo-panel">
-        <div class="showcase-section" id="alerts">
-          <h2>Alerts</h2>
-          <div class="demo-label">Success</div>
-          <div class="alert alert-success">
-            <div class="alert-header">
-              <div>
-                <div class="alert-title">Operation Complete</div>
-                <div class="alert-message">All systems nominal. Neural link established.</div>
-              </div>
-              <button class="alert-dismiss">✕</button>
-            </div>
-          </div>
-          <div class="demo-label">Warning</div>
-          <div class="alert alert-warning">
-            <div class="alert-header">
-              <div>
-                <div class="alert-title">Attention Required</div>
-                <div class="alert-message">Memory fragmentation detected in sector 7G.</div>
-              </div>
-              <button class="alert-dismiss">✕</button>
-            </div>
-          </div>
-          <div class="demo-label">Error</div>
-          <div class="alert alert-error">
-            <div class="alert-header">
-              <div>
-                <div class="alert-title">Critical Failure</div>
-                <div class="alert-message">Connection to MAUK_v2.1 lost. Retry in 3... 2... 1...</div>
-              </div>
-              <button class="alert-dismiss">✕</button>
-            </div>
-          </div>
-          <div class="demo-label">Info</div>
-          <div class="alert alert-info">
-            <div class="alert-header">
-              <div>
-                <div class="alert-title">System Notification</div>
-                <div class="alert-message">ABACI_v2.1 has indexed 234 new concepts.</div>
-              </div>
-              <button class="alert-dismiss">✕</button>
-            </div>
-          </div>
+    <div class="demo-label">Success</div>
+    <div class="alert alert-success">
+      <div class="alert-header">
+        <div>
+          <div class="alert-title">Operation Complete</div>
+          <div class="alert-message">All systems nominal. Neural link established.</div>
         </div>
+        <button class="alert-dismiss">✕</button>
       </div>
-      <div id="react-alerts" class="demo-panel" style="display:none;">
-        <!-- React alert components will mount here -->
+    </div>
+    <div class="demo-label">Warning</div>
+    <div class="alert alert-warning">
+      <div class="alert-header">
+        <div>
+          <div class="alert-title">Attention Required</div>
+          <div class="alert-message">Memory fragmentation detected in sector 7G.</div>
+        </div>
+        <button class="alert-dismiss">✕</button>
       </div>
+    </div>
+    <div class="demo-label">Error</div>
+    <div class="alert alert-error">
+      <div class="alert-header">
+        <div>
+          <div class="alert-title">Critical Failure</div>
+          <div class="alert-message">Connection to MAUK_v2.1 lost. Retry in 3... 2... 1...</div>
+        </div>
+        <button class="alert-dismiss">✕</button>
+      </div>
+    </div>
+    <div class="demo-label">Info</div>
+    <div class="alert alert-info">
+      <div class="alert-header">
+        <div>
+          <div class="alert-title">System Notification</div>
+          <div class="alert-message">ABACI_v2.1 has indexed 234 new concepts.</div>
+        </div>
+        <button class="alert-dismiss">✕</button>
+      </div>
+    </div>
+  
+      </div>
+      <div id="react-alerts" class="demo-panel react-panel" data-demo="alerts" style="display:none;"></div>
     </section>
+  </div>
 
-    <!-- SPINNERS WITH TABS -->
-    <section class="component-demo" id="demo-spinners">
+  <!-- SPINNERS -->
+  <div class="showcase-section" id="spinners">
+    <h2>Spinners</h2>
+    <section class="component-demo">
       <nav class="demo-tabs">
-        <button class="tab active" data-target="html-spinners">HTML</button>
+        <button class="tab active" data-target="html-spinners">HTML / CSS</button>
         <button class="tab" data-target="react-spinners">React</button>
       </nav>
       <div id="html-spinners" class="demo-panel">
-        <div class="showcase-section" id="spinners">
-          <h2>Spinners</h2>
-          <div class="row mt-1" style="align-items:center;">
-            <div class="spinner">
-              <div class="spinner-ring"></div>
-              <span class="spinner-label">Loading</span>
-            </div>
-            <div style="margin-left:2rem;" class="spinner">
-              <div class="spinner-ring"></div>
-              <span class="spinner-label" style="color:var(--c-accent);">Error</span>
-            </div>
-            <div style="margin-left:2rem;" class="spinner">
-              <div class="spinner-ring"></div>
-              <span class="spinner-label" style="color:var(--c-mauk);">Syncing</span>
-            </div>
-          </div>
-        </div>
+    <div class="row mt-1" style="align-items:center;">
+      <div class="spinner">
+        <div class="spinner-ring"></div>
+        <span class="spinner-label">Loading</span>
       </div>
-      <div id="react-spinners" class="demo-panel" style="display:none;">
-        <!-- React spinner components will mount here -->
+      <div style="margin-left:2rem;" class="spinner">
+        <div class="spinner-ring"></div>
+        <span class="spinner-label" style="color:var(--c-accent);">Error</span>
       </div>
+      <div style="margin-left:2rem;" class="spinner">
+        <div class="spinner-ring"></div>
+        <span class="spinner-label" style="color:var(--c-mauk);">Syncing</span>
+      </div>
+    </div>
+  
+      </div>
+      <div id="react-spinners" class="demo-panel react-panel" data-demo="spinners" style="display:none;"></div>
     </section>
+  </div>
 
   <!-- PROGRESS -->
   <div class="showcase-section" id="progress">
     <h2>Progress</h2>
+    <section class="component-demo">
+      <nav class="demo-tabs">
+        <button class="tab active" data-target="html-progress">HTML / CSS</button>
+        <button class="tab" data-target="react-progress">React</button>
+      </nav>
+      <div id="html-progress" class="demo-panel">
     <div style="max-width:400px;">
       <div class="demo-label">Upload (75%)</div>
       <div class="progress-label-row mt-1">
@@ -555,11 +571,21 @@
         <div class="progress-fill" style="width:45%;background:var(--c-abaci);box-shadow:0 0 8px var(--c-abaci);"></div>
       </div>
     </div>
+  
+      </div>
+      <div id="react-progress" class="demo-panel react-panel" data-demo="progress" style="display:none;"></div>
+    </section>
   </div>
 
   <!-- STATS -->
   <div class="showcase-section" id="stats">
     <h2>Stats Display</h2>
+    <section class="component-demo">
+      <nav class="demo-tabs">
+        <button class="tab active" data-target="html-stats">HTML / CSS</button>
+        <button class="tab" data-target="react-stats">React</button>
+      </nav>
+      <div id="html-stats" class="demo-panel">
     <div class="grid-4 mt-1">
       <div class="stat-card">
         <div class="stat-label">Conversations</div>
@@ -582,11 +608,21 @@
         <div class="stat-change positive">Stable</div>
       </div>
     </div>
+  
+      </div>
+      <div id="react-stats" class="demo-panel react-panel" data-demo="stats" style="display:none;"></div>
+    </section>
   </div>
 
   <!-- TIMELINE -->
   <div class="showcase-section" id="timeline">
     <h2>Timeline</h2>
+    <section class="component-demo">
+      <nav class="demo-tabs">
+        <button class="tab active" data-target="html-timeline">HTML / CSS</button>
+        <button class="tab" data-target="react-timeline">React</button>
+      </nav>
+      <div id="html-timeline" class="demo-panel">
     <div class="timeline mt-1" style="max-width:500px;">
       <div class="timeline-line"></div>
       <div class="timeline-event">
@@ -614,11 +650,21 @@
         </div>
       </div>
     </div>
+  
+      </div>
+      <div id="react-timeline" class="demo-panel react-panel" data-demo="timeline" style="display:none;"></div>
+    </section>
   </div>
 
   <!-- DIALOGUE -->
   <div class="showcase-section" id="dialogue">
     <h2>Dialogue Messages</h2>
+    <section class="component-demo">
+      <nav class="demo-tabs">
+        <button class="tab active" data-target="html-dialogue">HTML / CSS</button>
+        <button class="tab" data-target="react-dialogue">React</button>
+      </nav>
+      <div id="html-dialogue" class="demo-panel">
     <div style="max-width:600px;">
       <div class="dialogue-message">
         <div class="dialogue-speaker" style="color:var(--c-mauk);">MAUK</div>
@@ -649,11 +695,21 @@
         </div>
       </div>
     </div>
+  
+      </div>
+      <div id="react-dialogue" class="demo-panel react-panel" data-demo="dialogue" style="display:none;"></div>
+    </section>
   </div>
 
   <!-- MISSION -->
   <div class="showcase-section" id="mission">
     <h2>Mission Statement</h2>
+    <section class="component-demo">
+      <nav class="demo-tabs">
+        <button class="tab active" data-target="html-mission">HTML / CSS</button>
+        <button class="tab" data-target="react-mission">React</button>
+      </nav>
+      <div id="html-mission" class="demo-panel">
     <div class="mission mt-1" style="max-width:500px;">
       <div class="mission-title" style="color:var(--c-accent);">[MISSION_EXPERIMENT]</div>
       <div class="mission-content">
@@ -664,11 +720,21 @@
         <button class="mission-action">[RETURN_TO_VAT] →</button>
       </div>
     </div>
+  
+      </div>
+      <div id="react-mission" class="demo-panel react-panel" data-demo="mission" style="display:none;"></div>
+    </section>
   </div>
 
   <!-- SCHEMATIC -->
   <div class="showcase-section" id="schematic">
     <h2>Technical Schematic</h2>
+    <section class="component-demo">
+      <nav class="demo-tabs">
+        <button class="tab active" data-target="html-schematic">HTML / CSS</button>
+        <button class="tab" data-target="react-schematic">React</button>
+      </nav>
+      <div id="html-schematic" class="demo-panel">
     <div class="mt-1">
       <div class="schematic-title" style="color:var(--c-primary);">[TECHNICAL_SCHEMATIC]</div>
       <div class="schematic-grid schematic-grid-4">
@@ -694,11 +760,21 @@
         </div>
       </div>
     </div>
+  
+      </div>
+      <div id="react-schematic" class="demo-panel react-panel" data-demo="schematic" style="display:none;"></div>
+    </section>
   </div>
 
   <!-- MEMORY -->
   <div class="showcase-section" id="memory">
     <h2>Memory Cards</h2>
+    <section class="component-demo">
+      <nav class="demo-tabs">
+        <button class="tab active" data-target="html-memory">HTML / CSS</button>
+        <button class="tab" data-target="react-memory">React</button>
+      </nav>
+      <div id="html-memory" class="demo-panel">
     <div class="grid-3 mt-1">
       <div class="memory-column">
         <div class="memory-column-header" style="color:var(--c-mauk);">
@@ -730,11 +806,21 @@
         <div class="memory-card"><span class="memory-dot" style="background:var(--c-abaci);"></span><span class="memory-concept">Adaptation</span></div>
       </div>
     </div>
+  
+      </div>
+      <div id="react-memory" class="demo-panel react-panel" data-demo="memory" style="display:none;"></div>
+    </section>
   </div>
 
   <!-- BOT CARD -->
   <div class="showcase-section" id="botcard">
     <h2>Bot Name Cards</h2>
+    <section class="component-demo">
+      <nav class="demo-tabs">
+        <button class="tab active" data-target="html-botcard">HTML / CSS</button>
+        <button class="tab" data-target="react-botcard">React</button>
+      </nav>
+      <div id="html-botcard" class="demo-panel">
     <div class="grid-2 mt-1">
       <div class="bot-card">
         <div class="bot-card-glow" style="background:var(--c-mauk);"></div>
@@ -747,11 +833,21 @@
         <div class="bot-desc">Right sidebar agent. Warm orange identity. Focuses on emergence and complex systems.</div>
       </div>
     </div>
+  
+      </div>
+      <div id="react-botcard" class="demo-panel react-panel" data-demo="botcard" style="display:none;"></div>
+    </section>
   </div>
 
   <!-- PARAMETER PANEL -->
   <div class="showcase-section" id="params">
     <h2>Parameter Panel</h2>
+    <section class="component-demo">
+      <nav class="demo-tabs">
+        <button class="tab active" data-target="html-params">HTML / CSS</button>
+        <button class="tab" data-target="react-params">React</button>
+      </nav>
+      <div id="html-params" class="demo-panel">
     <div class="param-panel mt-1" style="max-width:450px;">
       <div class="param-header">
         <div style="display:flex;align-items:center;gap:0.5rem;">
@@ -787,11 +883,21 @@
         <button class="param-save-btn mt-1">APPLY_CHANGES</button>
       </div>
     </div>
+  
+      </div>
+      <div id="react-params" class="demo-panel react-panel" data-demo="params" style="display:none;"></div>
+    </section>
   </div>
 
   <!-- AUDIT LOG -->
   <div class="showcase-section" id="audit">
     <h2>Audit Log Card</h2>
+    <section class="component-demo">
+      <nav class="demo-tabs">
+        <button class="tab active" data-target="html-audit">HTML / CSS</button>
+        <button class="tab" data-target="react-audit">React</button>
+      </nav>
+      <div id="html-audit" class="demo-panel">
     <div class="audit-card mt-1" style="max-width:500px;">
       <div class="audit-header">
         <div style="display:flex;align-items:center;gap:0.5rem;">
@@ -833,6 +939,10 @@
         </div>
       </div>
     </div>
+  
+      </div>
+      <div id="react-audit" class="demo-panel react-panel" data-demo="audit" style="display:none;"></div>
+    </section>
   </div>
 
   <!-- Footer -->
@@ -841,34 +951,30 @@
       Cyber Theme — Terminal Component Library — Built for brain.vat
     </p>
     <p style="font-size:0.55rem;color:var(--c-border);margin-top:0.5rem;">
-      <a href="../index.html" style="color:var(--c-text);">← Back to Themes</a> · 
-      <a href="../cyber_theme/README.md" style="color:var(--c-text);">Documentation</a> · 
-      <a href="../primary_theme/components/SHOWCASE.html" style="color:var(--c-text);">Primary Theme →</a>
+      <a href="../../index.html" style="color:var(--c-text);">← Back to Themes</a> ·
+      <a href="../README.md" style="color:var(--c-text);">Documentation</a> ·
+      <a href="../../primary_theme/components/SHOWCASE.html" style="color:var(--c-text);">Primary Theme →</a>
     </p>
   </div>
 
 </div>
 
-  <!-- Lazy‑load script for React demos -->
-  <script type="module">
-    let reactBundleLoaded = false;
-    const tabButtons = document.querySelectorAll('.demo-tabs .tab');
-    tabButtons.forEach(btn => {
-      btn.addEventListener('click', async () => {
-        const parent = btn.closest('.component-demo');
-        const targetId = btn.dataset.target;
-        // hide all panels in this component
-        parent.querySelectorAll('.demo-panel').forEach(p => p.style.display = 'none');
-        parent.querySelectorAll('.demo-tabs .tab').forEach(t => t.classList.remove('active'));
-        // show selected panel
-        const targetPanel = parent.querySelector('#' + targetId);
-        if (targetPanel) targetPanel.style.display = 'block';
-        btn.classList.add('active');
-        // load React bundle on first React tab activation
-        if (targetId.startsWith('react-') && !reactBundleLoaded) {
-          await import('./cyber-demo.js');
-          reactBundleLoaded = true;
-        }
+  <!-- React showcase bundle (built from cyber_theme/components/*.tsx via react-demo) -->
+  <script src="cyber-demo.js" defer></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      document.querySelectorAll('.demo-tabs .tab').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const parent = btn.closest('.component-demo');
+          parent.querySelectorAll('.demo-panel').forEach(p => { p.style.display = 'none'; });
+          parent.querySelectorAll('.demo-tabs .tab').forEach(t => t.classList.remove('active'));
+          const target = parent.querySelector('#' + btn.dataset.target);
+          if (target) target.style.display = 'block';
+          btn.classList.add('active');
+          if (btn.dataset.target.startsWith('react-') && window.CyberDemo) {
+            window.CyberDemo.mountAll();
+          }
+        });
       });
     });
   </script>
