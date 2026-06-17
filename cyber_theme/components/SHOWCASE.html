@@ -427,77 +427,111 @@
   <!-- BADGES -->
   <div class="showcase-section" id="badges">
     <h2>Badges</h2>
-    <div class="row mt-1">
-      <span class="badge">Default</span>
-      <span class="badge badge-mauk">MAUK</span>
-      <span class="badge badge-abaci">ABACI</span>
-      <span class="badge badge-accent">Alert</span>
-    </div>
+    <!-- BADGES WITH TABS -->
+    <section class="component-demo" id="demo-badges">
+      <nav class="demo-tabs">
+        <button class="tab active" data-target="html-badges">HTML</button>
+        <button class="tab" data-target="react-badges">React</button>
+      </nav>
+      <div id="html-badges" class="demo-panel">
+        <div class="row mt-1">
+          <span class="badge">Default</span>
+          <span class="badge badge-mauk">MAUK</span>
+          <span class="badge badge-abaci">ABACI</span>
+          <span class="badge badge-accent">Alert</span>
+        </div>
+      </div>
+      <div id="react-badges" class="demo-panel" style="display:none;">
+        <!-- React badge component will mount here -->
+      </div>
+    </section>
   </div>
 
-  <!-- ALERTS -->
-  <div class="showcase-section" id="alerts">
-    <h2>Alerts</h2>
-    <div class="demo-label">Success</div>
-    <div class="alert alert-success">
-      <div class="alert-header">
-        <div>
-          <div class="alert-title">Operation Complete</div>
-          <div class="alert-message">All systems nominal. Neural link established.</div>
+    <!-- ALERTS WITH TABS -->
+    <section class="component-demo" id="demo-alerts">
+      <nav class="demo-tabs">
+        <button class="tab active" data-target="html-alerts">HTML</button>
+        <button class="tab" data-target="react-alerts">React</button>
+      </nav>
+      <div id="html-alerts" class="demo-panel">
+        <div class="showcase-section" id="alerts">
+          <h2>Alerts</h2>
+          <div class="demo-label">Success</div>
+          <div class="alert alert-success">
+            <div class="alert-header">
+              <div>
+                <div class="alert-title">Operation Complete</div>
+                <div class="alert-message">All systems nominal. Neural link established.</div>
+              </div>
+              <button class="alert-dismiss">✕</button>
+            </div>
+          </div>
+          <div class="demo-label">Warning</div>
+          <div class="alert alert-warning">
+            <div class="alert-header">
+              <div>
+                <div class="alert-title">Attention Required</div>
+                <div class="alert-message">Memory fragmentation detected in sector 7G.</div>
+              </div>
+              <button class="alert-dismiss">✕</button>
+            </div>
+          </div>
+          <div class="demo-label">Error</div>
+          <div class="alert alert-error">
+            <div class="alert-header">
+              <div>
+                <div class="alert-title">Critical Failure</div>
+                <div class="alert-message">Connection to MAUK_v2.1 lost. Retry in 3... 2... 1...</div>
+              </div>
+              <button class="alert-dismiss">✕</button>
+            </div>
+          </div>
+          <div class="demo-label">Info</div>
+          <div class="alert alert-info">
+            <div class="alert-header">
+              <div>
+                <div class="alert-title">System Notification</div>
+                <div class="alert-message">ABACI_v2.1 has indexed 234 new concepts.</div>
+              </div>
+              <button class="alert-dismiss">✕</button>
+            </div>
+          </div>
         </div>
-        <button class="alert-dismiss">✕</button>
       </div>
-    </div>
-    <div class="demo-label">Warning</div>
-    <div class="alert alert-warning">
-      <div class="alert-header">
-        <div>
-          <div class="alert-title">Attention Required</div>
-          <div class="alert-message">Memory fragmentation detected in sector 7G.</div>
-        </div>
-        <button class="alert-dismiss">✕</button>
+      <div id="react-alerts" class="demo-panel" style="display:none;">
+        <!-- React alert components will mount here -->
       </div>
-    </div>
-    <div class="demo-label">Error</div>
-    <div class="alert alert-error">
-      <div class="alert-header">
-        <div>
-          <div class="alert-title">Critical Failure</div>
-          <div class="alert-message">Connection to MAUK_v2.1 lost. Retry in 3... 2... 1...</div>
-        </div>
-        <button class="alert-dismiss">✕</button>
-      </div>
-    </div>
-    <div class="demo-label">Info</div>
-    <div class="alert alert-info">
-      <div class="alert-header">
-        <div>
-          <div class="alert-title">System Notification</div>
-          <div class="alert-message">ABACI_v2.1 has indexed 234 new concepts.</div>
-        </div>
-        <button class="alert-dismiss">✕</button>
-      </div>
-    </div>
-  </div>
+    </section>
 
-  <!-- SPINNERS -->
-  <div class="showcase-section" id="spinners">
-    <h2>Spinners</h2>
-    <div class="row mt-1" style="align-items:center;">
-      <div class="spinner">
-        <div class="spinner-ring"></div>
-        <span class="spinner-label">Loading</span>
+    <!-- SPINNERS WITH TABS -->
+    <section class="component-demo" id="demo-spinners">
+      <nav class="demo-tabs">
+        <button class="tab active" data-target="html-spinners">HTML</button>
+        <button class="tab" data-target="react-spinners">React</button>
+      </nav>
+      <div id="html-spinners" class="demo-panel">
+        <div class="showcase-section" id="spinners">
+          <h2>Spinners</h2>
+          <div class="row mt-1" style="align-items:center;">
+            <div class="spinner">
+              <div class="spinner-ring"></div>
+              <span class="spinner-label">Loading</span>
+            </div>
+            <div style="margin-left:2rem;" class="spinner">
+              <div class="spinner-ring"></div>
+              <span class="spinner-label" style="color:var(--c-accent);">Error</span>
+            </div>
+            <div style="margin-left:2rem;" class="spinner">
+              <div class="spinner-ring"></div>
+              <span class="spinner-label" style="color:var(--c-mauk);">Syncing</span>
+            </div>
+          </div>
+        </div>
       </div>
-      <div style="margin-left:2rem;" class="spinner">
-        <div class="spinner-ring"></div>
-        <span class="spinner-label" style="color:var(--c-accent);">Error</span>
+      <div id="react-spinners" class="demo-panel" style="display:none;">
+        <!-- React spinner components will mount here -->
       </div>
-      <div style="margin-left:2rem;" class="spinner">
-        <div class="spinner-ring"></div>
-        <span class="spinner-label" style="color:var(--c-mauk);">Syncing</span>
-      </div>
-    </div>
-  </div>
+    </section>
 
   <!-- PROGRESS -->
   <div class="showcase-section" id="progress">
@@ -814,5 +848,28 @@
 
 </div>
 
+  <!-- Lazy‑load script for React demos -->
+  <script type="module">
+    let reactBundleLoaded = false;
+    const tabButtons = document.querySelectorAll('.demo-tabs .tab');
+    tabButtons.forEach(btn => {
+      btn.addEventListener('click', async () => {
+        const parent = btn.closest('.component-demo');
+        const targetId = btn.dataset.target;
+        // hide all panels in this component
+        parent.querySelectorAll('.demo-panel').forEach(p => p.style.display = 'none');
+        parent.querySelectorAll('.demo-tabs .tab').forEach(t => t.classList.remove('active'));
+        // show selected panel
+        const targetPanel = parent.querySelector('#' + targetId);
+        if (targetPanel) targetPanel.style.display = 'block';
+        btn.classList.add('active');
+        // load React bundle on first React tab activation
+        if (targetId.startsWith('react-') && !reactBundleLoaded) {
+          await import('./cyber-demo.js');
+          reactBundleLoaded = true;
+        }
+      });
+    });
+  </script>
 </body>
 </html>
