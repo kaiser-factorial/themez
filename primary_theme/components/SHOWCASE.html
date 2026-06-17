@@ -1,0 +1,725 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Primary Theme Showcase — Bauhaus Component Library</title>
+<link rel="stylesheet" href="components/primary-theme.css">
+<style>
+  /* Showcase-specific styles */
+  .showcase-nav {
+    position: sticky; top: 0; z-index: 100;
+    background: var(--p-surface);
+    border-bottom: 3px solid var(--p-black);
+    padding: 0.75rem 2rem;
+    display: flex; align-items: center; justify-content: space-between;
+    box-shadow: 0 4px 0 rgba(0,0,0,0.05);
+  }
+  .showcase-nav-links { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .showcase-nav a {
+    font-family: var(--p-font); font-size: 0.75rem; font-weight: bold;
+    text-transform: uppercase; letter-spacing: 0.05em;
+    color: var(--p-black); text-decoration: none;
+    padding: 0.3rem 0.6rem; border: 2px solid transparent;
+  }
+  .showcase-nav a:hover { border-color: var(--p-black); }
+  .showcase-section { padding: 2rem 0; border-bottom: 2px solid #eee; }
+  .showcase-section:last-child { border-bottom: none; }
+  .color-swatch {
+    width: 80px; height: 80px; border: 3px solid var(--p-black);
+    display: flex; align-items: flex-end; padding: 0.25rem;
+    font-size: 0.55rem; font-weight: bold; text-transform: uppercase;
+  }
+  .hero {
+    padding: 3rem 0; text-align: center;
+    border-bottom: 3px solid var(--p-black);
+    margin-bottom: 2rem;
+  }
+  .hero h1 { font-size: 3rem; letter-spacing: -0.03em; }
+  .hero p { font-size: 1rem; max-width: 600px; margin: 1rem auto; }
+  .back-link {
+    display: inline-block; margin-bottom: 1rem;
+    font-size: 0.8rem; font-weight: bold; text-transform: uppercase;
+    color: var(--p-blue); text-decoration: none; letter-spacing: 0.05em;
+  }
+  .back-link:hover { text-decoration: underline; }
+</style>
+</head>
+<body class="theme-primary">
+
+<div class="showcase-nav">
+  <a href="../index.html" style="font-size:1rem;font-weight:bold;text-decoration:none;color:var(--p-black);letter-spacing:0.05em;">◩ THEMES</a>
+  <div class="showcase-nav-links">
+    <a href="#colors">Colors</a>
+    <a href="#buttons">Buttons</a>
+    <a href="#badges">Badges</a>
+    <a href="#alerts">Alerts</a>
+    <a href="#spinners">Spinners</a>
+    <a href="#progress">Progress</a>
+    <a href="#stats">Stats</a>
+    <a href="#timeline">Timeline</a>
+    <a href="#dialogue">Dialogue</a>
+    <a href="#mission">Mission</a>
+    <a href="#schematic">Schematic</a>
+    <a href="#memory">Memory</a>
+    <a href="#botcard">Bot Card</a>
+    <a href="#params">Params</a>
+    <a href="#audit">Audit</a>
+    <a href="#backgrounds">Backgrounds</a>
+  </div>
+</div>
+
+<div class="container">
+
+  <div class="hero">
+    <h1>PRIMARY THEME</h1>
+    <p>Bauhaus-inspired component library. Primary colors, sharp corners, hard shadows, geometric purity. Inspired by the CatchFall game.</p>
+    <div style="margin-top:1.5rem;">
+      <a href="../cyber_theme/components/SHOWCASE.html" class="btn" style="margin-right:0.5rem;">View Cyber Theme →</a>
+      <a href="README.md" class="btn btn-outline">Documentation</a>
+    </div>
+  </div>
+
+  <!-- ===== COLORS ===== -->
+  <div class="showcase-section" id="colors">
+    <h2>Color Palette</h2>
+    <p>The Bauhaus primary palette: Red, Blue, Yellow, Black. No gradients, no secondary colors.</p>
+    <div class="row mt-2">
+      <div><div class="color-swatch" style="background:var(--p-red);color:white;">#EB1A26</div></div>
+      <div><div class="color-swatch" style="background:var(--p-blue);color:white;">#0045AD</div></div>
+      <div><div class="color-swatch" style="background:var(--p-yellow);color:black;">#FFD600</div></div>
+      <div><div class="color-swatch" style="background:var(--p-black);color:white;">#111111</div></div>
+      <div><div class="color-swatch" style="background:var(--p-white);color:black;">#FAFAFA</div></div>
+    </div>
+  </div>
+
+  <!-- ===== BUTTONS ===== -->
+  <div class="showcase-section" id="buttons">
+    <h2>Buttons</h2>
+    <p>Hard shadow offset, sharp corners, press-down interaction.</p>
+    <div class="demo-label">Variants</div>
+    <div class="row mt-1">
+      <button class="btn">Primary (Blue)</button>
+      <button class="btn btn-red">Danger (Red)</button>
+      <button class="btn btn-yellow">Warning (Yellow)</button>
+      <button class="btn btn-black">Neutral (Black)</button>
+      <button class="btn btn-outline">Outline</button>
+      <button class="btn btn-outline-red">Outline Red</button>
+    </div>
+    <div class="demo-label mt-2">Sizes</div>
+    <div class="row mt-1" style="align-items:center;">
+      <button class="btn" style="padding:0.3rem 0.75rem;font-size:0.7rem;">Small</button>
+      <button class="btn">Default</button>
+      <button class="btn" style="padding:0.8rem 2rem;font-size:1rem;">Large</button>
+    </div>
+    <div class="demo-label mt-2">States</div>
+    <div class="row mt-1">
+      <button class="btn">Normal</button>
+      <button class="btn" style="opacity:0.5;cursor:not-allowed;">Disabled</button>
+      <button class="btn" style="box-shadow:none;transform:translate(4px,4px);">Pressed</button>
+    </div>
+  </div>
+
+  <!-- ===== BADGES ===== -->
+  <div class="showcase-section" id="badges">
+    <h2>Badges</h2>
+    <p>Tags, labels, and status indicators. 4 variants × 5 colors.</p>
+    <div class="demo-label">Outline Variants</div>
+    <div class="row mt-1">
+      <span class="badge">Default</span>
+      <span class="badge badge-red">Red</span>
+      <span class="badge badge-blue">Blue</span>
+      <span class="badge badge-yellow">Yellow</span>
+    </div>
+    <div class="demo-label mt-2">Solid Variants</div>
+    <div class="row mt-1">
+      <span class="badge badge-solid-black">Black</span>
+      <span class="badge badge-solid-red">Red</span>
+      <span class="badge badge-solid-blue">Blue</span>
+      <span class="badge badge-solid-yellow">Yellow</span>
+    </div>
+    <div class="demo-label mt-2">With Icons</div>
+    <div class="row mt-1">
+      <span class="badge badge-solid-red">✕ Error</span>
+      <span class="badge badge-solid-blue">ℹ Info</span>
+      <span class="badge badge-solid-yellow">⚠ Warning</span>
+      <span class="badge badge-solid-black">◆ System</span>
+    </div>
+  </div>
+
+  <!-- ===== ALERTS ===== -->
+  <div class="showcase-section" id="alerts">
+    <h2>Alerts</h2>
+    <p>System notifications with severity levels. Default, compact, and inline variants.</p>
+    <div class="demo-label">Default — Info</div>
+    <div class="alert alert-info">
+      <div class="alert-header">
+        <div style="display:flex;gap:0.75rem;align-items:flex-start;">
+          <span class="alert-icon">ℹ</span>
+          <div>
+            <div class="alert-title">System Notification</div>
+            <div class="alert-message">The primary theme component library has been initialized. All systems nominal.</div>
+          </div>
+        </div>
+        <button class="alert-dismiss" aria-label="Dismiss">✕</button>
+      </div>
+      <div class="alert-action"><a href="#">View Details →</a></div>
+    </div>
+
+    <div class="demo-label">Default — Success</div>
+    <div class="alert alert-success">
+      <div class="alert-header">
+        <div style="display:flex;gap:0.75rem;align-items:flex-start;">
+          <span class="alert-icon">✓</span>
+          <div>
+            <div class="alert-title">Operation Complete</div>
+            <div class="alert-message">All 14 components have been successfully generated and deployed.</div>
+          </div>
+        </div>
+        <button class="alert-dismiss" aria-label="Dismiss">✕</button>
+      </div>
+    </div>
+
+    <div class="demo-label">Default — Warning</div>
+    <div class="alert alert-warning">
+      <div class="alert-header">
+        <div style="display:flex;gap:0.75rem;align-items:flex-start;">
+          <span class="alert-icon">⚠</span>
+          <div>
+            <div class="alert-title">Attention Required</div>
+            <div class="alert-message">The Bauhaus grid alignment is off by 2px in the eastern quadrant.</div>
+          </div>
+        </div>
+        <button class="alert-dismiss" aria-label="Dismiss">✕</button>
+      </div>
+    </div>
+
+    <div class="demo-label">Default — Error</div>
+    <div class="alert alert-error">
+      <div class="alert-header">
+        <div style="display:flex;gap:0.75rem;align-items:flex-start;">
+          <span class="alert-icon">✕</span>
+          <div>
+            <div class="alert-title">Critical Failure</div>
+            <div class="alert-message">Primary color #EB1A26 could not be loaded. Fallback to #111111 applied.</div>
+          </div>
+        </div>
+        <button class="alert-dismiss" aria-label="Dismiss">✕</button>
+      </div>
+      <div class="alert-action"><a href="#">Retry Connection →</a></div>
+    </div>
+
+    <div class="demo-label">Default — System</div>
+    <div class="alert alert-system">
+      <div class="alert-header">
+        <div style="display:flex;gap:0.75rem;align-items:flex-start;">
+          <span class="alert-icon">◆</span>
+          <div>
+            <div class="alert-title">System Message</div>
+            <div class="alert-message">Level 7 background pattern: Cantor field initialized.</div>
+          </div>
+        </div>
+        <button class="alert-dismiss" aria-label="Dismiss">✕</button>
+      </div>
+    </div>
+
+    <div class="demo-label mt-2">Compact</div>
+    <div class="alert alert-compact alert-info" style="border-color:var(--p-blue);">
+      <span class="alert-icon">ℹ</span>
+      <span style="flex:1;"><strong style="color:var(--p-blue);">INFO:</strong> Mod stripe pattern cycling at 0.06fps</span>
+      <button class="alert-dismiss" aria-label="Dismiss">✕</button>
+    </div>
+    <div class="alert alert-compact alert-error" style="border-color:var(--p-red);">
+      <span class="alert-icon">✕</span>
+      <span style="flex:1;"><strong style="color:var(--p-red);">ERROR:</strong> Face tracking lost</span>
+      <a href="#" style="color:var(--p-red);font-size:0.7rem;text-transform:uppercase;">Retry</a>
+      <button class="alert-dismiss" aria-label="Dismiss">✕</button>
+    </div>
+
+    <div class="demo-label mt-2">Inline</div>
+    <div class="alert alert-inline alert-info">
+      <div style="display:flex;align-items:center;gap:0.5rem;">
+        <span>ℹ</span>
+        <span class="alert-title" style="font-size:0.75rem;">Info</span>
+      </div>
+      <div class="alert-message" style="padding-left:1.25rem;font-size:0.75rem;">Bezier clock multiplier set to 3.</div>
+    </div>
+  </div>
+
+  <!-- ===== SPINNERS ===== -->
+  <div class="showcase-section" id="spinners">
+    <h2>Spinners</h2>
+    <p>Loading indicators. Ring, dots, and pulse variants.</p>
+    <div class="row mt-1" style="align-items:center;">
+      <div class="spinner spinner-md">
+        <div class="spinner-ring"></div>
+        <span class="spinner-label">Loading</span>
+      </div>
+      <div style="margin-left:2rem;" class="spinner spinner-md">
+        <div class="spinner-dots">
+          <div class="dot"></div><div class="dot"></div><div class="dot"></div>
+        </div>
+        <span class="spinner-label">Processing</span>
+      </div>
+      <div style="margin-left:2rem;">
+        <div class="spinner spinner-md">
+          <div class="spinner-ring" style="border-top-color:var(--p-red);border-right-color:var(--p-red);"></div>
+          <span class="spinner-label" style="color:var(--p-red);">Error</span>
+        </div>
+      </div>
+    </div>
+    <div class="demo-label mt-2">Sizes</div>
+    <div class="row mt-1" style="align-items:center;">
+      <div class="spinner spinner-sm"><div class="spinner-ring"></div></div>
+      <div class="spinner spinner-md" style="margin-left:1rem;"><div class="spinner-ring"></div></div>
+      <div class="spinner spinner-lg" style="margin-left:1rem;"><div class="spinner-ring"></div></div>
+    </div>
+  </div>
+
+  <!-- ===== PROGRESS ===== -->
+  <div class="showcase-section" id="progress">
+    <h2>Progress Indicators</h2>
+    <p>Linear bars with optional stripes and animation.</p>
+    <div style="max-width:500px;">
+      <div class="demo-label">Linear — Blue (75%)</div>
+      <div class="progress progress-md mt-1">
+        <div class="progress-label-row">
+          <span class="progress-label" style="color:var(--p-blue);">Upload Progress</span>
+          <span class="progress-value">75%</span>
+        </div>
+        <div class="progress-track">
+          <div class="progress-fill" style="width:75%;background:var(--p-blue);"></div>
+        </div>
+      </div>
+
+      <div class="demo-label mt-2">Linear — Red, Striped (45%)</div>
+      <div class="progress progress-md progress-striped mt-1">
+        <div class="progress-label-row">
+          <span class="progress-label" style="color:var(--p-red);">Error Rate</span>
+          <span class="progress-value">45%</span>
+        </div>
+        <div class="progress-track">
+          <div class="progress-fill" style="width:45%;background:var(--p-red);"></div>
+        </div>
+      </div>
+
+      <div class="demo-label mt-2">Linear — Yellow, Large (90%)</div>
+      <div class="progress progress-lg mt-1">
+        <div class="progress-label-row">
+          <span class="progress-label" style="color:#b89600;">Memory Usage</span>
+          <span class="progress-value">90%</span>
+        </div>
+        <div class="progress-track">
+          <div class="progress-fill" style="width:90%;background:var(--p-yellow);"></div>
+        </div>
+      </div>
+
+      <div class="demo-label mt-2">Small — Minimal (60%)</div>
+      <div class="progress progress-sm mt-1">
+        <div class="progress-track">
+          <div class="progress-fill" style="width:60%;background:var(--p-black);"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== STATS DISPLAY ===== -->
+  <div class="showcase-section" id="stats">
+    <h2>Stats Display</h2>
+    <p>Metric cards with change indicators.</p>
+    <div class="grid-4 mt-1">
+      <div class="stat-card">
+        <div class="stat-header">
+          <span class="stat-icon">◉</span>
+          <span class="stat-label">Conversations</span>
+        </div>
+        <div class="stat-value" style="color:var(--p-blue);">1,247</div>
+        <div class="stat-change positive">+12 this week</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-header">
+          <span class="stat-icon">▯</span>
+          <span class="stat-label">Concepts Indexed</span>
+        </div>
+        <div class="stat-value" style="color:var(--p-red);">5,847</div>
+        <div class="stat-change positive">+234 this week</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-header">
+          <span class="stat-icon">◆</span>
+          <span class="stat-label">Memory Usage</span>
+        </div>
+        <div class="stat-value" style="color:#b89600;">2.3GB</div>
+        <div class="stat-change neutral">+0.1GB</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-header">
+          <span class="stat-icon">⏱</span>
+          <span class="stat-label">Uptime</span>
+        </div>
+        <div class="stat-value" style="color:var(--p-black);">47d 3h</div>
+        <div class="stat-change positive">Stable</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== BREADCRUMB ===== -->
+  <div class="showcase-section" id="breadcrumb">
+    <h2>Breadcrumb</h2>
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <ol>
+        <li><a href="#">Home</a></li>
+        <li><a href="#">Themes</a></li>
+        <li><a href="#">Primary</a></li>
+        <li><span aria-current="page">Components</span></li>
+      </ol>
+    </nav>
+  </div>
+
+  <!-- ===== TIMELINE ===== -->
+  <div class="showcase-section" id="timeline">
+    <h2>Timeline</h2>
+    <p>Chronological event display with connecting lines.</p>
+    <div class="timeline mt-2" style="max-width:600px;">
+      <div class="timeline-line"></div>
+      <div class="timeline-event">
+        <div class="timeline-dot" style="border-color:var(--p-blue);">1</div>
+        <div class="timeline-content">
+          <div class="timeline-title" style="color:var(--p-blue);">Level 1 — Mod Stripes</div>
+          <div class="timeline-text">Animated color stripes with grid overlay. Primary colors cycle at 0.06fps.</div>
+          <div class="timeline-time">Frame 0 — Difficulty: Easy</div>
+        </div>
+      </div>
+      <div class="timeline-event">
+        <div class="timeline-dot" style="border-color:var(--p-red);">2</div>
+        <div class="timeline-content">
+          <div class="timeline-title" style="color:var(--p-red);">Level 2 — Bezier Clock</div>
+          <div class="timeline-text">Concentric circles with chord connections. Multiplier increases each level.</div>
+          <div class="timeline-time">Frame 120 — Difficulty: Medium</div>
+        </div>
+      </div>
+      <div class="timeline-event">
+        <div class="timeline-dot" style="border-color:#b89600;">3</div>
+        <div class="timeline-content">
+          <div class="timeline-title" style="color:#b89600;">Level 3 — Cantor Field</div>
+          <div class="timeline-text">Recursive fractal horizontal lines. Symmetric top and bottom halves.</div>
+          <div class="timeline-time">Frame 240 — Difficulty: Hard</div>
+        </div>
+      </div>
+      <div class="timeline-event">
+        <div class="timeline-dot" style="border-color:var(--p-black);">4</div>
+        <div class="timeline-content">
+          <div class="timeline-title" style="color:var(--p-black);">Level 4 — Halftone Rings</div>
+          <div class="timeline-text">Concentric dot patterns in a grid. Noise-driven size variation.</div>
+          <div class="timeline-time">Frame 360 — Difficulty: Expert</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== DIALOGUE MESSAGE ===== -->
+  <div class="showcase-section" id="dialogue">
+    <h2>Dialogue Messages</h2>
+    <p>Conversation bubbles with speaker identification.</p>
+    <div style="max-width:700px;">
+      <div class="dialogue-message">
+        <div class="dialogue-speaker" style="color:var(--p-blue);">GEMINI</div>
+        <div class="dialogue-bubble">
+          The Bauhaus approach emphasizes function over form. Every element must serve a purpose.
+          <div class="dialogue-time">14:23:07</div>
+        </div>
+      </div>
+      <div class="dialogue-message dialogue-message-right">
+        <div class="dialogue-speaker" style="color:var(--p-red);">USER</div>
+        <div class="dialogue-bubble">
+          Can we add more geometric patterns from the level backgrounds?
+          <div class="dialogue-time">14:23:15</div>
+        </div>
+      </div>
+      <div class="dialogue-message">
+        <div class="dialogue-speaker" style="color:#b89600;">CLAUDE</div>
+        <div class="dialogue-bubble">
+          Absolutely. The mod stripes, bezier clock, cantor field, halftone rings, wave marks, and primary grid all translate well as CSS background patterns.
+          <div class="dialogue-time">14:23:22</div>
+        </div>
+      </div>
+      <div class="dialogue-message">
+        <div class="dialogue-speaker" style="color:var(--p-black);">SYSTEM</div>
+        <div class="dialogue-bubble" style="font-style:italic;">
+          Level 5 background pattern loaded: Wave marks initialized.
+          <div class="dialogue-time">14:23:30</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== MISSION STATEMENT ===== -->
+  <div class="showcase-section" id="mission">
+    <h2>Mission Statement</h2>
+    <p>Feature/vision cards with metadata and action buttons.</p>
+    <div class="mission mt-1" style="max-width:600px;">
+      <div class="mission-title" style="color:var(--p-red);">[MISSION_EXPERIMENT]</div>
+      <div class="mission-content">
+        <p>The Primary Theme is a research environment for Bauhaus-inspired UI design. It investigates the balance between strict geometric constraints (primary colors, sharp corners, hard shadows) and functional usability in modern web interfaces.</p>
+        <p style="margin-top:0.75rem;">Built from the visual language of the CatchFall game — where primary colors, geometric patterns, and stark contrasts create an immersive, distraction-free experience.</p>
+      </div>
+      <div class="mission-footer">
+        <span class="mission-version">v1.0.0</span>
+        <button class="mission-action" style="color:var(--p-blue);">View Source →</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== TECHNICAL SCHEMATIC ===== -->
+  <div class="showcase-section" id="schematic">
+    <h2>Technical Schematic</h2>
+    <p>System architecture grid display.</p>
+    <div class="schematic mt-1">
+      <div class="schematic-title" style="color:var(--p-black);">[SYSTEM_ARCHITECTURE]</div>
+      <div class="schematic-grid schematic-grid-4">
+        <div class="schematic-item">
+          <div class="schematic-component">CATCH</div>
+          <div class="schematic-location" style="color:var(--p-red);">Game Engine</div>
+          <div class="schematic-role">p5.js Canvas</div>
+        </div>
+        <div class="schematic-item">
+          <div class="schematic-component">FALL</div>
+          <div class="schematic-location" style="color:var(--p-blue);">Physics</div>
+          <div class="schematic-role">Collision Detection</div>
+        </div>
+        <div class="schematic-item">
+          <div class="schematic-component">FACE</div>
+          <div class="schematic-location" style="color:#b89600;">Input</div>
+          <div class="schematic-role">ml5 FaceMesh</div>
+        </div>
+        <div class="schematic-item">
+          <div class="schematic-component">THEME</div>
+          <div class="schematic-location" style="color:var(--p-black);">Design</div>
+          <div class="schematic-role">Bauhaus CSS</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== MEMORY CARD ===== -->
+  <div class="showcase-section" id="memory">
+    <h2>Memory Cards</h2>
+    <p>Concept archive cards with alignment and dot indicators.</p>
+    <div class="grid-3 mt-1">
+      <div class="memory-column">
+        <div class="memory-column-header" style="color:var(--p-blue);">
+          <span class="memory-dot" style="background:var(--p-blue);"></span>
+          Blue Concepts
+        </div>
+        <div class="memory-column-items">
+          <div class="memory-card"><span class="memory-dot" style="background:var(--p-blue);"></span><span class="memory-concept">Primary Grid</span></div>
+          <div class="memory-card"><span class="memory-dot" style="background:var(--p-blue);"></span><span class="memory-concept">Bezier Clock</span></div>
+          <div class="memory-card"><span class="memory-dot" style="background:var(--p-blue);"></span><span class="memory-concept">Mod Stripes</span></div>
+          <div class="memory-card"><span class="memory-dot" style="background:var(--p-blue);"></span><span class="memory-concept">Halftone Rings</span></div>
+        </div>
+      </div>
+      <div class="memory-column">
+        <div class="memory-column-header" style="color:var(--p-red);">
+          <span class="memory-dot" style="background:var(--p-red);"></span>
+          Red Concepts
+        </div>
+        <div class="memory-column-items">
+          <div class="memory-card"><span class="memory-dot" style="background:var(--p-red);"></span><span class="memory-concept">Cantor Field</span></div>
+          <div class="memory-card"><span class="memory-dot" style="background:var(--p-red);"></span><span class="memory-concept">Wave Marks</span></div>
+          <div class="memory-card"><span class="memory-dot" style="background:var(--p-red);"></span><span class="memory-concept">Fire Objects</span></div>
+        </div>
+      </div>
+      <div class="memory-column">
+        <div class="memory-column-header" style="color:#b89600;">
+          <span class="memory-dot" style="background:var(--p-yellow);"></span>
+          Yellow Concepts
+        </div>
+        <div class="memory-column-items">
+          <div class="memory-card"><span class="memory-dot" style="background:var(--p-yellow);"></span><span class="memory-concept">Catch Objects</span></div>
+          <div class="memory-card"><span class="memory-dot" style="background:var(--p-yellow);"></span><span class="memory-concept">Goal Progress</span></div>
+          <div class="memory-card"><span class="memory-dot" style="background:var(--p-yellow);"></span><span class="memory-concept">Level Banner</span></div>
+          <div class="memory-card"><span class="memory-dot" style="background:var(--p-yellow);"></span><span class="memory-concept">Star Shapes</span></div>
+          <div class="memory-card"><span class="memory-dot" style="background:var(--p-yellow);"></span><span class="memory-concept">Accent Glow</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== BOT NAME CARD ===== -->
+  <div class="showcase-section" id="botcard">
+    <h2>Bot Name Cards</h2>
+    <p>Agent/bot profile displays with glow effects.</p>
+    <div class="grid-2 mt-1">
+      <div class="bot-card">
+        <div class="bot-card-glow" style="background:var(--p-blue);"></div>
+        <div class="bot-name" style="color:var(--p-blue);">CATCH_v1.0</div>
+        <div class="bot-desc">Primary game engine. Handles rendering, physics, and input. Built on p5.js with ml5 face tracking.</div>
+      </div>
+      <div class="bot-card">
+        <div class="bot-card-glow" style="background:var(--p-red);"></div>
+        <div class="bot-name" style="color:var(--p-red);">FALL_v1.0</div>
+        <div class="bot-desc">Difficulty scaling system. Manages fire objects, catch objects, and level progression.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== PARAMETER PANEL ===== -->
+  <div class="showcase-section" id="params">
+    <h2>Parameter Panel</h2>
+    <p>Collapsible configuration interface with multiple input types.</p>
+    <div class="param-panel mt-1" style="max-width:500px;">
+      <div class="param-header">
+        <div style="display:flex;align-items:center;gap:0.75rem;">
+          <span class="param-dot" style="background:var(--p-blue);"></span>
+          <span class="param-name" style="color:var(--p-blue);">GEMINI_CONFIG</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:1rem;">
+          <span class="param-status param-status-active">ACTIVE</span>
+          <span style="font-size:0.7rem;cursor:pointer;">▼</span>
+        </div>
+      </div>
+      <div class="param-sections">
+        <div class="param-group-title">Generation</div>
+        <div class="param-field">
+          <div class="param-label-row">
+            <span class="param-label">Temperature</span>
+            <span class="param-value" style="color:var(--p-blue);">0.70</span>
+          </div>
+          <input type="range" class="param-range" min="0" max="2" step="0.01" value="0.7">
+          <div class="param-range-labels"><span>0</span><span>2</span></div>
+        </div>
+        <div class="param-field">
+          <div class="param-label-row">
+            <span class="param-label">Top-P</span>
+            <span class="param-value" style="color:var(--p-blue);">0.90</span>
+          </div>
+          <input type="range" class="param-range" min="0" max="1" step="0.01" value="0.9">
+          <div class="param-range-labels"><span>0</span><span>1</span></div>
+        </div>
+        <div class="param-group-title">Behavior</div>
+        <div class="param-field">
+          <span class="param-label">System Prompt</span>
+          <textarea class="param-textarea" rows="3">You are a helpful assistant following Bauhaus design principles.</textarea>
+          <div class="param-desc">Defines the agent's personality and constraints.</div>
+        </div>
+        <div class="param-field">
+          <div class="param-label-row">
+            <span class="param-label">Max Tokens</span>
+            <span class="param-value" style="color:var(--p-blue);">2048</span>
+          </div>
+          <input type="number" class="param-input-number" value="2048" min="1" max="8192">
+        </div>
+        <button class="param-save-btn mt-2">APPLY_CHANGES</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== AUDIT LOG CARD ===== -->
+  <div class="showcase-section" id="audit">
+    <h2>Audit Log Card</h2>
+    <p>Collapsible event/log entries with multiple section types.</p>
+    <div class="audit-card mt-1" style="max-width:600px;">
+      <div class="audit-header">
+        <div style="display:flex;align-items:center;gap:0.75rem;">
+          <span class="audit-dot" style="background:var(--p-blue);"></span>
+          <span class="audit-title" style="color:var(--p-blue);">LEVEL_TRANSITION</span>
+          <span class="audit-badge" style="border-color:var(--p-blue);color:var(--p-blue);">SUCCESS</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:1rem;">
+          <span class="audit-time">14:23:45 // 06-16-2026</span>
+          <span style="font-size:0.7rem;cursor:pointer;">▼</span>
+        </div>
+      </div>
+      <div class="audit-sections">
+        <div class="audit-section">
+          <div class="audit-section-title">Event Description</div>
+          <div class="audit-section-content text-block" style="border-color:var(--p-blue);color:var(--p-blue);">
+            "Player advanced from Level 3 (Cantor Field) to Level 4 (Halftone Rings). Goal: 7/7 captured."
+          </div>
+        </div>
+        <div class="audit-section">
+          <div class="audit-section-title">Parameters</div>
+          <div class="audit-section-content">
+            <div class="audit-grid">
+              <div class="audit-grid-item"><div class="audit-grid-key">Fire Rate</div><div class="audit-grid-value" style="color:var(--p-red);">32</div></div>
+              <div class="audit-grid-item"><div class="audit-grid-key">Catch Rate</div><div class="audit-grid-value" style="color:var(--p-yellow);">58</div></div>
+              <div class="audit-grid-item"><div class="audit-grid-key">Fire Speed</div><div class="audit-grid-value" style="color:var(--p-blue);">4.1</div></div>
+              <div class="audit-grid-item"><div class="audit-grid-key">Double Fire</div><div class="audit-grid-value" style="color:var(--p-black);">NO</div></div>
+            </div>
+          </div>
+        </div>
+        <div class="audit-section">
+          <div class="audit-section-title">Tags</div>
+          <div class="audit-section-content">
+            <div class="audit-tags">
+              <span class="audit-tag" style="border-color:var(--p-blue);color:var(--p-blue);">Level Up</span>
+              <span class="audit-tag" style="border-color:var(--p-yellow);color:#b89600;">Goal Met</span>
+              <span class="audit-tag" style="border-color:var(--p-black);color:var(--p-black);">Difficulty+</span>
+            </div>
+          </div>
+        </div>
+        <div class="audit-section">
+          <div class="audit-section-title">Stats</div>
+          <div class="audit-section-content">
+            <div class="audit-stats">
+              <span><span class="audit-stat-label">Score:</span> <span style="color:var(--p-blue);">1,247</span></span>
+              <span><span class="audit-stat-label">Hearts:</span> <span style="color:var(--p-red);">3/3</span></span>
+              <span><span class="audit-stat-label">Combo:</span> <span style="color:#b89600;">12x</span></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== LOADING PROGRESS ===== -->
+  <div class="showcase-section" id="loading">
+    <h2>Loading Progress Bar</h2>
+    <p>Fixed-position progress bar for page transitions.</p>
+    <button class="btn" data-loading-trigger style="margin-top:0.5rem;">Simulate Page Load</button>
+    <div id="demo-loading-bar" class="loading-bar loading-bar-top" style="opacity:0;">
+      <div class="loading-bar-fill" style="width:0%;background:var(--p-blue);"></div>
+    </div>
+  </div>
+
+  <!-- ===== GEOMETRIC BACKGROUNDS ===== -->
+  <div class="showcase-section" id="backgrounds">
+    <h2>Geometric Backgrounds</h2>
+    <p>Inspired by the 6 level themes in SKETCH.js. Pure CSS patterns.</p>
+    <div class="grid-2 mt-1">
+      <div>
+        <div class="demo-label">Mod Stripes</div>
+        <div class="bg-mod-stripes" style="height:120px;border:3px solid var(--p-black);margin-top:0.25rem;"></div>
+      </div>
+      <div>
+        <div class="demo-label">Primary Grid</div>
+        <div class="bg-primary-grid" style="height:120px;border:3px solid var(--p-black);margin-top:0.25rem;"></div>
+      </div>
+      <div>
+        <div class="demo-label">Halftone</div>
+        <div class="bg-halftone" style="height:120px;border:3px solid var(--p-black);margin-top:0.25rem;"></div>
+      </div>
+      <div>
+        <div class="demo-label">Wave Marks</div>
+        <div class="bg-wave" style="height:120px;border:3px solid var(--p-black);margin-top:0.25rem;"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div style="text-align:center;padding:3rem 0 1rem;border-top:3px solid var(--p-black);margin-top:2rem;">
+    <p style="font-size:0.75rem;color:#888;text-transform:uppercase;letter-spacing:0.1em;">
+      Primary Theme v1.0 — Bauhaus Component Library — Inspired by CatchFall
+    </p>
+    <p style="font-size:0.65rem;color:#aaa;margin-top:0.5rem;">
+      <a href="../index.html" style="color:var(--p-blue);">← Back to Themes</a> · 
+      <a href="README.md" style="color:var(--p-blue);">Documentation</a> · 
+      <a href="../cyber_theme/components/SHOWCASE.html" style="color:var(--p-blue);">Cyber Theme →</a>
+    </p>
+  </div>
+
+</div>
+
+<script src="components/primary-theme.js"></script>
+</body>
+</html>

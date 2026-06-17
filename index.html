@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Theme Showcase — Component Libraries</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Russo+One&family=Courier+Prime:wght@400;700&display=swap');
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Space Grotesk', sans-serif;
+    background: #f5f5f5;
+    color: #111;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+  }
+
+  .landing {
+    max-width: 900px;
+    width: 100%;
+    text-align: center;
+  }
+
+  h1 {
+    font-family: 'Russo One', sans-serif;
+    font-size: 3rem;
+    letter-spacing: -0.02em;
+    margin-bottom: 0.5rem;
+  }
+
+  .subtitle {
+    font-size: 1.1rem;
+    color: #666;
+    margin-bottom: 3rem;
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .theme-cards {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+    margin-bottom: 3rem;
+  }
+
+  .theme-card {
+    border-radius: 0;
+    padding: 2.5rem 2rem;
+    text-align: left;
+    cursor: pointer;
+    transition: transform 0.15s, box-shadow 0.15s;
+    text-decoration: none;
+    display: block;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .theme-card:hover {
+    transform: translateY(-4px);
+  }
+
+  .theme-card:active {
+    transform: translateY(2px);
+  }
+
+  /* Primary Theme Card */
+  .card-primary {
+    background: #FAFAFA;
+    border: 3px solid #111111;
+    box-shadow: 8px 8px 0px #111111;
+    color: #111111;
+  }
+  .card-primary:hover {
+    box-shadow: 12px 12px 0px #111111;
+  }
+  .card-primary .card-accent-bar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 6px;
+    background: linear-gradient(90deg, #EB1A26 0%, #0045AD 50%, #FFD600 100%);
+  }
+  .card-primary .card-title {
+    font-family: 'Courier Prime', monospace;
+    font-size: 1.8rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: -0.02em;
+    margin-bottom: 0.75rem;
+  }
+  .card-primary .card-desc {
+    font-family: 'Courier Prime', monospace;
+    font-size: 0.85rem;
+    color: #444;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+  }
+  .card-primary .card-colors {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+  }
+  .card-primary .color-dot {
+    width: 28px;
+    height: 28px;
+    border: 2px solid #111;
+    border-radius: 0;
+  }
+  .card-primary .card-cta {
+    font-family: 'Courier Prime', monospace;
+    font-size: 0.8rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    border: 2px solid #111;
+    background: #fff;
+    color: #111;
+  }
+
+  /* Cyber Theme Card */
+  .card-cyber {
+    background: #000800;
+    border: 1px solid #00441b;
+    box-shadow: 0 0 20px rgba(0, 255, 65, 0.1);
+    color: #00ff41;
+  }
+  .card-cyber:hover {
+    box-shadow: 0 0 30px rgba(0, 255, 65, 0.2);
+  }
+  .card-cyber::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(0deg,
+        transparent, transparent 2px,
+        rgba(0, 0, 0, 0.05) 2px, rgba(0, 0, 0, 0.05) 4px);
+    pointer-events: none;
+  }
+  .card-cyber .card-accent-bar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: #00ff41;
+    box-shadow: 0 0 10px #00ff41;
+  }
+  .card-cyber .card-title {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    font-size: 1.6rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: -0.05em;
+    margin-bottom: 0.75rem;
+    text-shadow: 0 0 10px #00ff41;
+    position: relative;
+  }
+  .card-cyber .card-desc {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    font-size: 0.8rem;
+    color: #008f11;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+    position: relative;
+  }
+  .card-cyber .card-colors {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+    position: relative;
+  }
+  .card-cyber .color-dot {
+    width: 28px;
+    height: 28px;
+    border: 1px solid #00441b;
+    border-radius: 0;
+  }
+  .card-cyber .card-cta {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    font-size: 0.7rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    display: inline-block;
+    padding: 0.4rem 0.8rem;
+    border: 1px solid #00ff41;
+    background: transparent;
+    color: #00ff41;
+    position: relative;
+  }
+
+  .features {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+    margin-bottom: 2rem;
+  }
+
+  .feature {
+    font-size: 0.8rem;
+    color: #888;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .feature strong {
+    color: #333;
+  }
+
+  footer {
+    margin-top: 2rem;
+    font-size: 0.75rem;
+    color: #aaa;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+
+  @media (max-width: 700px) {
+    .theme-cards { grid-template-columns: 1fr; }
+    h1 { font-size: 2rem; }
+    .features { gap: 1rem; }
+  }
+</style>
+</head>
+<body>
+
+<div class="landing">
+  <h1>THEME SHOWCASE</h1>
+  <p class="subtitle">Two complete component libraries. Two distinct design languages. Click to explore.</p>
+
+  <div class="theme-cards">
+    <!-- Primary Theme Card -->
+    <a href="primary_theme/components/SHOWCASE.html" class="theme-card card-primary">
+      <div class="card-accent-bar"></div>
+      <div class="card-title">PRIMARY</div>
+      <div class="card-desc">Bauhaus-inspired. Primary colors, sharp corners, hard shadows. 14 components built from the CatchFall game aesthetic.</div>
+      <div class="card-colors">
+        <div class="color-dot" style="background:#EB1A26;"></div>
+        <div class="color-dot" style="background:#0045AD;"></div>
+        <div class="color-dot" style="background:#FFD600;"></div>
+        <div class="color-dot" style="background:#111111;"></div>
+      </div>
+      <span class="card-cta">Explore Components →</span>
+    </a>
+
+    <!-- Cyber Theme Card -->
+    <a href="cyber_theme/components/SHOWCASE.html" class="theme-card card-cyber">
+      <div class="card-accent-bar"></div>
+      <div class="card-title">CYBER</div>
+      <div class="card-desc">Dark terminal aesthetic. Neon green on deep black. Monospace throughout. Built for the brain.vat research environment.</div>
+      <div class="card-colors">
+        <div class="color-dot" style="background:#00ff41;"></div>
+        <div class="color-dot" style="background:#E63946;"></div>
+        <div class="color-dot" style="background:#03A6A1;"></div>
+        <div class="color-dot" style="background:#FF9D23;"></div>
+      </div>
+      <span class="card-cta">Explore Components →</span>
+    </a>
+  </div>
+
+  <div class="features">
+    <span class="feature"><strong>14</strong> Components Each</span>
+    <span class="feature"><strong>Zero</strong> Dependencies</span>
+    <span class="feature"><strong>Pure</strong> HTML/CSS</span>
+    <span class="feature"><strong>gh-pages</strong> Ready</span>
+  </div>
+
+  <footer>
+    Theme Showcase · kaiser-factorial/cyber-theme · github pages
+  </footer>
+</div>
+
+</body>
+</html>

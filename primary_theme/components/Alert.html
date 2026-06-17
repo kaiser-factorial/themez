@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Alert Component — Primary Theme</title>
+<style>
+  /* Primary Theme Variables */
+  :root {
+    --bg-color: #FAFAFA;
+    --text-color: #111111;
+    --primary-color: #0045AD;
+    --secondary-color: #EB1A26;
+    --accent-color: #FFD600;
+    --surface-color: #FFFFFF;
+    --border-color: #111111;
+    --font-main: 'Courier Prime', 'Courier New', monospace;
+    --font-heading: 'Courier Prime', 'Courier New', monospace;
+    --border-radius: 0px;
+    --shadow: 6px 6px 0px #111111;
+    --border-width: 3px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: var(--font-main);
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    padding: 2rem;
+    line-height: 1.6;
+  }
+
+  h1 { font-family: var(--font-heading); font-size: 1.8rem; margin-bottom: 0.5rem; }
+  h2 { font-family: var(--font-heading); font-size: 1.2rem; margin: 2rem 0 1rem; padding-bottom: 0.5rem; border-bottom: 2px solid var(--border-color); }
+  h3 { font-size: 0.9rem; margin: 1.5rem 0 0.5rem; text-transform: uppercase; letter-spacing: 0.1em; }
+  p { margin-bottom: 0.75rem; font-size: 0.9rem; }
+  code { background: #f0f0f0; padding: 0.15em 0.4em; font-size: 0.85em; border: 1px solid #ddd; }
+  pre { background: #f0f0f0; padding: 1rem; border: 2px solid var(--border-color); overflow-x: auto; font-size: 0.8rem; margin: 0.5rem 0 1rem; }
+
+  .demo-section { margin-bottom: 2rem; }
+
+  /* ===== ALERT COMPONENT ===== */
+  .alert {
+    border: var(--border-width) solid var(--border-color);
+    border-radius: var(--border-radius);
+    padding: 1rem 1.25rem;
+    margin: 0.75rem 0;
+    font-family: var(--font-main);
+    position: relative;
+  }
+
+  .alert-default {
+    background: var(--surface-color);
+    box-shadow: 4px 4px 0px var(--border-color);
+  }
+
+  .alert-compact {
+    padding: 0.5rem 0.75rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.8rem;
+  }
+
+  .alert-inline {
+    padding: 0;
+    border: none;
+    box-shadow: none;
+  }
+
+  .alert-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  .alert-title {
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-size: 0.85rem;
+  }
+
+  .alert-message {
+    font-size: 0.8rem;
+    margin-top: 0.5rem;
+    padding-left: 1.5rem;
+  }
+
+  .alert-icon {
+    font-size: 1.1rem;
+    flex-shrink: 0;
+  }
+
+  .alert-dismiss {
+    background: none;
+    border: none;
+    font-size: 1rem;
+    cursor: pointer;
+    padding: 0 0.25rem;
+    color: var(--text-color);
+    font-family: var(--font-main);
+  }
+
+  .alert-dismiss:hover { opacity: 0.6; }
+
+  .alert-action {
+    margin-top: 0.5rem;
+    padding-left: 1.5rem;
+  }
+
+  .alert-action a, .alert-action button {
+    font-family: var(--font-main);
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    text-decoration: underline;
+  }
+
+  /* Severity colors */
+  .alert-info { border-color: var(--primary-color); }
+  .alert-info .alert-title, .alert-info .alert-action a { color: var(--primary-color); }
+
+  .alert-success { border-color: #1a7a1a; }
+  .alert-success .alert-title, .alert-success .alert-action a { color: #1a7a1a; }
+
+  .alert-warning { border-color: var(--accent-color); }
+  .alert-warning .alert-title, .alert-warning .alert-action a { color: #b89600; }
+
+  .alert-error { border-color: var(--secondary-color); }
+  .alert-error .alert-title, .alert-error .alert-action a { color: var(--secondary-color); }
+
+  .alert-system { border-color: var(--border-color); }
+  .alert-system .alert-title, .alert-system .alert-action a { color: var(--text-color); }
+</style>
+</head>
+<body>
+
+<h1>Alert Component</h1>
+<p>Primary theme alerts use stark borders, hard shadows, and the primary color palette. No rounded corners — pure Bauhaus geometry.</p>
+
+<h2>Default Variant</h2>
+<div class="demo-section">
+  <div class="alert alert-default alert-info">
+    <div class="alert-header">
+      <div style="display:flex;gap:0.75rem;align-items:flex-start;">
+        <span class="alert-icon">ℹ</span>
+        <div>
+          <div class="alert-title">System Notification</div>
+          <div class="alert-message">The primary theme component library has been initialized. All systems nominal.</div>
+        </div>
+      </div>
+      <button class="alert-dismiss" aria-label="Dismiss">✕</button>
+    </div>
+    <div class="alert-action"><a href="#">View Details →</a></div>
+  </div>
+
+  <div class="alert alert-default alert-success">
+    <div class="alert-header">
+      <div style="display:flex;gap:0.75rem;align-items:flex-start;">
+        <span class="alert-icon">✓</span>
+        <div>
+          <div class="alert-title">Operation Complete</div>
+          <div class="alert-message">All 14 components have been successfully generated.</div>
+        </div>
+      </div>
+      <button class="alert-dismiss" aria-label="Dismiss">✕</button>
+    </div>
+  </div>
+
+  <div class="alert alert-default alert-warning">
+    <div class="alert-header">
+      <div style="display:flex;gap:0.75rem;align-items:flex-start;">
+        <span class="alert-icon">⚠</span>
+        <div>
+          <div class="alert-title">Attention Required</div>
+          <div class="alert-message">The Bauhaus grid alignment is off by 2px in the eastern quadrant.</div>
+        </div>
+      </div>
+      <button class="alert-dismiss" aria-label="Dismiss">✕</button>
+    </div>
+  </div>
+
+  <div class="alert alert-default alert-error">
+    <div class="alert-header">
+      <div style="display:flex;gap:0.75rem;align-items:flex-start;">
+        <span class="alert-icon">✕</span>
+        <div>
+          <div class="alert-title">Critical Failure</div>
+          <div class="alert-message">Primary color #EB1A26 could not be loaded. Fallback to #111111 applied.</div>
+        </div>
+      </div>
+      <button class="alert-dismiss" aria-label="Dismiss">✕</button>
+    </div>
+    <div class="alert-action"><a href="#">Retry Connection →</a></div>
+  </div>
+
+  <div class="alert alert-default alert-system">
+    <div class="alert-header">
+      <div style="display:flex;gap:0.75rem;align-items:flex-start;">
+        <span class="alert-icon">◆</span>
+        <div>
+          <div class="alert-title">System Message</div>
+          <div class="alert-message">Level 7 background pattern: Cantor field initialized.</div>
+        </div>
+      </div>
+      <button class="alert-dismiss" aria-label="Dismiss">✕</button>
+    </div>
+  </div>
+</div>
+
+<h2>Compact Variant</h2>
+<div class="demo-section">
+  <div class="alert alert-compact alert-info" style="border-color:var(--primary-color);">
+    <span class="alert-icon">ℹ</span>
+    <span style="flex:1;"><strong style="color:var(--primary-color);">INFO:</strong> Mod stripe pattern cycling at 0.06fps</span>
+    <button class="alert-dismiss" aria-label="Dismiss">✕</button>
+  </div>
+
+  <div class="alert alert-compact alert-error" style="border-color:var(--secondary-color);">
+    <span class="alert-icon">✕</span>
+    <span style="flex:1;"><strong style="color:var(--secondary-color);">ERROR:</strong> Face tracking lost</span>
+    <a href="#" style="color:var(--secondary-color);font-size:0.75rem;text-transform:uppercase;">Retry</a>
+    <button class="alert-dismiss" aria-label="Dismiss">✕</button>
+  </div>
+</div>
+
+<h2>Inline Variant</h2>
+<div class="demo-section">
+  <div class="alert alert-inline alert-info">
+    <div style="display:flex;align-items:center;gap:0.5rem;">
+      <span>ℹ</span>
+      <span class="alert-title" style="font-size:0.75rem;">Info</span>
+    </div>
+    <div class="alert-message" style="padding-left:1.25rem;font-size:0.75rem;">Bezier clock multiplier set to 3.</div>
+  </div>
+</div>
+
+<h2>Usage</h2>
+<pre>&lt;div class="alert alert-default alert-info"&gt;
+  &lt;div class="alert-header"&gt;
+    &lt;div style="display:flex;gap:0.75rem;align-items:flex-start;"&gt;
+      &lt;span class="alert-icon"&gt;ℹ&lt;/span&gt;
+      &lt;div&gt;
+        &lt;div class="alert-title"&gt;Title&lt;/div&gt;
+        &lt;div class="alert-message"&gt;Message body&lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;button class="alert-dismiss"&gt;✕&lt;/button&gt;
+  &lt;/div&gt;
+  &lt;div class="alert-action"&lt;a href="#"&gt;Action →&lt;/a&gt;&lt;/div&gt;
+&lt;/div&gt;</pre>
+
+<h2>Severity Modifiers</h2>
+<p>Apply one of these classes alongside <code>alert-default</code>:</p>
+<ul style="margin-left:1.5rem;font-size:0.9rem;">
+  <li><code>alert-info</code> — Blue #0045AD</li>
+  <li><code>alert-success</code> — Green #1a7a1a</li>
+  <li><code>alert-warning</code> — Yellow #FFD600</li>
+  <li><code>alert-error</code> — Red #EB1A26</li>
+  <li><code>alert-system</code> — Black #111111</li>
+</ul>
+
+<h2>Variant Modifiers</h2>
+<ul style="margin-left:1.5rem;font-size:0.9rem;">
+  <li><code>alert-default</code> — Full card with shadow</li>
+  <li><code>alert-compact</code> — Single-line inline layout</li>
+  <li><code>alert-inline</code> — Minimal, no border/shadow</li>
+</ul>
+
+</body>
+</html>

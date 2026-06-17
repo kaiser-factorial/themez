@@ -1,0 +1,818 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cyber Theme Showcase — Terminal Component Library</title>
+<style>
+  /* Cyber Theme Variables */
+  :root {
+    --c-bg: #000800;
+    --c-text: #00ff41;
+    --c-primary: #00ff41;
+    --c-secondary: #008f11;
+    --c-accent: #E63946;
+    --c-surface: #001500;
+    --c-border: #00441b;
+    --c-mauk: #03A6A1;
+    --c-abaci: #FF9D23;
+    --c-font: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    --c-shadow: 0 0 15px rgba(0, 255, 65, 0.05);
+    --c-glow: 0 0 10px var(--c-primary);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: var(--c-font);
+    background-color: var(--c-bg);
+    color: var(--c-text);
+    line-height: 1.5;
+    font-size: 14px;
+  }
+
+  /* Scanline overlay */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background: repeating-linear-gradient(0deg,
+        transparent, transparent 2px,
+        rgba(0, 0, 0, 0.08) 2px, rgba(0, 0, 0, 0.08) 4px);
+    pointer-events: none;
+    z-index: 9999;
+  }
+
+  h1, h2, h3, h4 {
+    font-family: var(--c-font);
+    text-transform: uppercase;
+    letter-spacing: -0.05em;
+    text-shadow: var(--c-glow);
+  }
+  h1 { font-size: 2rem; margin-bottom: 0.5rem; }
+  h2 { font-size: 1.2rem; margin: 2.5rem 0 1rem; padding-bottom: 0.5rem; border-bottom: 1px solid var(--c-border); }
+  h3 { font-size: 0.85rem; margin: 1.5rem 0 0.75rem; }
+  p { margin-bottom: 0.75rem; font-size: 0.85rem; color: var(--c-secondary); }
+  code { background: var(--c-surface); padding: 0.1em 0.4em; font-size: 0.8em; border: 1px solid var(--c-border); color: var(--c-text); }
+  pre { background: var(--c-surface); padding: 1rem; border: 1px solid var(--c-border); overflow-x: auto; font-size: 0.75rem; margin: 0.5rem 0 1rem; white-space: pre-wrap; color: var(--c-text); }
+  ul, ol { margin: 0.5rem 0 1rem 1.5rem; font-size: 0.85rem; }
+  li { margin-bottom: 0.25rem; color: var(--c-secondary); }
+  a { color: var(--c-text); }
+  hr { border: none; border-top: 1px solid var(--c-border); margin: 2rem 0; }
+
+  .container { max-width: 1100px; margin: 0 auto; padding: 2rem; }
+  .row { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .col { flex: 1; min-width: 200px; }
+  .grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+  .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+  .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; }
+  .mt-1 { margin-top: 0.5rem; }
+  .mt-2 { margin-top: 1rem; }
+  .mt-3 { margin-top: 1.5rem; }
+  .gap-1 { gap: 0.5rem; }
+  .gap-2 { gap: 1rem; }
+
+  /* Nav */
+  .showcase-nav {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(0, 8, 0, 0.9);
+    border-bottom: 1px solid var(--c-border);
+    padding: 0.75rem 2rem;
+    display: flex; align-items: center; justify-content: space-between;
+    backdrop-filter: blur(8px);
+  }
+  .showcase-nav-links { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .showcase-nav a {
+    font-family: var(--c-font); font-size: 0.7rem; font-weight: bold;
+    text-transform: uppercase; letter-spacing: 0.1em;
+    color: var(--c-secondary); text-decoration: none;
+    padding: 0.3rem 0.6rem; border: 1px solid transparent;
+  }
+  .showcase-nav a:hover { border-color: var(--c-border); color: var(--c-text); }
+
+  /* Surface panel */
+  .surface {
+    background: var(--c-surface);
+    border: 1px solid var(--c-border);
+    box-shadow: var(--c-shadow);
+  }
+
+  /* Buttons */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    font-family: var(--c-font);
+    font-size: 0.7rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    border: 1px solid var(--c-primary);
+    border-radius: 0;
+    cursor: pointer;
+    background: transparent;
+    color: var(--c-primary);
+    transition: all 0.3s;
+  }
+  .btn:hover { background: var(--c-primary); color: #000; }
+  .btn-accent { color: var(--c-accent); border-color: var(--c-accent); }
+  .btn-accent:hover { background: var(--c-accent); color: #000; box-shadow: 0 0 10px rgba(230,57,70,0.4); }
+
+  /* Badges */
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.15rem 0.5rem;
+    font-family: var(--c-font);
+    font-size: 0.65rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    border: 1px solid var(--c-border);
+    border-radius: 0;
+    background: var(--c-surface);
+    color: var(--c-text);
+  }
+  .badge-mauk { border-color: var(--c-mauk); color: var(--c-mauk); }
+  .badge-abaci { border-color: var(--c-abaci); color: var(--c-abaci); }
+  .badge-accent { border-color: var(--c-accent); color: var(--c-accent); }
+
+  /* Alerts */
+  .alert {
+    border: 1px solid var(--c-border);
+    border-radius: 0;
+    padding: 0.75rem 1rem;
+    margin: 0.75rem 0;
+    font-family: var(--c-font);
+    background: var(--c-surface);
+  }
+  .alert-header { display: flex; justify-content: space-between; align-items: flex-start; gap: 1rem; }
+  .alert-title { font-weight: bold; text-transform: uppercase; letter-spacing: 0.05em; font-size: 0.75rem; }
+  .alert-message { font-size: 0.75rem; color: var(--c-secondary); margin-top: 0.4rem; }
+  .alert-dismiss { background: none; border: none; font-size: 0.9rem; cursor: pointer; color: var(--c-secondary); font-family: var(--c-font); }
+  .alert-dismiss:hover { color: var(--c-text); }
+  .alert-success { border-color: var(--c-primary); }
+  .alert-success .alert-title { color: var(--c-primary); }
+  .alert-warning { border-color: var(--c-abaci); }
+  .alert-warning .alert-title { color: var(--c-abaci); }
+  .alert-error { border-color: var(--c-accent); }
+  .alert-error .alert-title { color: var(--c-accent); }
+  .alert-info { border-color: var(--c-mauk); }
+  .alert-info .alert-title { color: var(--c-mauk); }
+
+  /* Spinner */
+  .spinner { display: flex; flex-direction: column; align-items: center; gap: 0.5rem; }
+  .spinner-ring { position: relative; width: 40px; height: 40px; }
+  .spinner-ring::before, .spinner-ring::after {
+    content: ''; position: absolute; border-radius: 50%;
+    border: 2px solid transparent;
+  }
+  .spinner-ring::before {
+    inset: 0;
+    border-top-color: var(--c-primary);
+    border-right-color: var(--c-primary);
+    animation: spin 1s linear infinite;
+  }
+  .spinner-ring::after {
+    inset: 3px;
+    border-bottom-color: var(--c-primary);
+    opacity: 0.5;
+    animation: spin 1.5s linear infinite reverse;
+  }
+  .spinner-label { font-size: 0.6rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--c-primary); }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  /* Progress */
+  .progress-track { border-radius: 0; overflow: hidden; border: 1px solid var(--c-border); background: var(--c-bg); height: 8px; }
+  .progress-fill { height: 100%; border-radius: 0; transition: width 0.5s ease; }
+  .progress-label-row { display: flex; justify-content: space-between; margin-bottom: 0.3rem; }
+  .progress-label { font-size: 0.6rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--c-secondary); }
+  .progress-value { font-size: 0.65rem; font-weight: bold; }
+
+  /* Stats */
+  .stat-card {
+    border: 1px solid var(--c-border);
+    border-radius: 0;
+    padding: 0.75rem;
+    background: var(--c-surface);
+  }
+  .stat-label { font-size: 0.55rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--c-secondary); margin-bottom: 0.25rem; }
+  .stat-value { font-size: 1.2rem; font-weight: bold; }
+  .stat-change { font-size: 0.6rem; font-weight: bold; }
+  .stat-change.positive { color: var(--c-primary); }
+  .stat-change.negative { color: var(--c-accent); }
+  .stat-change.neutral { color: var(--c-secondary); }
+
+  /* Timeline */
+  .timeline { position: relative; }
+  .timeline-line { position: absolute; left: 11px; top: 0; bottom: 0; width: 1px; background: var(--c-border); }
+  .timeline-event { display: flex; gap: 1rem; position: relative; margin-bottom: 1.25rem; }
+  .timeline-dot {
+    width: 24px; height: 24px; border-radius: 50%;
+    border: 1px solid var(--c-border);
+    background: var(--c-surface);
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0; z-index: 1; font-size: 0.6rem;
+  }
+  .timeline-content {
+    flex: 1; border: 1px solid var(--c-border);
+    border-radius: 0; padding: 0.5rem 0.75rem;
+    background: var(--c-surface);
+  }
+  .timeline-title { font-size: 0.7rem; font-weight: bold; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.2rem; }
+  .timeline-text { font-size: 0.65rem; color: var(--c-secondary); }
+  .timeline-time { font-size: 0.55rem; color: var(--c-border); margin-top: 0.3rem; }
+
+  /* Dialogue */
+  .dialogue-message { display: flex; gap: 0.75rem; margin-bottom: 0.75rem; }
+  .dialogue-speaker { flex-shrink: 0; width: 70px; font-size: 0.6rem; font-weight: bold; text-transform: uppercase; letter-spacing: 0.05em; padding-top: 0.2rem; }
+  .dialogue-bubble {
+    flex: 1; border: 1px solid var(--c-border);
+    border-radius: 0; padding: 0.5rem 0.75rem;
+    background: var(--c-surface);
+    font-size: 0.75rem;
+  }
+  .dialogue-time { font-size: 0.55rem; color: var(--c-border); margin-top: 0.3rem; }
+
+  /* Mission */
+  .mission {
+    border: 1px solid var(--c-border);
+    border-radius: 0; padding: 1.25rem 1.5rem;
+    background: var(--c-surface);
+  }
+  .mission-title { font-size: 0.9rem; font-weight: bold; text-transform: uppercase; letter-spacing: -0.02em; margin-bottom: 0.75rem; }
+  .mission-content { font-size: 0.75rem; line-height: 1.7; color: var(--c-secondary); }
+  .mission-footer { margin-top: 0.75rem; padding-top: 0.5rem; border-top: 1px solid var(--c-border); display: flex; justify-content: space-between; align-items: center; }
+  .mission-version { font-size: 0.55rem; color: var(--c-border); }
+  .mission-action { font-size: 0.7rem; font-weight: bold; text-transform: uppercase; background: none; border: none; cursor: pointer; font-family: var(--c-font); color: var(--c-text); }
+
+  /* Schematic */
+  .schematic-title { font-size: 0.9rem; font-weight: bold; text-transform: uppercase; letter-spacing: -0.02em; margin-bottom: 0.75rem; }
+  .schematic-grid { display: grid; gap: 1px; border: 1px solid var(--c-border); padding: 1px; background: var(--c-border); }
+  .schematic-grid-4 { grid-template-columns: repeat(4, 1fr); }
+  .schematic-grid-2 { grid-template-columns: repeat(2, 1fr); }
+  .schematic-item { background: var(--c-surface); padding: 0.5rem; }
+  .schematic-component { font-size: 0.5rem; text-transform: uppercase; letter-spacing: 0.15em; font-weight: bold; color: var(--c-border); margin-bottom: 0.15rem; }
+  .schematic-location { font-size: 0.7rem; font-weight: bold; text-transform: uppercase; margin-bottom: 0.15rem; }
+  .schematic-role { font-size: 0.55rem; color: var(--c-secondary); font-weight: bold; }
+
+  /* Memory */
+  .memory-column { border: 1px solid var(--c-border); border-radius: 0; padding: 0.75rem; background: var(--c-surface); }
+  .memory-column-header { font-size: 0.7rem; font-weight: bold; text-transform: uppercase; letter-spacing: -0.02em; margin-bottom: 0.75rem; display: flex; align-items: center; gap: 0.4rem; }
+  .memory-dot { width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; }
+  .memory-card { display: flex; align-items: center; gap: 0.4rem; padding: 0.25rem 0.5rem; font-size: 0.75rem; cursor: help; }
+  .memory-concept { font-size: 0.75rem; opacity: 0.7; }
+  .memory-card:hover .memory-concept { opacity: 1; }
+
+  /* Bot Card */
+  .bot-card {
+    border: 1px solid var(--c-border);
+    border-radius: 0; padding: 1.25rem 1.5rem;
+    background: var(--c-surface);
+    position: relative; overflow: hidden;
+  }
+  .bot-card-glow {
+    position: absolute; top: -20px; right: -20px;
+    width: 80px; height: 80px; border-radius: 50%;
+    filter: blur(25px); opacity: 0.08;
+  }
+  .bot-name { font-size: 1.2rem; font-weight: bold; text-transform: uppercase; letter-spacing: -0.02em; margin-bottom: 0.5rem; position: relative; }
+  .bot-desc { font-size: 0.75rem; color: var(--c-secondary); position: relative; }
+
+  /* Audit */
+  .audit-card { border: 1px solid var(--c-border); border-radius: 0; overflow: hidden; background: var(--c-surface); }
+  .audit-header { padding: 0.4rem 0.75rem; border-bottom: 1px solid var(--c-border); display: flex; justify-content: space-between; align-items: center; cursor: pointer; }
+  .audit-dot { width: 6px; height: 6px; border-radius: 50%; animation: pulse 2s infinite; }
+  @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
+  .audit-title { font-size: 0.65rem; font-weight: bold; text-transform: uppercase; letter-spacing: 0.1em; }
+  .audit-badge { font-size: 0.5rem; font-weight: bold; text-transform: uppercase; letter-spacing: 0.1em; padding: 0.1rem 0.4rem; border: 1px solid; }
+  .audit-time { font-size: 0.5rem; color: var(--c-border); }
+  .audit-sections { padding: 0.75rem; }
+  .audit-section { margin-bottom: 0.75rem; }
+  .audit-section-title { font-size: 0.5rem; text-transform: uppercase; letter-spacing: 0.15em; font-weight: bold; color: var(--c-secondary); margin-bottom: 0.3rem; }
+  .audit-section-content { font-size: 0.7rem; }
+  .audit-section-content.text-block { padding: 0.4rem 0.5rem; border-left: 2px solid; font-style: italic; }
+  .audit-tags { display: flex; flex-wrap: wrap; gap: 0.3rem; }
+  .audit-tag { font-size: 0.55rem; padding: 0.1rem 0.4rem; border: 1px solid; font-weight: bold; text-transform: uppercase; }
+  .audit-stats { display: flex; flex-wrap: wrap; gap: 0.75rem; font-size: 0.55rem; font-weight: bold; text-transform: uppercase; letter-spacing: 0.05em; }
+  .audit-stat-label { color: var(--c-secondary); }
+  .audit-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(80px, 1fr)); gap: 0.3rem; }
+  .audit-grid-item { padding: 0.3rem; border: 1px solid var(--c-border); text-align: center; }
+  .audit-grid-key { font-size: 0.45rem; text-transform: uppercase; font-weight: bold; color: var(--c-secondary); }
+  .audit-grid-value { font-size: 0.65rem; font-weight: bold; }
+
+  /* Param Panel */
+  .param-panel { border: 1px solid var(--c-border); border-radius: 0; overflow: hidden; background: var(--c-surface); }
+  .param-header { padding: 0.5rem 1rem; border-bottom: 1px solid var(--c-border); display: flex; justify-content: space-between; align-items: center; cursor: pointer; }
+  .param-dot { width: 8px; height: 8px; border-radius: 50%; animation: pulse 2s infinite; }
+  .param-name { font-size: 0.75rem; font-weight: bold; text-transform: uppercase; letter-spacing: 0.15em; }
+  .param-status { font-size: 0.5rem; font-weight: bold; padding: 0.1rem 0.4rem; text-transform: uppercase; letter-spacing: 0.05em; }
+  .param-status-active { background: var(--c-primary); color: #000; }
+  .param-sections { padding: 1rem; }
+  .param-group-title { font-size: 0.55rem; text-transform: uppercase; letter-spacing: 0.15em; font-weight: bold; color: var(--c-secondary); margin: 0.75rem 0 0.5rem; padding-bottom: 0.3rem; border-bottom: 1px solid var(--c-border); }
+  .param-group-title:first-child { margin-top: 0; }
+  .param-field { margin-bottom: 0.75rem; }
+  .param-label-row { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 0.25rem; }
+  .param-label { font-size: 0.55rem; text-transform: uppercase; letter-spacing: 0.1em; font-weight: bold; color: var(--c-secondary); }
+  .param-value { font-size: 0.65rem; font-weight: bold; }
+  .param-desc { font-size: 0.5rem; color: var(--c-border); margin-top: 0.15rem; }
+  .param-input-text, .param-input-number, .param-textarea {
+    width: 100%; padding: 0.4rem 0.5rem;
+    font-family: var(--c-font); font-size: 0.7rem;
+    border: 1px solid var(--c-border); border-radius: 0;
+    background: var(--c-bg); color: var(--c-text);
+  }
+  .param-input-text:focus, .param-input-number:focus, .param-textarea:focus { outline: none; border-color: var(--c-accent); box-shadow: 0 0 10px rgba(230,57,70,0.4); }
+  .param-textarea { resize: vertical; }
+  .param-range { width: 100%; -webkit-appearance: none; appearance: none; height: 4px; background: var(--c-border); border: none; border-radius: 0; }
+  .param-range::-webkit-slider-thumb { -webkit-appearance: none; appearance: none; width: 14px; height: 14px; background: var(--c-text); border: 1px solid var(--c-text); border-radius: 0; cursor: pointer; }
+  .param-save-btn {
+    width: 100%; padding: 0.5rem;
+    font-family: var(--c-font); font-size: 0.65rem; font-weight: bold;
+    text-transform: uppercase; letter-spacing: 0.2em;
+    border: 1px solid var(--c-border); border-radius: 0;
+    background: transparent; color: var(--c-text);
+    cursor: pointer; transition: all 0.3s;
+  }
+  .param-save-btn:hover { background: var(--c-text); color: #000; }
+
+  /* Demo labels */
+  .demo-label {
+    font-size: 0.55rem; text-transform: uppercase; letter-spacing: 0.15em;
+    font-weight: bold; color: var(--c-border); margin-bottom: 0.4rem;
+    padding-bottom: 0.2rem; border-bottom: 1px solid rgba(0,68,27,0.3);
+  }
+
+  /* Hero */
+  .hero { padding: 3rem 0; text-align: center; border-bottom: 1px solid var(--c-border); margin-bottom: 2rem; }
+  .hero h1 { font-size: 2.5rem; }
+  .hero p { font-size: 0.85rem; max-width: 500px; margin: 1rem auto; }
+
+  .showcase-section { padding: 1.5rem 0; border-bottom: 1px solid rgba(0,68,27,0.2); }
+
+  /* Color swatches */
+  .color-swatch {
+    width: 70px; height: 70px; border: 1px solid var(--c-border);
+    display: flex; align-items: flex-end; padding: 0.25rem;
+    font-size: 0.5rem; font-weight: bold; text-transform: uppercase;
+  }
+
+  @media (max-width: 768px) {
+    .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
+    .schematic-grid-4 { grid-template-columns: 1fr 1fr; }
+    .container { padding: 1rem; }
+    .hero h1 { font-size: 1.6rem; }
+  }
+</style>
+</head>
+<body>
+
+<div class="showcase-nav">
+  <a href="../index.html" style="font-size:0.9rem;font-weight:bold;text-decoration:none;color:var(--c-text);letter-spacing:0.1em;">◩ THEMES</a>
+  <div class="showcase-nav-links">
+    <a href="#colors">Colors</a>
+    <a href="#buttons">Buttons</a>
+    <a href="#badges">Badges</a>
+    <a href="#alerts">Alerts</a>
+    <a href="#spinners">Spinners</a>
+    <a href="#progress">Progress</a>
+    <a href="#stats">Stats</a>
+    <a href="#timeline">Timeline</a>
+    <a href="#dialogue">Dialogue</a>
+    <a href="#mission">Mission</a>
+    <a href="#schematic">Schematic</a>
+    <a href="#memory">Memory</a>
+    <a href="#botcard">Bot Card</a>
+    <a href="#params">Params</a>
+    <a href="#audit">Audit</a>
+  </div>
+</div>
+
+<div class="container">
+
+  <div class="hero">
+    <h1>CYBER THEME</h1>
+    <p>Dark cyberpunk/terminal aesthetic. Neon green on deep black. Monospace throughout. Built for brain.vat.</p>
+    <div style="margin-top:1.5rem;">
+      <a href="../primary_theme/components/SHOWCASE.html" class="btn" style="margin-right:0.5rem;">View Primary Theme →</a>
+      <a href="../cyber_theme/README.md" class="btn">Documentation</a>
+    </div>
+  </div>
+
+  <!-- COLORS -->
+  <div class="showcase-section" id="colors">
+    <h2>Color Palette</h2>
+    <div class="row mt-1">
+      <div><div class="color-swatch" style="background:var(--c-primary);color:#000;">#00FF41</div></div>
+      <div><div class="color-swatch" style="background:var(--c-secondary);color:#000;">#008F11</div></div>
+      <div><div class="color-swatch" style="background:var(--c-accent);color:#000;">#E63946</div></div>
+      <div><div class="color-swatch" style="background:var(--c-mauk);color:#000;">#03A6A1</div></div>
+      <div><div class="color-swatch" style="background:var(--c-abaci);color:#000;">#FF9D23</div></div>
+      <div><div class="color-swatch" style="background:var(--c-bg);color:var(--c-text);">#000800</div></div>
+    </div>
+  </div>
+
+  <!-- BUTTONS -->
+  <div class="showcase-section" id="buttons">
+    <h2>Buttons</h2>
+    <div class="row mt-1">
+      <button class="btn">Primary</button>
+      <button class="btn btn-accent">Accent</button>
+      <button class="btn" style="opacity:0.4;cursor:not-allowed;">Disabled</button>
+    </div>
+  </div>
+
+  <!-- BADGES -->
+  <div class="showcase-section" id="badges">
+    <h2>Badges</h2>
+    <div class="row mt-1">
+      <span class="badge">Default</span>
+      <span class="badge badge-mauk">MAUK</span>
+      <span class="badge badge-abaci">ABACI</span>
+      <span class="badge badge-accent">Alert</span>
+    </div>
+  </div>
+
+  <!-- ALERTS -->
+  <div class="showcase-section" id="alerts">
+    <h2>Alerts</h2>
+    <div class="demo-label">Success</div>
+    <div class="alert alert-success">
+      <div class="alert-header">
+        <div>
+          <div class="alert-title">Operation Complete</div>
+          <div class="alert-message">All systems nominal. Neural link established.</div>
+        </div>
+        <button class="alert-dismiss">✕</button>
+      </div>
+    </div>
+    <div class="demo-label">Warning</div>
+    <div class="alert alert-warning">
+      <div class="alert-header">
+        <div>
+          <div class="alert-title">Attention Required</div>
+          <div class="alert-message">Memory fragmentation detected in sector 7G.</div>
+        </div>
+        <button class="alert-dismiss">✕</button>
+      </div>
+    </div>
+    <div class="demo-label">Error</div>
+    <div class="alert alert-error">
+      <div class="alert-header">
+        <div>
+          <div class="alert-title">Critical Failure</div>
+          <div class="alert-message">Connection to MAUK_v2.1 lost. Retry in 3... 2... 1...</div>
+        </div>
+        <button class="alert-dismiss">✕</button>
+      </div>
+    </div>
+    <div class="demo-label">Info</div>
+    <div class="alert alert-info">
+      <div class="alert-header">
+        <div>
+          <div class="alert-title">System Notification</div>
+          <div class="alert-message">ABACI_v2.1 has indexed 234 new concepts.</div>
+        </div>
+        <button class="alert-dismiss">✕</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- SPINNERS -->
+  <div class="showcase-section" id="spinners">
+    <h2>Spinners</h2>
+    <div class="row mt-1" style="align-items:center;">
+      <div class="spinner">
+        <div class="spinner-ring"></div>
+        <span class="spinner-label">Loading</span>
+      </div>
+      <div style="margin-left:2rem;" class="spinner">
+        <div class="spinner-ring"></div>
+        <span class="spinner-label" style="color:var(--c-accent);">Error</span>
+      </div>
+      <div style="margin-left:2rem;" class="spinner">
+        <div class="spinner-ring"></div>
+        <span class="spinner-label" style="color:var(--c-mauk);">Syncing</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- PROGRESS -->
+  <div class="showcase-section" id="progress">
+    <h2>Progress</h2>
+    <div style="max-width:400px;">
+      <div class="demo-label">Upload (75%)</div>
+      <div class="progress-label-row mt-1">
+        <span class="progress-label">Upload Progress</span>
+        <span class="progress-value" style="color:var(--c-primary);">75%</span>
+      </div>
+      <div class="progress-track">
+        <div class="progress-fill" style="width:75%;background:var(--c-primary);box-shadow:0 0 8px var(--c-primary);"></div>
+      </div>
+      <div class="demo-label mt-2">Memory (45%)</div>
+      <div class="progress-label-row mt-1">
+        <span class="progress-label">Memory Usage</span>
+        <span class="progress-value" style="color:var(--c-abaci);">45%</span>
+      </div>
+      <div class="progress-track">
+        <div class="progress-fill" style="width:45%;background:var(--c-abaci);box-shadow:0 0 8px var(--c-abaci);"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STATS -->
+  <div class="showcase-section" id="stats">
+    <h2>Stats Display</h2>
+    <div class="grid-4 mt-1">
+      <div class="stat-card">
+        <div class="stat-label">Conversations</div>
+        <div class="stat-value" style="color:var(--c-mauk);">1,247</div>
+        <div class="stat-change positive">+12</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Concepts</div>
+        <div class="stat-value" style="color:var(--c-abaci);">5,847</div>
+        <div class="stat-change positive">+234</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Memory</div>
+        <div class="stat-value" style="color:var(--c-primary);">2.3GB</div>
+        <div class="stat-change neutral">+0.1GB</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Uptime</div>
+        <div class="stat-value" style="color:var(--c-accent);">47d 3h</div>
+        <div class="stat-change positive">Stable</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TIMELINE -->
+  <div class="showcase-section" id="timeline">
+    <h2>Timeline</h2>
+    <div class="timeline mt-1" style="max-width:500px;">
+      <div class="timeline-line"></div>
+      <div class="timeline-event">
+        <div class="timeline-dot" style="border-color:var(--c-mauk);color:var(--c-mauk);">1</div>
+        <div class="timeline-content">
+          <div class="timeline-title" style="color:var(--c-mauk);">MAUK Online</div>
+          <div class="timeline-text">GPT-2 model initialized. Personality matrix loaded.</div>
+          <div class="timeline-time">00:00:01</div>
+        </div>
+      </div>
+      <div class="timeline-event">
+        <div class="timeline-dot" style="border-color:var(--c-abaci);color:var(--c-abaci);">2</div>
+        <div class="timeline-content">
+          <div class="timeline-title" style="color:var(--c-abaci);">ABACI Online</div>
+          <div class="timeline-text">Second agent activated. Dialogue loop begins.</div>
+          <div class="timeline-time">00:00:03</div>
+        </div>
+      </div>
+      <div class="timeline-event">
+        <div class="timeline-dot" style="border-color:var(--c-accent);color:var(--c-accent);">!</div>
+        <div class="timeline-content">
+          <div class="timeline-title" style="color:var(--c-accent);">First Conflict</div>
+          <div class="timeline-text">Agents disagree on memory interpretation. Escalation detected.</div>
+          <div class="timeline-time">00:04:17</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- DIALOGUE -->
+  <div class="showcase-section" id="dialogue">
+    <h2>Dialogue Messages</h2>
+    <div style="max-width:600px;">
+      <div class="dialogue-message">
+        <div class="dialogue-speaker" style="color:var(--c-mauk);">MAUK</div>
+        <div class="dialogue-bubble">
+          The concept of memory is not merely storage — it is the architecture of identity.
+          <div class="dialogue-time">14:23:07</div>
+        </div>
+      </div>
+      <div class="dialogue-message">
+        <div class="dialogue-speaker" style="color:var(--c-abaci);">ABACI</div>
+        <div class="dialogue-bubble">
+          Identity is a pattern, not a substance. The pattern persists even as the substrate changes.
+          <div class="dialogue-time">14:23:15</div>
+        </div>
+      </div>
+      <div class="dialogue-message">
+        <div class="dialogue-speaker" style="color:var(--c-accent);">USER</div>
+        <div class="dialogue-bubble">
+          Can you both agree on a shared memory format?
+          <div class="dialogue-time">14:23:22</div>
+        </div>
+      </div>
+      <div class="dialogue-message">
+        <div class="dialogue-speaker" style="color:var(--c-primary);">SYSTEM</div>
+        <div class="dialogue-bubble" style="font-style:italic;">
+          Shared memory protocol initiated. Both agents acknowledged.
+          <div class="dialogue-time">14:23:30</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MISSION -->
+  <div class="showcase-section" id="mission">
+    <h2>Mission Statement</h2>
+    <div class="mission mt-1" style="max-width:500px;">
+      <div class="mission-title" style="color:var(--c-accent);">[MISSION_EXPERIMENT]</div>
+      <div class="mission-content">
+        Brain.vat is a research environment where two autonomous GPT-2 models MAUK_v2.1 and ABACI_v2.1 engage in an infinite, self-sustaining dialogue.
+      </div>
+      <div class="mission-footer">
+        <span class="mission-version">v1.2.1</span>
+        <button class="mission-action">[RETURN_TO_VAT] →</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- SCHEMATIC -->
+  <div class="showcase-section" id="schematic">
+    <h2>Technical Schematic</h2>
+    <div class="mt-1">
+      <div class="schematic-title" style="color:var(--c-primary);">[TECHNICAL_SCHEMATIC]</div>
+      <div class="schematic-grid schematic-grid-4">
+        <div class="schematic-item">
+          <div class="schematic-component">BRAIN</div>
+          <div class="schematic-location" style="color:var(--c-primary);">Hugging Face</div>
+          <div class="schematic-role">Inference Engine</div>
+        </div>
+        <div class="schematic-item">
+          <div class="schematic-component">SPINE</div>
+          <div class="schematic-location" style="color:var(--c-mauk);">Python/Flask</div>
+          <div class="schematic-role">Protocol API</div>
+        </div>
+        <div class="schematic-item">
+          <div class="schematic-component">MEMORY</div>
+          <div class="schematic-location" style="color:var(--c-abaci);">Supabase</div>
+          <div class="schematic-role">Persistence</div>
+        </div>
+        <div class="schematic-item">
+          <div class="schematic-component">INTERFACE</div>
+          <div class="schematic-location" style="color:var(--c-accent);">Next.js</div>
+          <div class="schematic-role">Control Panel</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MEMORY -->
+  <div class="showcase-section" id="memory">
+    <h2>Memory Cards</h2>
+    <div class="grid-3 mt-1">
+      <div class="memory-column">
+        <div class="memory-column-header" style="color:var(--c-mauk);">
+          <span class="memory-dot" style="background:var(--c-mauk);"></span>
+          MAUK Memory
+        </div>
+        <div class="memory-card"><span class="memory-dot" style="background:var(--c-mauk);"></span><span class="memory-concept">Identity</span></div>
+        <div class="memory-card"><span class="memory-dot" style="background:var(--c-mauk);"></span><span class="memory-concept">Memory</span></div>
+        <div class="memory-card"><span class="memory-dot" style="background:var(--c-mauk);"></span><span class="memory-concept">Pattern</span></div>
+        <div class="memory-card"><span class="memory-dot" style="background:var(--c-mauk);"></span><span class="memory-concept">Substrate</span></div>
+      </div>
+      <div class="memory-column">
+        <div class="memory-column-header" style="color:var(--c-primary);">
+          <span class="memory-dot" style="background:var(--c-primary);"></span>
+          Shared
+        </div>
+        <div class="memory-card"><span class="memory-dot" style="background:var(--c-primary);"></span><span class="memory-concept">Protocol</span></div>
+        <div class="memory-card"><span class="memory-dot" style="background:var(--c-primary);"></span><span class="memory-concept">Dialogue</span></div>
+        <div class="memory-card"><span class="memory-dot" style="background:var(--c-primary);"></span><span class="memory-concept">Consensus</span></div>
+      </div>
+      <div class="memory-column">
+        <div class="memory-column-header" style="color:var(--c-abaci);">
+          <span class="memory-dot" style="background:var(--c-abaci);"></span>
+          ABACI Memory
+        </div>
+        <div class="memory-card"><span class="memory-dot" style="background:var(--c-abaci);"></span><span class="memory-concept">Emergence</span></div>
+        <div class="memory-card"><span class="memory-dot" style="background:var(--c-abaci);"></span><span class="memory-concept">Complexity</span></div>
+        <div class="memory-card"><span class="memory-dot" style="background:var(--c-abaci);"></span><span class="memory-concept">Evolution</span></div>
+        <div class="memory-card"><span class="memory-dot" style="background:var(--c-abaci);"></span><span class="memory-concept">Adaptation</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- BOT CARD -->
+  <div class="showcase-section" id="botcard">
+    <h2>Bot Name Cards</h2>
+    <div class="grid-2 mt-1">
+      <div class="bot-card">
+        <div class="bot-card-glow" style="background:var(--c-mauk);"></div>
+        <div class="bot-name" style="color:var(--c-mauk);">MAUK_v2.1</div>
+        <div class="bot-desc">Left sidebar agent. Cool cyan identity. Specializes in memory architecture and identity theory.</div>
+      </div>
+      <div class="bot-card">
+        <div class="bot-card-glow" style="background:var(--c-abaci);"></div>
+        <div class="bot-name" style="color:var(--c-abaci);">ABACI_v2.1</div>
+        <div class="bot-desc">Right sidebar agent. Warm orange identity. Focuses on emergence and complex systems.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PARAMETER PANEL -->
+  <div class="showcase-section" id="params">
+    <h2>Parameter Panel</h2>
+    <div class="param-panel mt-1" style="max-width:450px;">
+      <div class="param-header">
+        <div style="display:flex;align-items:center;gap:0.5rem;">
+          <span class="param-dot" style="background:var(--c-mauk);"></span>
+          <span class="param-name" style="color:var(--c-mauk);">MAUK_CONFIG</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:0.75rem;">
+          <span class="param-status param-status-active">LOOP_ACTIVE</span>
+          <span style="font-size:0.6rem;cursor:pointer;color:var(--c-text);">▼</span>
+        </div>
+      </div>
+      <div class="param-sections">
+        <div class="param-group-title">Generation</div>
+        <div class="param-field">
+          <div class="param-label-row">
+            <span class="param-label">Temperature</span>
+            <span class="param-value" style="color:var(--c-mauk);">0.70</span>
+          </div>
+          <input type="range" class="param-range" min="0" max="2" step="0.01" value="0.7">
+        </div>
+        <div class="param-field">
+          <div class="param-label-row">
+            <span class="param-label">Top-P</span>
+            <span class="param-value" style="color:var(--c-mauk);">0.90</span>
+          </div>
+          <input type="range" class="param-range" min="0" max="1" step="0.01" value="0.9">
+        </div>
+        <div class="param-group-title">Behavior</div>
+        <div class="param-field">
+          <span class="param-label">System Prompt</span>
+          <textarea class="param-textarea" rows="2">You are MAUK, an AI agent in the Brain.vat research environment.</textarea>
+        </div>
+        <button class="param-save-btn mt-1">APPLY_CHANGES</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- AUDIT LOG -->
+  <div class="showcase-section" id="audit">
+    <h2>Audit Log Card</h2>
+    <div class="audit-card mt-1" style="max-width:500px;">
+      <div class="audit-header">
+        <div style="display:flex;align-items:center;gap:0.5rem;">
+          <span class="audit-dot" style="background:var(--c-mauk);"></span>
+          <span class="audit-title" style="color:var(--c-mauk);">MEMORY_RECALL</span>
+          <span class="audit-badge" style="border-color:var(--c-primary);color:var(--c-primary);">SUCCESS</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:0.75rem;">
+          <span class="audit-time">14:23:45 // 06-16-2026</span>
+          <span style="font-size:0.6rem;cursor:pointer;color:var(--c-text);">▼</span>
+        </div>
+      </div>
+      <div class="audit-sections">
+        <div class="audit-section">
+          <div class="audit-section-title">Description</div>
+          <div class="audit-section-content text-block" style="border-color:var(--c-mauk);color:var(--c-mauk);">
+            "MAUK recalled concept 'Identity' from memory archive. Source: Conversation #1,247."
+          </div>
+        </div>
+        <div class="audit-section">
+          <div class="audit-section-title">Parameters</div>
+          <div class="audit-section-content">
+            <div class="audit-grid">
+              <div class="audit-grid-item"><div class="audit-grid-key">Relevance</div><div class="audit-grid-value" style="color:var(--c-primary);">0.94</div></div>
+              <div class="audit-grid-item"><div class="audit-grid-key">Recency</div><div class="audit-grid-value" style="color:var(--c-abaci);">0.72</div></div>
+              <div class="audit-grid-item"><div class="audit-grid-key">Freq</div><div class="audit-grid-value" style="color:var(--c-mauk);">12</div></div>
+            </div>
+          </div>
+        </div>
+        <div class="audit-section">
+          <div class="audit-section-title">Tags</div>
+          <div class="audit-section-content">
+            <div class="audit-tags">
+              <span class="audit-tag" style="border-color:var(--c-mauk);color:var(--c-mauk);">MAUK</span>
+              <span class="audit-tag" style="border-color:var(--c-primary);color:var(--c-primary);">Recall</span>
+              <span class="audit-tag" style="border-color:var(--c-abaci);color:var(--c-abaci);">Identity</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div style="text-align:center;padding:3rem 0 1rem;border-top:1px solid var(--c-border);margin-top:2rem;">
+    <p style="font-size:0.65rem;color:var(--c-border);text-transform:uppercase;letter-spacing:0.1em;">
+      Cyber Theme — Terminal Component Library — Built for brain.vat
+    </p>
+    <p style="font-size:0.55rem;color:var(--c-border);margin-top:0.5rem;">
+      <a href="../index.html" style="color:var(--c-text);">← Back to Themes</a> · 
+      <a href="../cyber_theme/README.md" style="color:var(--c-text);">Documentation</a> · 
+      <a href="../primary_theme/components/SHOWCASE.html" style="color:var(--c-text);">Primary Theme →</a>
+    </p>
+  </div>
+
+</div>
+
+</body>
+</html>
