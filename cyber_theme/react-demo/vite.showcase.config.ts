@@ -3,7 +3,7 @@ import react from '@vitejs/plugin-react';
 import { resolve } from 'path';
 
 // Builds the cyber components into a single self-contained IIFE bundle
-// (`cyber-demo.js`) that the static SHOWCASE.html loads with a classic
+// (`cyber-showcase.js`) that the static SHOWCASE.html loads with a classic
 // <script> tag and mounts via `CyberDemo.mountAll()`.
 export default defineConfig({
   plugins: [react()],
@@ -33,7 +33,7 @@ export default defineConfig({
       entry: resolve(__dirname, 'src/showcase/mount.tsx'),
       name: 'CyberDemo',
       formats: ['iife'],
-      fileName: () => 'cyber-demo.js',
+      fileName: () => 'cyber-showcase.js',
     },
     // Emit next to SHOWCASE.html. emptyOutDir:false so we never wipe the
     // hand-written component library.

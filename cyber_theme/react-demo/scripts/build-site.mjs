@@ -1,7 +1,7 @@
 // Assembles the full static site into <repo>/dist, mirroring the source layout
 // so the relative links between pages resolve identically locally and on
 // GitHub Pages. Run AFTER `vite build --config vite.showcase.config.ts`, which
-// produces cyber_theme/components/cyber-demo.js.
+// produces cyber_theme/components/cyber-showcase.js.
 import { cpSync, rmSync, mkdirSync, existsSync, writeFileSync } from 'fs';
 import { dirname, join, resolve } from 'path';
 import { fileURLToPath } from 'url';
@@ -15,7 +15,7 @@ const files = [
   'index.html',
   '.nojekyll',
   'cyber_theme/components/SHOWCASE.html',
-  'cyber_theme/components/cyber-demo.js',
+  'cyber_theme/components/cyber-showcase.js',
   'cyber_theme/components/README.md',
   'cyber_theme/README.md',
   'primary_theme/components/SHOWCASE.html',
@@ -30,9 +30,9 @@ const dirs = [
   'primary_theme/components/backgrounds',
 ];
 
-const bundle = join(repoRoot, 'cyber_theme/components/cyber-demo.js');
+const bundle = join(repoRoot, 'cyber_theme/components/cyber-showcase.js');
 if (!existsSync(bundle)) {
-  console.error('ERROR: cyber-demo.js not found. Run `npm run build:showcase` first.');
+  console.error('ERROR: cyber-showcase.js not found. Run `npm run build:showcase` first.');
   process.exit(1);
 }
 

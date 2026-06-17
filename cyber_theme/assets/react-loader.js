@@ -2,7 +2,7 @@ let bundlePromise = null;
 
 export async function loadReactComponent(name, targetId) {
   if (!bundlePromise) {
-    bundlePromise = import('/themez/cyber-demo.js');
+    bundlePromise = import('/themez/cyber-showcase.js');
   }
   const { components } = await bundlePromise;
   const container = document.getElementById(targetId);
