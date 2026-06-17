@@ -1,6 +1,29 @@
 'use client'
 
+import { useEffect, useState } from 'react'
 import { cn } from '@/lib/utils'
+
+/**
+ * Ramps a value from 0 → target with an ease-out curve on mount, driving the
+ * circular/gauge fill animations.
+ */
+function useAnimatedNumber(target: number, duration = 900) {
+  const [v, setV] = useState(0)
+  useEffect(() => {
+    let raf = 0
+    let start: number | null = null
+    const tick = (t: number) => {
+      if (start === null) start = t
+      const p = Math.min(1, (t - start) / duration)
+      const eased = 1 - Math.pow(1 - p, 3)
+      setV(target * eased)
+      if (p < 1) raf = requestAnimationFrame(tick)
+    }
+    raf = requestAnimationFrame(tick)
+    return () => cancelAnimationFrame(raf)
+  }, [target, duration])
+  return v
+}
 
 export interface ProgressIndicatorProps {
   // Required
@@ -135,11 +158,12 @@ function CircularProgress({
   showPercentage,
   className,
 }: CircularProgressProps) {
+  const animated = useAnimatedNumber(value)
   const sizeMap = { sm: 60, md: 100, lg: 140 }
   const diameter = sizeMap[size as keyof typeof sizeMap]
   const radius = diameter / 2 - 4
   const circumference = 2 * Math.PI * radius
-  const offset = circumference - (value / 100) * circumference
+  const offset = circumference - (animated / 100) * circumference
 
   return (
     <div className={cn('flex flex-col items-center', className)}>
@@ -166,7 +190,6 @@ function CircularProgress({
           strokeDashoffset={offset}
           strokeLinecap="round"
           style={{
-            transition: 'stroke-dashoffset 0.5s ease',
             filter: `drop-shadow(0 0 4px ${accentColor}80)`,
           }}
         />
@@ -210,12 +233,13 @@ function GaugeProgress({
   showPercentage,
   className,
 }: GaugeProgressProps) {
+  const animated = useAnimatedNumber(value)
   const sizeMap = { sm: 80, md: 120, lg: 160 }
   const diameter = sizeMap[size as keyof typeof sizeMap]
   const radius = diameter / 2 - 6
 
   // Gauge goes from 225° to -45° (270° sweep)
-  const angle = (value / 100) * 270 - 225
+  const angle = (animated / 100) * 270 - 225
   const rad = (angle * Math.PI) / 180
   const x = diameter / 2 + radius * Math.cos(rad)
   const y = diameter / 2 + radius * Math.sin(rad)
@@ -234,7 +258,7 @@ function GaugeProgress({
 
         {/* Progress arc */}
         <path
-          d={`M ${diameter / 2 - radius} ${diameter / 2} A ${radius} ${radius} 0 ${value > 50 ? 1 : 0} 1 ${x} ${y}`}
+          d={`M ${diameter / 2 - radius} ${diameter / 2} A ${radius} ${radius} 0 ${animated > 50 ? 1 : 0} 1 ${x} ${y}`}
           fill="none"
           stroke={accentColor}
           strokeWidth="3"

@@ -136,17 +136,17 @@ export function Alert({
         )}
       </div>
 
-      {/* Message */}
-      <div className="text-xs text-foreground/80 leading-relaxed font-mono ml-8">
+      {/* Message — coloured to match the alert severity */}
+      <div className="text-xs leading-relaxed font-mono ml-8" style={{ color }}>
         {typeof message === 'string' ? <p>{message}</p> : message}
       </div>
 
-      {/* Action button */}
+      {/* Action button — underlined to read as a link */}
       {actionLabel && (
         <div className="ml-8 pt-2">
           <button
             onClick={handleAction}
-            className="text-xs font-mono transition-colors group"
+            className="text-xs font-mono transition-colors group underline underline-offset-2"
             style={{ color }}>
             {actionLabel}{' '}
             <span className="inline-block transform group-hover:translate-x-1 transition-transform">
@@ -197,8 +197,8 @@ function CompactAlert({
       }}>
       <span className="text-lg flex-shrink-0">{icon}</span>
       <div className="flex-1 min-w-0">
-        <p className="text-xs font-mono text-foreground/80">
-          <span style={{ color }} className="font-bold">
+        <p className="text-xs font-mono" style={{ color }}>
+          <span className="font-bold">
             {title}:
           </span>{' '}
           {typeof message === 'string' ? message : <>{message}</>}
@@ -207,7 +207,7 @@ function CompactAlert({
       {actionLabel && (
         <button
           onClick={onAction}
-          className="text-xs font-mono flex-shrink-0 transition-colors"
+          className="text-xs font-mono flex-shrink-0 transition-colors underline underline-offset-2"
           style={{ color }}>
           {actionLabel}
         </button>
@@ -251,14 +251,14 @@ function InlineAlert({
           {title}
         </span>
       </div>
-      <p className="text-xs text-foreground/80 font-mono ml-6">
+      <p className="text-xs font-mono ml-6" style={{ color }}>
         {typeof message === 'string' ? message : message}
       </p>
       {actionLabel && (
         <div className="ml-6 pt-1">
           <button
             onClick={onAction}
-            className="text-xs font-mono transition-colors"
+            className="text-xs font-mono transition-colors underline underline-offset-2"
             style={{ color }}>
             {actionLabel} →
           </button>

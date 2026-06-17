@@ -1,6 +1,7 @@
 import { useState, type ReactElement, type ReactNode } from 'react'
 import { Paperclip, Mic, Send } from 'lucide-react'
 import { TextInput } from '@/components/TextInput'
+import { Button } from '@/components/Button'
 import { Badge, BadgeGroup } from '@/components/Badge'
 import { Spinner } from '@/components/Spinner'
 import { LoadingProgress } from '@/components/LoadingProgress'
@@ -65,21 +66,22 @@ function AlertsDemo() {
   )
 }
 
+function ButtonsDemo() {
+  return (
+    <div className="flex gap-3 flex-wrap items-center">
+      <Button>Primary</Button>
+      <Button variant="accent">Accent</Button>
+      <Button disabled>Disabled</Button>
+    </div>
+  )
+}
+
 function SpinnersDemo() {
   return (
     <div className="flex gap-12">
-      <div className="flex flex-col items-center gap-4">
-        <p className="text-[10px] text-muted-foreground">Ring</p>
-        <Spinner variant="ring" label="Processing" />
-      </div>
-      <div className="flex flex-col items-center gap-4">
-        <p className="text-[10px] text-muted-foreground">Dots</p>
-        <Spinner variant="dots" label="Loading" />
-      </div>
-      <div className="flex flex-col items-center gap-4">
-        <p className="text-[10px] text-muted-foreground">Pulse</p>
-        <Spinner variant="pulse" label="Ready" />
-      </div>
+      <Spinner variant="dots" label="Loading" accentColor="#00ff41" />
+      <Spinner variant="pulse" label="Error" accentColor="#E63946" />
+      <Spinner variant="ring" label="Syncing" accentColor="#00ccff" />
     </div>
   )
 }
@@ -122,10 +124,10 @@ function StatsDemo() {
   return (
     <StatsDisplay
       stats={[
-        { label: 'Active Sessions', value: '1,247', change: '+12', changeType: 'positive', icon: '👥', color: '#03A6A1' },
-        { label: 'Data Processed', value: '2.3GB', change: '+0.1GB', changeType: 'positive', icon: '💾', color: '#FF9D23' },
-        { label: 'Error Rate', value: '0.02%', change: '-0.01%', changeType: 'positive', icon: '⚠', color: '#00ff41' },
-        { label: 'Uptime', value: '99.9%', change: 'stable', changeType: 'neutral', icon: '⏱', color: '#00ccff' },
+        { label: 'Conversations', value: '1,247', change: '-12', changeType: 'negative', icon: '◉', color: '#03A6A1' },
+        { label: 'Concepts', value: '5,847', change: '234', changeType: 'positive', icon: '▮', color: '#FF9D23' },
+        { label: 'Memory', value: '2.3GB', change: '+0.1GB', changeType: 'neutral', icon: '💾', color: '#00ff41' },
+        { label: 'Uptime', value: '47d 3h', change: 'stable', changeType: 'neutral', icon: '⏱', color: '#E63946' },
       ]}
       columns={4}
     />
@@ -321,6 +323,7 @@ function TextInputDemo() {
 }
 
 export const demos: Record<string, () => ReactElement> = {
+  buttons: ButtonsDemo,
   textinput: TextInputDemo,
   badges: BadgesDemo,
   alerts: AlertsDemo,

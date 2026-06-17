@@ -112,10 +112,8 @@ function TimelineEventNode({
             borderColor: accentColor,
             backgroundColor: `${accentColor}15`,
           }}>
-          {/* Title */}
-          <h3
-            className="text-sm font-bold uppercase tracking-wide mb-2"
-            style={{ color: accentColor }}>
+          {/* Title — same colour as the body text */}
+          <h3 className="text-sm font-bold uppercase tracking-wide mb-2 text-foreground/80">
             {event.title}
           </h3>
 
@@ -208,9 +206,7 @@ function HorizontalTimeline({
                   borderColor: event.color || accentColor,
                   backgroundColor: `${event.color || accentColor}15`,
                 }}>
-                <h3
-                  className="text-xs font-bold uppercase tracking-wide mb-2"
-                  style={{ color: event.color || accentColor }}>
+                <h3 className="text-xs font-bold uppercase tracking-wide mb-2 text-foreground/80">
                   {event.title}
                 </h3>
                 {event.timestamp && (

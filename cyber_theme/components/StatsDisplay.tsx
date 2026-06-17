@@ -74,7 +74,7 @@ function StatCard({ stat, accentColor }: StatCardProps) {
         <div className="flex-1 min-w-0">
           <div className="flex items-center gap-2 mb-2">
             {stat.icon && <span className="text-lg flex-shrink-0">{stat.icon}</span>}
-            <p className="text-xs text-muted-foreground uppercase tracking-wider truncate">
+            <p className="text-xs uppercase tracking-wider truncate" style={{ color: accentColor }}>
               {stat.label}
             </p>
           </div>
