@@ -1,6 +1,6 @@
 # Primary Theme Components
 
-All components are pure HTML/CSS — no JavaScript frameworks required.
+Each component is available two ways: as pure **HTML/CSS** (class names below) and as a **React** component in [`PrimaryComponents.tsx`](PrimaryComponents.tsx). Both render the same `primary-theme.css` classes. See the [showcase](SHOWCASE.html) for live HTML/CSS | React tabs.
 
 ---
 
@@ -109,6 +109,35 @@ All components are pure HTML/CSS — no JavaScript frameworks required.
 </div>
 ```
 
+### Text Input (auto-fit)
+```html
+<!-- Static look (the React version adds auto-resize) -->
+<label class="ti-label">Message</label>
+<div class="ti-field">
+  <div class="ti-adornment"><button class="ti-icon-btn">📎</button></div>
+  <textarea class="ti-input" rows="1" wrap="off" placeholder="Type here…"></textarea>
+  <div class="ti-adornment"><button class="ti-icon-btn">➤</button></div>
+</div>
+```
+
+---
+
+## React Usage
+
+Import from [`PrimaryComponents.tsx`](PrimaryComponents.tsx) (keep `primary-theme.css` loaded):
+
+```tsx
+import { Button, Alert, TextInput } from './PrimaryComponents'
+
+<Button variant="blue">Save</Button>
+<Alert severity="error" title="Failed" message="Try again." />
+
+// Auto-fit: starts at maxFontSize, shrinks to minFontSize, then wraps to multi-line
+<TextInput label="Message" placeholder="Type…" width={460} minFontSize={13} maxFontSize={24} />
+```
+
+Exported components: `Button`, `Badge`, `Alert`, `Spinner`, `Progress`, `StatsDisplay`, `Breadcrumb`, `Timeline`, `DialogueMessage`, `ConversationThread`, `MissionStatement`, `TechnicalSchematic`, `MemoryColumn`, `MemoryGrid`, `BotNameCard`, `BotNameCardGrid`, `ParameterPanel`, `AuditLogCard`, `LoadingBar`, `TextInput`.
+
 ---
 
 ## Full Component List
@@ -131,16 +160,19 @@ All components are pure HTML/CSS — no JavaScript frameworks required.
 | 14 | Loading Progress | `.loading-bar` | top/bottom |
 | 15 | Parameter Panel | `.param-panel` | collapsible |
 | 16 | Audit Log Card | `.audit-card` | collapsible, 6 section types |
+| 17 | Text Input | `.ti-field` | auto-fit (shrink→wrap), label/helper/error/disabled, leading/trailing icons |
 
 ---
 
 ## File Reference
 
-| File | Size | Purpose |
-|------|------|---------|
-| `primary-theme.css` | ~22KB | All component styles |
-| `primary-theme.js` | ~3KB | Interactions (optional) |
-| `SHOWCASE.html` | ~34KB | Live demo of all components |
+| File | Purpose |
+|------|---------|
+| `primary-theme.css` | All component styles (single file) |
+| `primary-theme.js` | Interactions for the HTML/CSS demos (optional) |
+| `PrimaryComponents.tsx` | React counterparts for every component |
+| `primary-showcase.js` | Pre-built React bundle loaded by `SHOWCASE.html` |
+| `SHOWCASE.html` | Live demo — HTML/CSS \| React tabs |
 
 ---
 
