@@ -1,0 +1,209 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Russo+One&family=Courier+Prime:wght@400;700&family=JetBrains+Mono:wght@400;700&display=swap');
+
+:root {
+  /* Default/Fallback Variables */
+  --bg-color: #ffffff;
+  --text-color: #111111;
+  --primary-color: #4195DE;
+  --secondary-color: #D23B72;
+  --accent-color: #facc15;
+  --surface-color: #ffffff;
+  --border-color: #e5e5e5;
+  /* Participant accent colors (used by chat bubbles, avatars, buttons) */
+  --user1-color: #4195DE; /* misc UI accents (register button, account chrome) */
+  --user2-color: #e5484d; /* the signed-in human ("you") — red */
+  --font-main: 'Space Grotesk', sans-serif;
+  --font-heading: 'Russo One', sans-serif;
+  --border-radius: 12px;
+  --shadow: 0 4px 6px rgba(0,0,0,0.05);
+  --border-width: 1px;
+}
+
+/* =========================================
+   THEME 1: Cyber Terminal (Brain.vat)
+   Hardcore terminal, black/green, data-dense
+   ========================================= */
+body.theme-cyber {
+  --bg-color: #000800;
+  --text-color: #00ff41;
+  --primary-color: #00ff41; /* Neon green */
+  --secondary-color: #008f11; /* Dim green */
+  --accent-color: #E63946; /* User (Red) */
+  --surface-color: #001500;
+  --border-color: #00441b; /* Dark Green */
+  --font-main: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  --font-heading: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  --border-radius: 0px;
+  --shadow: 0 0 15px rgba(0, 255, 65, 0.05); /* Subtler glow */
+  --border-width: 1px;
+}
+
+/* =========================================
+   THEME 2: Portfolio
+   Clean, Space Grotesk, Glassmorphism, 
+   Ising model accent colors
+   ========================================= */
+body.theme-portfolio {
+  --bg-color: transparent; /* Ising model canvas will show through */
+  --text-color: #D23B72; /* Pink Text */
+  --primary-color: #4195DE; /* Up Spin */
+  --secondary-color: #D23B72; /* Down Spin */
+  --accent-color: #fbbf24;
+  --surface-color: rgba(255, 255, 255, 0.85); /* Increased opacity for readability */
+  --border-color: rgba(255, 255, 255, 0.9);
+  --font-main: 'Space Grotesk', sans-serif;
+  --font-heading: 'Russo One', sans-serif;
+  --border-radius: 16px;
+  --shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+  --border-width: 1px;
+}
+
+/* =========================================
+   THEME 3: CatchFall (Bauhaus / Primary)
+   Stark contrasts, strict primary colors, 
+   bold borders, sharp corners
+   ========================================= */
+body.theme-primary {
+  --bg-color: #fafafa;
+  --text-color: #111111;
+  --primary-color: #0045AD; /* Blue */
+  --secondary-color: #EB1A26; /* Red */
+  --accent-color: #FFD600; /* Yellow */
+  --surface-color: #ffffff;
+  --border-color: #111111; /* Stark Black */
+  --font-main: 'Courier Prime', monospace;
+  --font-heading: 'Courier Prime', monospace;
+  --border-radius: 0px;
+  --shadow: 6px 6px 0px #111111; /* Hard shadow offset */
+  --border-width: 3px;
+}
+
+/* =========================================
+   BASE STYLES & UTILITIES
+   ========================================= */
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  font-family: var(--font-main);
+  transition: background-color 0.3s ease, color 0.3s ease;
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  margin-top: 0;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+/* A reusable surface panel for chat windows, menus, etc. */
+.surface-panel {
+  background-color: var(--surface-color);
+  border: var(--border-width) solid var(--border-color);
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow);
+  transition: all 0.3s ease;
+}
+
+/* Apply backdrop blur exclusively to the portfolio theme for the glass effect */
+body.theme-portfolio .surface-panel {
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+/* Reusable Button Style */
+.btn {
+  background-color: var(--primary-color);
+  color: #ffffff;
+  border: var(--border-width) solid var(--border-color);
+  border-radius: var(--border-radius);
+  padding: 0.75rem 1.5rem;
+  font-family: var(--font-heading);
+  font-size: 1rem;
+  cursor: pointer;
+  transition: transform 0.1s ease, box-shadow 0.3s ease;
+  box-shadow: var(--shadow);
+}
+
+.btn:active {
+  transform: translateY(2px);
+}
+
+body.theme-primary .btn {
+  box-shadow: 4px 4px 0px #111111;
+  color: #ffffff;
+}
+body.theme-primary .btn:active {
+  transform: translate(4px, 4px);
+  box-shadow: 0px 0px 0px #111111;
+}
+
+body.theme-cyber .btn {
+  background-color: transparent;
+  color: var(--primary-color);
+  border: 1px solid var(--primary-color);
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  font-weight: bold;
+  font-size: 0.75rem;
+  border-radius: 0;
+  box-shadow: none;
+}
+body.theme-cyber .btn:hover {
+  background-color: var(--primary-color);
+  color: #000000;
+}
+body.theme-cyber .btn.btn-accent {
+  color: var(--primary-color);
+  border-color: var(--primary-color);
+  transition: all 0.3s ease;
+}
+body.theme-cyber .btn.btn-accent:hover,
+body.theme-cyber .btn.btn-accent:active {
+  background-color: var(--accent-color);
+  color: #000000;
+  border-color: var(--accent-color);
+  box-shadow: 0 0 10px rgba(230, 57, 70, 0.4);
+}
+body.theme-cyber h1, 
+body.theme-cyber h2, 
+body.theme-cyber h3 {
+  text-shadow: 0 0 10px var(--primary-color);
+  text-transform: uppercase;
+  letter-spacing: -0.05em;
+}
+body.theme-cyber .surface-panel {
+  background-color: #001100;
+  border-color: #00441b;
+}
+body.theme-cyber .surface-panel:hover {
+  border-color: rgba(0, 255, 65, 0.5);
+}
+body.theme-cyber .header-title {
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 1.2rem;
+  margin-bottom: 1.2rem;
+}
+body.theme-cyber .input-box {
+  border-color: var(--border-color);
+  transition: all 0.3s ease;
+}
+body.theme-cyber .input-box:focus {
+  outline: none;
+  border-color: var(--accent-color);
+  box-shadow: 0 0 10px rgba(230, 57, 70, 0.4);
+}
+
+@keyframes typingBounce {
+  0%, 60%, 100% { transform: translateY(0); opacity: 0.4; }
+  30% { transform: translateY(-6px); opacity: 1; }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
