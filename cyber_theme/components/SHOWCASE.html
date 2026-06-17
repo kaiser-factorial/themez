@@ -384,6 +384,21 @@
   .demo-tabs .tab[data-target^="react-"].active { color: #000; background: var(--c-accent); box-shadow: 0 0 12px rgba(230,57,70,0.5); }
   .demo-panel { padding: 1.5rem; }
   .react-panel:empty::after { content: 'Loading React component\2026'; color: var(--c-accent); font-size: 0.7rem; }
+
+  /* Text input */
+  .ti-label { display: block; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--c-secondary); margin-bottom: 0.4rem; }
+  .ti-field { display: flex; align-items: center; gap: 0.6rem; background: var(--c-surface); border: 1px solid var(--c-border); padding: 0.5rem 0.75rem; transition: all 0.2s; }
+  .ti-field:focus-within, .ti-field.ti-focused { border-color: var(--c-primary); box-shadow: 0 0 10px rgba(0,255,65,0.3); }
+  .ti-field.ti-error { border-color: var(--c-accent); }
+  .ti-field.ti-error:focus-within { box-shadow: 0 0 10px rgba(230,57,70,0.4); }
+  .ti-field.ti-disabled { opacity: 0.45; }
+  .ti-input { flex: 1; min-width: 0; background: transparent; border: none; outline: none; color: var(--c-text); font-family: var(--c-font); font-size: 0.9rem; line-height: 1.4; resize: none; }
+  .ti-input::placeholder { color: var(--c-secondary); }
+  .ti-adornment { display: flex; align-items: center; gap: 0.35rem; flex-shrink: 0; }
+  .ti-icon-btn { display: inline-flex; align-items: center; justify-content: center; background: transparent; border: 1px solid var(--c-border); color: var(--c-secondary); cursor: pointer; padding: 0.35rem; line-height: 1; transition: all 0.2s; }
+  .ti-icon-btn:hover { color: #000; background: var(--c-primary); border-color: var(--c-primary); }
+  .ti-help { font-size: 0.65rem; color: var(--c-secondary); margin-top: 0.35rem; }
+  .ti-help.ti-error-text { color: var(--c-accent); }
 </style>
 </head>
 <body>
@@ -406,6 +421,7 @@
     <a href="#botcard">Bot Card</a>
     <a href="#params">Params</a>
     <a href="#audit">Audit</a>
+    <a href="#textinput">Text Input</a>
   </div>
 </div>
 
@@ -946,6 +962,31 @@
   
       </div>
       <div id="react-audit" class="demo-panel react-panel" data-demo="audit" style="display:none;"></div>
+    </section>
+  </div>
+
+  <!-- TEXT INPUT -->
+  <div class="showcase-section" id="textinput">
+    <h2>Text Input</h2>
+    <section class="component-demo">
+      <nav class="demo-tabs">
+        <button class="tab active" data-target="html-textinput">HTML / CSS</button>
+        <button class="tab" data-target="react-textinput">React</button>
+      </nav>
+      <div id="html-textinput" class="demo-panel">
+        <p style="margin-bottom:1rem;">Static styling preview. The <strong style="color:var(--c-accent);">React</strong> tab adds the auto-fit behaviour: text starts at max size, shrinks to min as the line fills, then wraps to new lines.</p>
+        <label class="ti-label">Display Name</label>
+        <div class="ti-field" style="max-width:360px;">
+          <textarea class="ti-input" rows="1" wrap="off" placeholder="Type here…"></textarea>
+        </div>
+        <label class="ti-label" style="margin-top:1rem;">Chatroom</label>
+        <div class="ti-field" style="max-width:460px;">
+          <div class="ti-adornment"><button class="ti-icon-btn" aria-label="Attach">📎</button></div>
+          <textarea class="ti-input" rows="1" wrap="off" placeholder="Message the swarm…"></textarea>
+          <div class="ti-adornment"><button class="ti-icon-btn" aria-label="Dictate">🎤</button><button class="ti-icon-btn" aria-label="Send">➤</button></div>
+        </div>
+      </div>
+      <div id="react-textinput" class="demo-panel react-panel" data-demo="textinput" style="display:none;"></div>
     </section>
   </div>
 

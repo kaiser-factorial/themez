@@ -654,3 +654,17 @@ hr { border: none; border-top: 2px solid var(--p-black); margin: 2rem 0; }
   .container { padding: 1rem; }
   h1 { font-size: 1.4rem; }
 }
+
+/* ===== Text Input (auto-fit) ===== */
+.ti-label { display: block; font-family: var(--p-font); font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--p-black); margin-bottom: 0.4rem; }
+.ti-field { display: flex; align-items: center; gap: 0.6rem; background: var(--p-surface); border: var(--p-border-w) solid var(--p-black); box-shadow: var(--p-shadow-sm); padding: 0.5rem 0.75rem; transition: all 0.15s; }
+.ti-field:focus-within, .ti-field.ti-focused { box-shadow: var(--p-shadow); transform: translate(-1px, -1px); }
+.ti-field.ti-error { border-color: var(--p-red); }
+.ti-field.ti-disabled { opacity: 0.5; box-shadow: none; }
+.ti-input { flex: 1; min-width: 0; background: transparent; border: none; outline: none; color: var(--p-black); font-family: var(--p-font); font-size: 1rem; line-height: 1.4; resize: none; }
+.ti-input::placeholder { color: #999; }
+.ti-adornment { display: flex; align-items: center; gap: 0.35rem; flex-shrink: 0; }
+.ti-icon-btn { display: inline-flex; align-items: center; justify-content: center; background: var(--p-surface); border: 2px solid var(--p-black); color: var(--p-black); cursor: pointer; padding: 0.35rem; line-height: 1; transition: background 0.15s; }
+.ti-icon-btn:hover { background: var(--p-yellow); }
+.ti-help { font-family: var(--p-font); font-size: 0.7rem; color: #666; margin-top: 0.35rem; }
+.ti-help.ti-error-text { color: var(--p-red); }

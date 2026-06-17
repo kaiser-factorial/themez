@@ -1,4 +1,6 @@
-import { useState, type ReactElement } from 'react'
+import { useState, type ReactElement, type ReactNode } from 'react'
+import { Paperclip, Mic, Send } from 'lucide-react'
+import { TextInput } from '@/components/TextInput'
 import { Badge, BadgeGroup } from '@/components/Badge'
 import { Spinner } from '@/components/Spinner'
 import { LoadingProgress } from '@/components/LoadingProgress'
@@ -278,7 +280,48 @@ function AuditDemo() {
   )
 }
 
+function TIcon({ children, label }: { children: ReactNode; label: string }) {
+  return <button type="button" className="ti-icon-btn" aria-label={label}>{children}</button>
+}
+
+function TextInputDemo() {
+  return (
+    <div className="space-y-6" style={{ maxWidth: 480 }}>
+      <div>
+        <p className="text-xs text-muted-foreground mb-3 uppercase">Default — type to watch it shrink, then wrap</p>
+        <TextInput label="Display Name" placeholder="Type a long name to see it auto-fit…" width={360} />
+      </div>
+      <div>
+        <p className="text-xs text-muted-foreground mb-3 uppercase">With helper text</p>
+        <TextInput label="Callsign" placeholder="e.g. MAUK_v2.1" helperText="Shown to other operators on the mesh." width={360} />
+      </div>
+      <div>
+        <p className="text-xs text-muted-foreground mb-3 uppercase">Error state</p>
+        <TextInput label="Access Key" defaultValue="invalid-key-0000" error="Key not recognized by the gateway." width={360} />
+      </div>
+      <div>
+        <p className="text-xs text-muted-foreground mb-3 uppercase">Disabled</p>
+        <TextInput label="Locked Field" defaultValue="read only" disabled width={360} />
+      </div>
+      <div>
+        <p className="text-xs text-muted-foreground mb-3 uppercase">Chatroom — attach · mic · send (min 12 / max 24)</p>
+        <TextInput
+          placeholder="Message the swarm…" width={460} height={48} minFontSize={12} maxFontSize={24}
+          leading={<TIcon label="Attach file"><Paperclip size={16} /></TIcon>}
+          trailing={<><TIcon label="Dictate"><Mic size={16} /></TIcon><TIcon label="Send"><Send size={16} /></TIcon></>}
+          onSend={() => {}}
+        />
+      </div>
+      <div>
+        <p className="text-xs text-muted-foreground mb-3 uppercase">Extended response — taller field (min 13 / max 20)</p>
+        <TextInput label="Mission Log" placeholder="Compose an extended response…" width={460} height={64} minFontSize={13} maxFontSize={20} />
+      </div>
+    </div>
+  )
+}
+
 export const demos: Record<string, () => ReactElement> = {
+  textinput: TextInputDemo,
   badges: BadgesDemo,
   alerts: AlertsDemo,
   spinners: SpinnersDemo,

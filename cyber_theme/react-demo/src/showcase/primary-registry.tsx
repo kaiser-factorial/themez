@@ -1,8 +1,9 @@
-import { type ReactElement } from 'react'
+import { type ReactElement, type ReactNode } from 'react'
+import { Paperclip, Mic, Send } from 'lucide-react'
 import {
   Badge, Button, Alert, Spinner, Progress, StatsDisplay, Breadcrumb, Timeline,
   ConversationThread, MissionStatement, TechnicalSchematic, MemoryGrid,
-  BotNameCardGrid, ParameterPanel, AuditLogCard, LoadingBar,
+  BotNameCardGrid, ParameterPanel, AuditLogCard, LoadingBar, TextInput,
 } from '@primary/components/PrimaryComponents'
 
 const BLUE = 'var(--p-blue)', RED = 'var(--p-red)', YEL = '#b89600', BLACK = 'var(--p-black)'
@@ -204,7 +205,50 @@ function AuditDemo() {
 
 function LoadingDemo() { return <LoadingBar color={BLUE} /> }
 
+function TIcon({ children, label }: { children: ReactNode; label: string }) {
+  return <button type="button" className="ti-icon-btn" aria-label={label}>{children}</button>
+}
+
+function TextInputDemo() {
+  return (
+    <div style={{ maxWidth: 480, display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
+      <div>
+        <div className="demo-label">Default — type to watch it shrink, then wrap</div>
+        <div className="mt-1"><TextInput label="Display Name" placeholder="Type a long name to see it auto-fit…" width={360} /></div>
+      </div>
+      <div>
+        <div className="demo-label">With helper text</div>
+        <div className="mt-1"><TextInput label="Username" placeholder="e.g. catch_player_01" helperText="Visible to other players." width={360} /></div>
+      </div>
+      <div>
+        <div className="demo-label">Error state</div>
+        <div className="mt-1"><TextInput label="Access Code" defaultValue="0000-bad" error="Code not recognized." width={360} /></div>
+      </div>
+      <div>
+        <div className="demo-label">Disabled</div>
+        <div className="mt-1"><TextInput label="Locked Field" defaultValue="read only" disabled width={360} /></div>
+      </div>
+      <div>
+        <div className="demo-label">Chatroom — attach · mic · send (min 13 / max 24)</div>
+        <div className="mt-1">
+          <TextInput
+            placeholder="Type a message…" width={460} height={50} minFontSize={13} maxFontSize={24}
+            leading={<TIcon label="Attach file"><Paperclip size={16} /></TIcon>}
+            trailing={<><TIcon label="Dictate"><Mic size={16} /></TIcon><TIcon label="Send"><Send size={16} /></TIcon></>}
+            onSend={() => {}}
+          />
+        </div>
+      </div>
+      <div>
+        <div className="demo-label">Extended response — taller field (min 14 / max 20)</div>
+        <div className="mt-1"><TextInput label="Extended Response" placeholder="Compose a longer reply…" width={460} height={66} minFontSize={14} maxFontSize={20} /></div>
+      </div>
+    </div>
+  )
+}
+
 export const demos: Record<string, () => ReactElement> = {
+  textinput: TextInputDemo,
   buttons: ButtonsDemo,
   badges: BadgesDemo,
   alerts: AlertsDemo,

@@ -15,6 +15,7 @@ export default defineConfig({
       '@primary': resolve(__dirname, '../../primary_theme'),
       react: resolve(__dirname, 'node_modules/react'),
       'react-dom': resolve(__dirname, 'node_modules/react-dom'),
+      'lucide-react': resolve(__dirname, 'node_modules/lucide-react'),
     },
     dedupe: ['react', 'react-dom'],
   },

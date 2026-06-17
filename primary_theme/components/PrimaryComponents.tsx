@@ -1,4 +1,7 @@
-import { useState, type ReactNode, type CSSProperties } from 'react'
+import {
+  useState, useLayoutEffect, useRef,
+  type ReactNode, type CSSProperties, type KeyboardEvent,
+} from 'react'
 
 /**
  * React counterparts for the Primary (Bauhaus) theme components.
@@ -446,6 +449,104 @@ export function LoadingBar({ color = P.blue }: { color?: string }) {
       <div className="loading-bar loading-bar-top" style={{ opacity: active ? 1 : 0 }}>
         <div className="loading-bar-fill" style={{ width: `${progress}%`, background: color }} />
       </div>
+    </div>
+  )
+}
+
+/* ============================ Text Input (auto-fit) ============================ */
+const P_MONO = "'Courier Prime', 'Courier New', monospace"
+
+export interface TextInputProps {
+  width?: number | string
+  height?: number
+  minFontSize?: number
+  maxFontSize?: number
+  placeholder?: string
+  defaultValue?: string
+  value?: string
+  onChange?: (value: string) => void
+  onSend?: (value: string) => void
+  label?: string
+  helperText?: string
+  error?: boolean | string
+  disabled?: boolean
+  leading?: ReactNode
+  trailing?: ReactNode
+}
+
+/**
+ * Auto-fitting text input. Text starts at `maxFontSize` and shrinks toward
+ * `minFontSize` as the line fills; once at min and still overflowing, it wraps
+ * to multi-line and auto-grows its height. Styled via the `.ti-*` classes in
+ * primary-theme.css so the HTML/CSS and React tabs match.
+ */
+export function TextInput({
+  width, height = 48, minFontSize = 13, maxFontSize = 24,
+  placeholder, defaultValue, value: controlled, onChange, onSend,
+  label, helperText, error, disabled, leading, trailing,
+}: TextInputProps) {
+  const [internal, setInternal] = useState(defaultValue ?? '')
+  const value = controlled ?? internal
+  const [fontSize, setFontSize] = useState(maxFontSize)
+  const [multiline, setMultiline] = useState(false)
+  const [focused, setFocused] = useState(false)
+  const taRef = useRef<HTMLTextAreaElement>(null)
+  const measureRef = useRef<HTMLSpanElement>(null)
+  const errText = typeof error === 'string' ? error : undefined
+  const hasError = Boolean(error)
+
+  useLayoutEffect(() => {
+    const ta = taRef.current, span = measureRef.current
+    if (!ta || !span) return
+    const avail = ta.clientWidth
+    span.style.fontSize = `${maxFontSize}px`
+    span.textContent = value.length ? value : placeholder ?? ''
+    const widthAtMax = span.getBoundingClientRect().width
+    if (widthAtMax <= avail || widthAtMax === 0) { setFontSize(maxFontSize); setMultiline(false); return }
+    const scaled = maxFontSize * (avail / widthAtMax)
+    if (scaled >= minFontSize) { setFontSize(scaled); setMultiline(false) }
+    else { setFontSize(minFontSize); setMultiline(true) }
+  }, [value, placeholder, minFontSize, maxFontSize])
+
+  useLayoutEffect(() => {
+    const ta = taRef.current
+    if (!ta) return
+    if (multiline) { ta.style.height = 'auto'; ta.style.height = `${ta.scrollHeight}px` }
+    else { ta.style.height = '' }
+  }, [multiline, value, fontSize])
+
+  const update = (v: string) => { if (controlled === undefined) setInternal(v); onChange?.(v) }
+  const handleKey = (e: KeyboardEvent<HTMLTextAreaElement>) => {
+    if (onSend && e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); onSend(value) }
+  }
+
+  return (
+    <div style={{ width: typeof width === 'number' ? `${width}px` : width }}>
+      {label && <label className="ti-label">{label}</label>}
+      <div
+        className={`ti-field${hasError ? ' ti-error' : ''}${disabled ? ' ti-disabled' : ''}${focused ? ' ti-focused' : ''}`}
+        style={{ minHeight: height, alignItems: multiline ? 'flex-end' : 'center' }}>
+        {leading && <div className="ti-adornment">{leading}</div>}
+        <textarea
+          ref={taRef} className="ti-input" value={value} placeholder={placeholder}
+          disabled={disabled} rows={1} wrap={multiline ? 'soft' : 'off'}
+          onChange={(e) => update(e.target.value)} onKeyDown={handleKey}
+          onFocus={() => setFocused(true)} onBlur={() => setFocused(false)}
+          style={{
+            fontSize: `${fontSize}px`, lineHeight: 1.4,
+            whiteSpace: multiline ? 'pre-wrap' : 'nowrap', overflow: 'hidden',
+            resize: 'none', transition: 'font-size 0.08s linear',
+          } as CSSProperties}
+        />
+        {trailing && <div className="ti-adornment">{trailing}</div>}
+      </div>
+      {(errText || helperText) && (
+        <div className={`ti-help${hasError ? ' ti-error-text' : ''}`}>{errText ?? helperText}</div>
+      )}
+      <span ref={measureRef} aria-hidden="true" style={{
+        position: 'absolute', left: -99999, top: 0, visibility: 'hidden',
+        whiteSpace: 'nowrap', fontFamily: P_MONO, pointerEvents: 'none',
+      }} />
     </div>
   )
 }
