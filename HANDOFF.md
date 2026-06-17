@@ -1,6 +1,7 @@
 # HANDOFF.md — Themez Repository
 
 **Repo:** `kaiser-factorial/themez` (renamed from `cyber-theme`)
+**CLI:** Using `antigravity-cli` for elevated permissions
 **Live site:** https://kaiser-factorial.github.io/themez/
 **Branch:** `main`
 **Last commit:** `0c81708` — Fix geometric backgrounds visibility
@@ -204,3 +205,22 @@ curl -sI https://kaiser-factorial.github.io/themez/cyber_theme/components/SHOWCA
 - **No Jekyll** — `.nojekyll` file present
 - **Large files** — Keep individual file writes moderate in size
 - **Browser caching** — GH Pages deploys within ~1 minute; hard refresh needed after pushes
+## Current Work – Dual CSS/React Showcase
+
+- Added a **single HTML page** (`cyber_theme/cyber_react.html`) that displays the native CSS components side‑by‑side with their React equivalents.
+- Created a lightweight **React demo loader** (`cyber_theme/assets/react-loader.js`) which dynamically loads the compiled bundle.
+- Stub bundle `dist/cyber-demo.js` was added to give immediate functionality while the proper Vite build is pending.
+- Updated navigation links in `cyber_theme/components/SHOWCASE.html` to point to the new demo page.
+
+## What Needs to Happen Next
+1. **Install Node & Yarn** (use the provided Bash installer script).  
+2. **Run the build** inside `cyber_theme/react-demo`:
+   ```bash
+   cd /Users/corinakaiser/Projects/Themes/cyber_theme/react-demo
+   yarn install
+   yarn build   # produces a correct dist/cyber-demo.js
+   ```
+3. **Commit & push** all new files (`react-demo/`, `assets/react-loader.js`, `cyber_react.html`, updated `SHOWCASE.html`).
+4. **Verify GitHub Actions** deploys the new bundle to the `gh‑pages` branch.
+5. **Test the live demo** at `https://kaiser-factorial.github.io/themez/cyber_theme/cyber_react.html`.
+6. Optionally add a lazy‑load toggle, polish styling, and update the documentation in `HANDOFF.md` with any further decisions.

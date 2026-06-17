@@ -18,14 +18,14 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '20'
-          cache: 'yarn'
+          cache: 'npm'
 
       - name: Install dependencies
-        run: yarn install
+        run: npm install
         working-directory: ./cyber_theme/react-demo
 
       - name: Build Vite project
-        run: yarn build
+        run: npm run build
         working-directory: ./cyber_theme/react-demo
 
       - name: Deploy to GitHub Pages (gh-pages branch)

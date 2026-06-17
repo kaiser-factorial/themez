@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Cyber Theme – CSS & React Showcase</title>
+  <link rel="stylesheet" href="../components/cyber-theme.css" />
+  <style>
+    body { margin:0; font-family:sans-serif; background:#000800; color:#fff; }
+    .container { display:flex; flex-direction:column; gap:2rem; padding:2rem; }
+    .section { border:1px solid #555; padding:1rem; border-radius:4px; }
+    h2 { margin-top:0; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <section class="section" id="css-demo">
+      <h2>CSS Components</h2>
+      <div class="badge">Badge (CSS)</div>
+      <div class="progress">Progress (CSS)</div>
+      <div class="stats">Stats (CSS)</div>
+      <div class="timeline">Timeline (CSS)</div>
+    </section>
+    <section class="section" id="react-demo">
+      <h2>React Components</h2>
+      <div id="root"></div>
+    </section>
+  </div>
+  <script type="module" src="/src/main.tsx"></script>
+</body>
+</html>
