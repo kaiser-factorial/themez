@@ -7,6 +7,3 @@ build/
 .env.local
 .env.*.local
 screenshots/
-
-# Built React showcase bundle — produced by `npm run build:showcase` (CI builds it on deploy)
-cyber_theme/components/cyber-showcase.js

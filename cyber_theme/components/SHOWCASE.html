@@ -378,8 +378,12 @@
   }
   .demo-tabs .tab:hover { color: var(--c-text); background: rgba(0,255,65,0.05); }
   .demo-tabs .tab.active { color: #000; background: var(--c-primary); }
+  /* React tab styled in accent red so it's clearly distinct from the CSS tab */
+  .demo-tabs .tab[data-target^="react-"] { color: var(--c-accent); border-right-color: var(--c-accent); }
+  .demo-tabs .tab[data-target^="react-"]:hover { color: #000; background: var(--c-accent); }
+  .demo-tabs .tab[data-target^="react-"].active { color: #000; background: var(--c-accent); box-shadow: 0 0 12px rgba(230,57,70,0.5); }
   .demo-panel { padding: 1.5rem; }
-  .react-panel:empty::after { content: 'Loading React component\2026'; color: var(--c-secondary); font-size: 0.7rem; }
+  .react-panel:empty::after { content: 'Loading React component\2026'; color: var(--c-accent); font-size: 0.7rem; }
 </style>
 </head>
 <body>
