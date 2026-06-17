@@ -168,6 +168,24 @@
       margin-top: auto;
       font-family: var(--p-font);
     }
+  
+    /* Component demo tabs (HTML | React) */
+    .component-demo { border: var(--p-border-w) solid var(--p-black); margin-top: 0.75rem; background: var(--p-surface); box-shadow: var(--p-shadow-sm); }
+    .demo-tabs { display: flex; border-bottom: var(--p-border-w) solid var(--p-black); }
+    .demo-tabs .tab {
+      font-family: var(--p-font); font-size: 0.7rem; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.1em; padding: 0.5rem 1rem;
+      background: var(--p-surface); color: var(--p-black); border: none;
+      border-right: var(--p-border-w) solid var(--p-black); cursor: pointer;
+    }
+    .demo-tabs .tab:hover { background: var(--p-yellow); }
+    .demo-tabs .tab.active { background: var(--p-black); color: var(--p-white); }
+    /* React tab in primary red so it's clearly distinct */
+    .demo-tabs .tab[data-target^="react-"] { color: var(--p-red); }
+    .demo-tabs .tab[data-target^="react-"]:hover { background: var(--p-red); color: var(--p-white); }
+    .demo-tabs .tab[data-target^="react-"].active { background: var(--p-red); color: var(--p-white); }
+    .demo-panel { padding: 1.5rem; }
+    .react-panel:empty::after { content: 'Loading React component\2026'; color: var(--p-red); font-size: 0.75rem; }
   </style>
 </head>
 
@@ -239,6 +257,12 @@
     <!-- ===== BUTTONS ===== -->
     <div class="showcase-section" id="buttons">
       <h2>Buttons</h2>
+      <section class="component-demo">
+        <nav class="demo-tabs">
+          <button class="tab active" data-target="html-buttons">HTML / CSS</button>
+          <button class="tab" data-target="react-buttons">React</button>
+        </nav>
+        <div id="html-buttons" class="demo-panel">
       <p>Hard shadow offset, sharp corners, press-down interaction.</p>
       <div class="demo-label">Variants</div>
       <div class="row mt-1">
@@ -263,11 +287,21 @@
         <button class="btn" style="opacity:0.5;cursor:not-allowed;">Disabled</button>
         <button class="btn" style="box-shadow:none;transform:translate(4px,4px);">Pressed</button>
       </div>
+    
+        </div>
+        <div id="react-buttons" class="demo-panel react-panel" data-demo="buttons" style="display:none;"></div>
+      </section>
     </div>
 
     <!-- ===== BADGES ===== -->
     <div class="showcase-section" id="badges">
       <h2>Badges</h2>
+      <section class="component-demo">
+        <nav class="demo-tabs">
+          <button class="tab active" data-target="html-badges">HTML / CSS</button>
+          <button class="tab" data-target="react-badges">React</button>
+        </nav>
+        <div id="html-badges" class="demo-panel">
       <p>Tags, labels, and status indicators. 4 variants × 5 colors.</p>
       <div class="demo-label">Outline Variants</div>
       <div class="row mt-1">
@@ -292,11 +326,21 @@
         <span class="badge badge-solid-yellow">⚠ Warning</span>
         <span class="badge badge-solid-black">◆ System</span>
       </div>
+    
+        </div>
+        <div id="react-badges" class="demo-panel react-panel" data-demo="badges" style="display:none;"></div>
+      </section>
     </div>
 
     <!-- ===== ALERTS ===== -->
     <div class="showcase-section" id="alerts">
       <h2>Alerts</h2>
+      <section class="component-demo">
+        <nav class="demo-tabs">
+          <button class="tab active" data-target="html-alerts">HTML / CSS</button>
+          <button class="tab" data-target="react-alerts">React</button>
+        </nav>
+        <div id="html-alerts" class="demo-panel">
       <p>System notifications with severity levels. Default, compact, and inline variants.</p>
       <div class="demo-label">Default — Info</div>
       <div class="alert alert-info">
@@ -394,11 +438,21 @@
         <div class="alert-message" style="padding-left:1.25rem;font-size:0.75rem;">Bezier clock multiplier set to 3.
         </div>
       </div>
+    
+        </div>
+        <div id="react-alerts" class="demo-panel react-panel" data-demo="alerts" style="display:none;"></div>
+      </section>
     </div>
 
     <!-- ===== SPINNERS ===== -->
     <div class="showcase-section" id="spinners">
       <h2>Spinners</h2>
+      <section class="component-demo">
+        <nav class="demo-tabs">
+          <button class="tab active" data-target="html-spinners">HTML / CSS</button>
+          <button class="tab" data-target="react-spinners">React</button>
+        </nav>
+        <div id="html-spinners" class="demo-panel">
       <p>Loading indicators. Ring, dots, and pulse variants.</p>
       <div class="row mt-1" style="align-items:center;">
         <div class="spinner spinner-md">
@@ -434,11 +488,21 @@
           <div class="spinner-ring"></div>
         </div>
       </div>
+    
+        </div>
+        <div id="react-spinners" class="demo-panel react-panel" data-demo="spinners" style="display:none;"></div>
+      </section>
     </div>
 
     <!-- ===== PROGRESS ===== -->
     <div class="showcase-section" id="progress">
       <h2>Progress Indicators</h2>
+      <section class="component-demo">
+        <nav class="demo-tabs">
+          <button class="tab active" data-target="html-progress">HTML / CSS</button>
+          <button class="tab" data-target="react-progress">React</button>
+        </nav>
+        <div id="html-progress" class="demo-panel">
       <p>Linear bars with optional stripes and animation.</p>
       <div style="max-width:500px;">
         <div class="demo-label">Linear — Blue (75%)</div>
@@ -481,11 +545,21 @@
           </div>
         </div>
       </div>
+    
+        </div>
+        <div id="react-progress" class="demo-panel react-panel" data-demo="progress" style="display:none;"></div>
+      </section>
     </div>
 
     <!-- ===== STATS DISPLAY ===== -->
     <div class="showcase-section" id="stats">
       <h2>Stats Display</h2>
+      <section class="component-demo">
+        <nav class="demo-tabs">
+          <button class="tab active" data-target="html-stats">HTML / CSS</button>
+          <button class="tab" data-target="react-stats">React</button>
+        </nav>
+        <div id="html-stats" class="demo-panel">
       <p>Metric cards with change indicators.</p>
       <div class="grid-4 mt-1">
         <div class="stat-card">
@@ -521,11 +595,21 @@
           <div class="stat-change positive">Stable</div>
         </div>
       </div>
+    
+        </div>
+        <div id="react-stats" class="demo-panel react-panel" data-demo="stats" style="display:none;"></div>
+      </section>
     </div>
 
     <!-- ===== BREADCRUMB ===== -->
     <div class="showcase-section" id="breadcrumb">
       <h2>Breadcrumb</h2>
+      <section class="component-demo">
+        <nav class="demo-tabs">
+          <button class="tab active" data-target="html-breadcrumb">HTML / CSS</button>
+          <button class="tab" data-target="react-breadcrumb">React</button>
+        </nav>
+        <div id="html-breadcrumb" class="demo-panel">
       <nav class="breadcrumb" aria-label="Breadcrumb">
         <ol>
           <li><a href="#">Home</a></li>
@@ -534,11 +618,21 @@
           <li><span aria-current="page">Components</span></li>
         </ol>
       </nav>
+    
+        </div>
+        <div id="react-breadcrumb" class="demo-panel react-panel" data-demo="breadcrumb" style="display:none;"></div>
+      </section>
     </div>
 
     <!-- ===== TIMELINE ===== -->
     <div class="showcase-section" id="timeline">
       <h2>Timeline</h2>
+      <section class="component-demo">
+        <nav class="demo-tabs">
+          <button class="tab active" data-target="html-timeline">HTML / CSS</button>
+          <button class="tab" data-target="react-timeline">React</button>
+        </nav>
+        <div id="html-timeline" class="demo-panel">
       <p>Chronological event display with connecting lines.</p>
       <div class="timeline mt-2" style="max-width:600px;">
         <div class="timeline-line"></div>
@@ -575,11 +669,21 @@
           </div>
         </div>
       </div>
+    
+        </div>
+        <div id="react-timeline" class="demo-panel react-panel" data-demo="timeline" style="display:none;"></div>
+      </section>
     </div>
 
     <!-- ===== DIALOGUE MESSAGE ===== -->
     <div class="showcase-section" id="dialogue">
       <h2>Dialogue Messages</h2>
+      <section class="component-demo">
+        <nav class="demo-tabs">
+          <button class="tab active" data-target="html-dialogue">HTML / CSS</button>
+          <button class="tab" data-target="react-dialogue">React</button>
+        </nav>
+        <div id="html-dialogue" class="demo-panel">
       <p>Conversation bubbles with speaker identification.</p>
       <div style="max-width:700px;">
         <div class="dialogue-message">
@@ -612,11 +716,21 @@
           </div>
         </div>
       </div>
+    
+        </div>
+        <div id="react-dialogue" class="demo-panel react-panel" data-demo="dialogue" style="display:none;"></div>
+      </section>
     </div>
 
     <!-- ===== MISSION STATEMENT ===== -->
     <div class="showcase-section" id="mission">
       <h2>Mission Statement</h2>
+      <section class="component-demo">
+        <nav class="demo-tabs">
+          <button class="tab active" data-target="html-mission">HTML / CSS</button>
+          <button class="tab" data-target="react-mission">React</button>
+        </nav>
+        <div id="html-mission" class="demo-panel">
       <p>Feature/vision cards with metadata and action buttons.</p>
       <div class="mission mt-1" style="max-width:600px;">
         <div class="mission-title" style="color:var(--p-red);">[MISSION_EXPERIMENT]</div>
@@ -632,11 +746,21 @@
           <button class="mission-action" style="color:var(--p-blue);">View Source →</button>
         </div>
       </div>
+    
+        </div>
+        <div id="react-mission" class="demo-panel react-panel" data-demo="mission" style="display:none;"></div>
+      </section>
     </div>
 
     <!-- ===== TECHNICAL SCHEMATIC ===== -->
     <div class="showcase-section" id="schematic">
       <h2>Technical Schematic</h2>
+      <section class="component-demo">
+        <nav class="demo-tabs">
+          <button class="tab active" data-target="html-schematic">HTML / CSS</button>
+          <button class="tab" data-target="react-schematic">React</button>
+        </nav>
+        <div id="html-schematic" class="demo-panel">
       <p>System architecture grid display.</p>
       <div class="schematic mt-1">
         <div class="schematic-title" style="color:var(--p-black);">[SYSTEM_ARCHITECTURE]</div>
@@ -663,11 +787,21 @@
           </div>
         </div>
       </div>
+    
+        </div>
+        <div id="react-schematic" class="demo-panel react-panel" data-demo="schematic" style="display:none;"></div>
+      </section>
     </div>
 
     <!-- ===== MEMORY CARD ===== -->
     <div class="showcase-section" id="memory">
       <h2>Memory Cards</h2>
+      <section class="component-demo">
+        <nav class="demo-tabs">
+          <button class="tab active" data-target="html-memory">HTML / CSS</button>
+          <button class="tab" data-target="react-memory">React</button>
+        </nav>
+        <div id="html-memory" class="demo-panel">
       <p>Concept archive cards with alignment and dot indicators.</p>
       <div class="grid-3 mt-1">
         <div class="memory-column">
@@ -719,11 +853,21 @@
           </div>
         </div>
       </div>
+    
+        </div>
+        <div id="react-memory" class="demo-panel react-panel" data-demo="memory" style="display:none;"></div>
+      </section>
     </div>
 
     <!-- ===== BOT NAME CARD ===== -->
     <div class="showcase-section" id="botcard">
       <h2>Bot Name Cards</h2>
+      <section class="component-demo">
+        <nav class="demo-tabs">
+          <button class="tab active" data-target="html-botcard">HTML / CSS</button>
+          <button class="tab" data-target="react-botcard">React</button>
+        </nav>
+        <div id="html-botcard" class="demo-panel">
       <p>Agent/bot profile displays with glow effects.</p>
       <div class="grid-2 mt-1">
         <div class="bot-card">
@@ -739,11 +883,21 @@
           </div>
         </div>
       </div>
+    
+        </div>
+        <div id="react-botcard" class="demo-panel react-panel" data-demo="botcard" style="display:none;"></div>
+      </section>
     </div>
 
     <!-- ===== PARAMETER PANEL ===== -->
     <div class="showcase-section" id="params">
       <h2>Parameter Panel</h2>
+      <section class="component-demo">
+        <nav class="demo-tabs">
+          <button class="tab active" data-target="html-params">HTML / CSS</button>
+          <button class="tab" data-target="react-params">React</button>
+        </nav>
+        <div id="html-params" class="demo-panel">
       <p>Collapsible configuration interface with multiple input types.</p>
       <div class="param-panel mt-1" style="max-width:500px;">
         <div class="param-header">
@@ -791,11 +945,21 @@
           <button class="param-save-btn mt-2">APPLY_CHANGES</button>
         </div>
       </div>
+    
+        </div>
+        <div id="react-params" class="demo-panel react-panel" data-demo="params" style="display:none;"></div>
+      </section>
     </div>
 
     <!-- ===== AUDIT LOG CARD ===== -->
     <div class="showcase-section" id="audit">
       <h2>Audit Log Card</h2>
+      <section class="component-demo">
+        <nav class="demo-tabs">
+          <button class="tab active" data-target="html-audit">HTML / CSS</button>
+          <button class="tab" data-target="react-audit">React</button>
+        </nav>
+        <div id="html-audit" class="demo-panel">
       <p>Collapsible event/log entries with multiple section types.</p>
       <div class="audit-card mt-1" style="max-width:600px;">
         <div class="audit-header">
@@ -862,16 +1026,30 @@
           </div>
         </div>
       </div>
+    
+        </div>
+        <div id="react-audit" class="demo-panel react-panel" data-demo="audit" style="display:none;"></div>
+      </section>
     </div>
 
     <!-- ===== LOADING PROGRESS ===== -->
     <div class="showcase-section" id="loading">
       <h2>Loading Progress Bar</h2>
+      <section class="component-demo">
+        <nav class="demo-tabs">
+          <button class="tab active" data-target="html-loading">HTML / CSS</button>
+          <button class="tab" data-target="react-loading">React</button>
+        </nav>
+        <div id="html-loading" class="demo-panel">
       <p>Fixed-position progress bar for page transitions.</p>
       <button class="btn" data-loading-trigger style="margin-top:0.5rem;">Simulate Page Load</button>
       <div id="demo-loading-bar" class="loading-bar loading-bar-top" style="opacity:0;">
         <div class="loading-bar-fill" style="width:0%;background:var(--p-blue);"></div>
       </div>
+    
+        </div>
+        <div id="react-loading" class="demo-panel react-panel" data-demo="loading" style="display:none;"></div>
+      </section>
     </div>
 
     <!-- ===== GEOMETRIC BACKGROUNDS ===== -->
@@ -982,6 +1160,23 @@
 
   <script src="backgrounds/backgrounds.js"></script>
   <script src="primary-theme.js"></script>
+  <!-- React showcase bundle (built from primary_theme/components/PrimaryComponents.tsx) -->
+  <script src="primary-showcase.js" defer></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      document.querySelectorAll('.demo-tabs .tab').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const parent = btn.closest('.component-demo');
+          parent.querySelectorAll('.demo-panel').forEach(p => { p.style.display = 'none'; });
+          parent.querySelectorAll('.demo-tabs .tab').forEach(t => t.classList.remove('active'));
+          const target = parent.querySelector('#' + btn.dataset.target);
+          if (target) target.style.display = 'block';
+          btn.classList.add('active');
+          if (btn.dataset.target.startsWith('react-') && window.PrimaryDemo) window.PrimaryDemo.mountAll();
+        });
+      });
+    });
+  </script>
 </body>
 
 </html>

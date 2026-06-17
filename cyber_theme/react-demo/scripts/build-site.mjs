@@ -19,6 +19,7 @@ const files = [
   'cyber_theme/components/README.md',
   'cyber_theme/README.md',
   'primary_theme/components/SHOWCASE.html',
+  'primary_theme/components/primary-showcase.js',
   'primary_theme/components/primary-theme.css',
   'primary_theme/components/primary-theme.js',
   'primary_theme/components/Alert.html',

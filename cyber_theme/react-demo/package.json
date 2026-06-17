@@ -5,7 +5,8 @@
     "dev": "vite",
     "build": "vite build --outDir ../../dist",
     "build:showcase": "vite build --config vite.showcase.config.ts",
-    "build:site": "npm run build:showcase && node scripts/build-site.mjs",
+    "build:primary": "vite build --config vite.primary.config.ts",
+    "build:site": "npm run build:showcase && npm run build:primary && node scripts/build-site.mjs",
     "preview": "vite preview"
   },
   "dependencies": {
