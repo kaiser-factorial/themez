@@ -1,226 +1,112 @@
 # HANDOFF.md — Themez Repository
 
-**Repo:** `kaiser-factorial/themez` (renamed from `cyber-theme`)
-**CLI:** Using `antigravity-cli` for elevated permissions
-**Live site:** https://kaiser-factorial.github.io/themez/
-**Branch:** `main`
-**Last commit:** `0c81708` — Fix geometric backgrounds visibility
+**Repository:** `kaiser-factorial/themez`  
+**Live Site:** https://kaiser-factorial.github.io/themez/  
+**Default Branch:** `main`  
+**Last Pushed Commit:** `e993e0e` — feat(cyber): showcase refinements (buttons React, alerts, spinners, progress, stats, timeline)
 
 ---
 
-## What This Repo Is
+## What This Repository Is
 
-A GitHub Pages site at the repo root (`/`) hosting two pure-HTML/CSS component library showcases:
+A zero-dependency design system library and showcase hosted on GitHub Pages, presenting two distinct aesthetics:
+1. **Primary Theme** (`primary_theme/`) — Bauhaus-inspired CatchFall game aesthetic (monospaced Courier Prime, primary color palette, hard borders, zero border-radius).
+2. **Cyber Theme** (`cyber_theme/`) — Dark terminal "brain.vat" CCRU aesthetic (monospace, CRT scanlines, neon glows, custom accenting).
 
-1. **Primary Theme** (`primary_theme/`) — Bauhaus/CatchFall aesthetic
-2. **Cyber Theme** (`cyber_theme/`) — Terminal/brain.vat aesthetic
-
-Both are zero-dependency (no npm, no build step). GH Pages serves static files directly.
-
----
-
-## Current State — What Works
-
-### Site Structure (all live at kaiser-factorial.github.io/themez/)
-
-```
-index.html                          ← Landing page, two theme cards
-├── primary_theme/components/SHOWCASE.html   ← Primary theme component showcase
-├── cyber_theme/components/SHOWCASE.html      ← Cyber theme component showcase
-├── primary_theme/components/primary-theme.css ← All primary theme styles (22KB)
-├── primary_theme/components/primary-theme.js  ← Optional interactions (3KB)
-├── README.md                         ← Root README with GH Pages link
-└── .nojekyll                         ← Tells GH Pages to skip Jekyll
-```
-
-### What's Rendering Correctly
-- Landing page works ✅
-- Cyber theme showcase works ✅ (self-contained, all inline CSS)
-- Primary theme showcase partially works ✅ (components render)
-
-### Known Issues / In Progress
-
-1. **Primary theme CSS/JS paths** — Fixed in commit `8e554e5`. The SHOWCASE.html was referencing `components/primary-theme.css` (double-nested) instead of `primary-theme.css`. Fixed to correct relative paths. May need hard refresh to clear browser cache.
-
-2. **Geometric backgrounds** — Static versions exist in `primary-theme.css` as `.bg-mod-stripes`, `.bg-primary-grid`, `.bg-halftone`, `.bg-wave`. Opacity was increased in `0c81708` for visibility.
-
-3. **Animated backgrounds (IN PROGRESS)** — A `primary_theme/components/backgrounds/` folder was started with:
-   - `backgrounds.css` — CSS-only animated versions of all 6 level themes
-   - `index.html` — Demo page showing each animated background
-   
-   **Status:** Files exist on disk but NOT yet committed/pushed. The `backgrounds.css` was written via `execute_code` and needs review. The demo page links back to the showcase.
+Both themes support a dual-showcase implementation:
+- **Pure HTML/CSS components** (for lightweight, zero-build usage).
+- **React components** (fully interactive, prop-driven, and bundled via Vite).
 
 ---
 
-## What Needs to Happen Next
+## File Map & Directory Structure
 
-### Immediate (finish current work)
-
-1. **Review and commit animated backgrounds**
-   - Check `primary_theme/components/backgrounds/backgrounds.css` for correctness
-   - Check `primary_theme/components/backgrounds/index.html` for correctness
-   - Update `primary_theme/components/SHOWCASE.html` backgrounds section to link to the animated demo
-   - Use the new animated background classes instead of (or alongside) the old static ones
-
-2. **Add screenshots to .gitignore**
-   - `screenshots/` folder exists locally with 5 `.png` files
-   - Not currently tracked by git, but should be explicitly ignored
-
-3. **Copy animated backgrounds into the main `primary-theme.css`**
-   - The animated classes (`.bg-mod-stripes`, `.bg-bezier-clock`, `.bg-cantor-field`, `.bg-halftone-rings`, `.bg-wave-marks`, `.bg-primary-grid-animated`) should be in the main CSS file so they work without an extra stylesheet import
-
-4. **Commit and push everything**
-   - Backgrounds CSS + HTML
-   - Updated `.gitignore`
-   - Any SHOWCASE.html updates
-
-### Backlog / Nice-to-Have
-
-- **Background fidelity to game** — The animated backgrounds are CSS approximations of the SKETCH.js canvas animations. The originals use:
-  - `frameCount * 0.06` for mod stripe scrolling
-  - `noise()` for halftone ring size variation  
-  - `sin()`/`cos()` for wave mark positions
-  - Cantor set recursion (pure CSS can't do true recursion — use repeating gradients as approximation)
-  - Bezier curves (impossible in pure CSS — use concentric circles as visual stand-in)
-  - Canvas-rendered shapes (squares, circles, diamonds) scattered on grid
-  
-  **The SKETCH.js code is in `primary_theme/reference/SKETCH.js`** for reference. A `<canvas>`-based implementation would be more faithful but requires JS.
-
-- **Per-component HTML docs for primary theme** — Only `Alert.html` exists. The cyber theme has individual guide files for each component (e.g., `BADGE_GUIDE.md`, `TIMELINE_GUIDE.md`). The primary theme has `INDEX.md` with code snippets but no full HTML demos per component.
-
-- **Dark mode variant of primary theme** — Currently light-only (white bg, dark text). Could add a `body.theme-primary-dark` with inverted colors.
-
-- **Cyber theme individual HTML demos** — Same as above but for cyber theme components.
-
----
-
-## File Map
-
-### Root
-| File | Purpose |
-|------|---------|
-| `index.html` | Landing page with two theme cards |
-| `README.md` | Root readme with GH Pages link |
-| `.nojekyll` | Disables Jekyll processing on GH Pages |
-| `.gitignore` | Ignores node_modules, .next, dist, build, logs, .env, .DS_Store |
-| `IMPLEMENTATION_INDEX.md` | Root-level orientation guide |
-
-### Primary Theme (`primary_theme/`)
-| File | Purpose |
-|------|---------|
-| `README.md` | Quick start guide |
-| `THEME_GUIDE.md` | Complete design reference |
-| `COMPONENT_STRATEGY.md` | Decision tree + Bauhaus rules |
-| `reference/SKETCH.js` | Original CatchFall game code (source of truth for backgrounds) |
-| `reference/design_system.css` | Original CSS variables from the joint-session project |
-| `reference/App.tsx` | Reference React implementation |
-| `reference/index.css` | Reference CSS from the joint-session project |
-| `components/primary-theme.css` | All 16 component styles + 4 static bg patterns (22KB) |
-| `components/primary-theme.js` | Interaction scripts (dismiss, collapse, loading) (3KB) |
-| `components/SHOWCASE.html` | Live demo of all components (36KB) |
-| `components/Alert.html` | Standalone Alert component demo |
-| `components/INDEX.md` | Quick reference card |
-| `components/backgrounds/backgrounds.css` | 6 animated background styles (NOT YET COMMITTED) |
-| `components/backgrounds/index.html` | Animated backgrounds demo page (NOT YET COMMITTED) |
-
-### Cyber Theme (`cyber_theme/`)
-| File | Purpose |
-|------|---------|
-| `README.md` | Theme overview |
-| `THEME_GUIDE.md` | Complete design reference |
-| `COMPONENT_STRATEGY.md` | Decision tree |
-| `IMPLEMENTATION_INDEX.md` | Orientation guide |
-| `CCRU_CREDITS.md` | Attribution for CCRU library |
-| `AGENTS.md` | AI agent integration guide |
-| `SETUP_SKILL.md` | Claude Code skill |
-| `AUDIT_COMPONENTS_SUMMARY.md` | Audit log component summary |
-| `CUSTOM_COMPONENTS_SUMMARY.md` | Custom component summary |
-| `MEMORY_CARD_GUIDE.md` | MemoryCard component guide |
-| `components/SHOWCASE.html` | Pure HTML/CSS showcase (40KB, all inline styles) |
-| `components/SHOWCASE.tsx` | Original React showcase |
-| `components/*.tsx` | 14 React component files |
-| `components/*_GUIDE.md` | 14 component guide markdown files |
-| `components/EXAMPLE_USAGE.tsx` | React usage examples |
-| `components/PARAMETER_PRESETS.ts` | Parameter preset configs |
-
----
-
-## Design Reference
-
-### Primary Theme Colors
 ```
-Red:    #EB1A26  (235, 26, 38)
-Blue:   #0045AD  (0, 69, 173)
-Yellow: #FFD600  (255, 214, 0)
-Black:  #111111  (17, 17, 17)
-White:  #FAFAFA  (250, 250, 250)
-```
-Font: Courier Prime (monospace)
-Style: Sharp corners (0 radius), 3px borders, hard shadows `6px 6px 0px #111111`
-
-### Cyber Theme Colors
-```
-Green:  #00ff41  (primary)
-Red:    #E63946  (accent)
-Cyan:   #03A6A1  (MAUK)
-Orange: #FF9D23  (ABACI)
-BG:     #000800  (deep black)
-```
-Font: ui-monospace / SFMono-Regular / Menlo / Monaco / Consolas
-Style: Dark bg, neon glow, monospace, CRT scanlines
-
-### Level Backgrounds (from SKETCH.js)
-| Level | Name | Key Visual |
-|-------|------|-----------|
-| 1 | Mod Stripes | Animated color stripes + grid lines |
-| 2 | Bezier Clock | Concentric circles with chord connections |
-| 3 | Cantor Field | Recursive horizontal lines, symmetric |
-| 4 | Halftone Rings | Concentric dot grid patterns |
-| 5 | Wave Marks | Sinusoidal rows of dots and dashes |
-| 6 | Primary Grid | Grid with colored rectangles + shapes |
-
----
-
-## Commands
-
-```bash
-# View status
-git status
-
-# Stage all and commit
-git add -A && git commit -m "message" && git push
-
-# Check live URLs
-curl -sI https://kaiser-factorial.github.io/themez/
-curl -sI https://kaiser-factorial.github.io/themez/primary_theme/components/SHOWCASE.html
-curl -sI https://kaiser-factorial.github.io/themez/cyber_theme/components/SHOWCASE.html
+.github/workflows/
+└── deploy.yml                       # CI/CD deployment pipeline to GitHub Pages
+cyber_theme/
+├── assets/
+│   └── react-loader.js              # Loader to bootstrap React bundle in showcase
+├── components/                      # Cyber React components
+│   ├── Alert.tsx
+│   ├── Button.tsx
+│   ├── ProgressIndicator.tsx
+│   ├── StatsDisplay.tsx
+│   ├── TextInput.tsx                # Auto-fit input component
+│   ├── Timeline.tsx
+│   ├── SHOWCASE.html                # Interactive cyber showcase containing HTML/React comparisons
+│   └── cyber-showcase.js            # Compiled bundle checked into git to avoid negative CDN cache hits
+├── react-demo/                      # React-Vite project containing bundle tooling
+│   ├── package.json
+│   ├── vite.showcase.config.ts      # Vite config for Cyber theme bundle
+│   ├── vite.primary.config.ts       # Vite config for Primary theme bundle
+│   └── src/
+│       ├── index.css
+│       └── showcase/
+│           ├── registry.tsx         # Cyber React registry mapping
+│           └── primary-registry.tsx # Primary React registry mapping
+└── [documentation files]            # CCRU credits, agents guidelines, audit summary guides, etc.
+primary_theme/
+├── components/
+│   ├── Alert.html                   # HTML-only alerts reference
+│   ├── INDEX.md                     # Component reference card
+│   ├── PrimaryComponents.tsx        # React implementations of all primary components
+│   ├── SHOWCASE.html                # Interactive primary showcase containing HTML/React comparisons
+│   ├── primary-theme.css            # Stylesheets with 16 core components + bg patterns (22KB)
+│   ├── primary-theme.js             # Optional HTML interactions (3KB)
+│   └── primary-showcase.js          # Compiled React bundle for Primary components
+├── reference/                       # Bauhaus rules, Sketch.js references, and design system variables
+└── [documentation files]            # Theme guide, design rules, component strategy, etc.
+dist/                                # Output directory for site build (ignored locally)
+index.html                           # Multi-theme entrance page (index dashboard)
 ```
 
 ---
 
-## Constraints
+## Key Features & Recent Work
 
-- **No npm/build step** — Pure HTML/CSS/JS only
-- **gh-pages from root** — All paths relative to `/`
-- **No Jekyll** — `.nojekyll` file present
-- **Large files** — Keep individual file writes moderate in size
-- **Browser caching** — GH Pages deploys within ~1 minute; hard refresh needed after pushes
-## Current Work – Dual CSS/React Showcase
+### 1. Dual HTML/CSS & React Showcase (Tabs)
+Each showcase has been updated with side-by-side **HTML/CSS | React** comparative tabs. 
+- In the **Primary Theme**, React components are defined in `PrimaryComponents.tsx` and map directly to `primary-theme.css` class names.
+- In the **Cyber Theme**, React components are located inside `cyber_theme/components/` and are built into `cyber-showcase.js` using Vite.
 
-- Added a **single HTML page** (`cyber_theme/cyber_react.html`) that displays the native CSS components side‑by‑side with their React equivalents.
-- Created a lightweight **React demo loader** (`cyber_theme/assets/react-loader.js`) which dynamically loads the compiled bundle.
-- Stub bundle `dist/cyber-demo.js` was added to give immediate functionality while the proper Vite build is pending.
-- Updated navigation links in `cyber_theme/components/SHOWCASE.html` to point to the new demo page.
+### 2. Auto-Fit Text Input Component
+Added to **both** themes (HTML/CSS & React):
+- **Responsive Font Scaling**: Text starts at `maxFontSize` and shrinks down to `minFontSize` dynamically as character counts increase, preventing clipping.
+- **Dynamic Multi-Line Wrap & Auto-Growth**: Once the minimum font threshold is reached, text wraps to multi-line, auto-growing container heights.
+- **Rich States**: Supports custom widths/heights, labels, helper text, error messages, and disabled configurations.
+- **Icon Slots**: Built-in slots for leading/trailing interactive elements (e.g., upload, mic, send buttons for chat rooms).
 
-## What Needs to Happen Next
-1. **Install Node & Yarn** (use the provided Bash installer script).  
-2. **Run the build** inside `cyber_theme/react-demo`:
-   ```bash
-   cd /Users/corinakaiser/Projects/Themes/cyber_theme/react-demo
-   yarn install
-   yarn build   # produces a correct dist/cyber-demo.js
-   ```
-3. **Commit & push** all new files (`react-demo/`, `assets/react-loader.js`, `cyber_react.html`, updated `SHOWCASE.html`).
-4. **Verify GitHub Actions** deploys the new bundle to the `gh‑pages` branch.
-5. **Test the live demo** at `https://kaiser-factorial.github.io/themez/cyber_theme/cyber_react.html`.
-6. Optionally add a lazy‑load toggle, polish styling, and update the documentation in `HANDOFF.md` with any further decisions.
+### 3. Cyber Showcase Refinements (Commit `e993e0e`)
+- **Buttons**: Introduced React Button components alongside the standard HTML elements.
+- **Alerts**: Alerts are color-coded relative to severity (red for error, orange for warning, green for success, blue for info). Added underlined alert actions.
+- **Spinners**: Configured using `--spin-color` matching state status (Green for loading/dots, Red for error/pulse, Blue for syncing/ring).
+- **Progress**: Added circular and gauge components that feature mounting count-up animations.
+- **Stats Cards**: Color-coded borders and backgrounds dynamically updating based on value; negative deltas show red text.
+- **Timeline**: Aligned title and content colors to event accents.
+
+### 4. Build System & CI/CD Pipeline
+- **Vite Bundler**: The Vite projects in `cyber_theme/react-demo` contain configuration configurations for both Cyber (`vite.showcase.config.ts`) and Primary (`vite.primary.config.ts`) packages.
+- **Bundle Cache Mitigation**: Due to GitHub Pages CDN caching issues (which negative-cached missing `cyber-demo.js` paths during early deployment phases), React showcase bundles are built to `cyber-showcase.js` and `primary-showcase.js` and tracked in `main`.
+- **GitHub Actions**: Configured via `.github/workflows/deploy.yml` using Node 24 and NPM to run `npm run build:site` and publish the output `dist` to the `gh-pages` branch.
+
+---
+
+## Active & Next Steps
+
+### 1. Address Pending Local Changes
+There are currently uncommitted edits in the workspace:
+- **`cyber_theme/components/SHOWCASE.html`**: Additional refinements to alert action hover states.
+- **`cyber_theme/components/Timeline.tsx`**: Styling improvements to ensure timeline title and text body inherit the corresponding status colors (MAUK cyan, ABACI orange, Conflict red).
+
+*Recommendation: Review these changes and commit them to keep the local workspace clean.*
+
+### 2. Primary Theme Animated Backgrounds
+- The `primary_theme/components/backgrounds/` folder contains approximations of the original CatchFall canvas sketches. 
+- These styles and their demo page (`index.html`) need final validation, staging, and integration into the core `primary-theme.css`.
+
+### 3. Build Setup inside `react-demo`
+To modify or rebuild the React bundles locally:
+1. Navigate to `/Users/corinakaiser/Projects/Themes/cyber_theme/react-demo`
+2. Run `npm install`
+3. Make changes, and execute `npm run build:site` to regenerate `/dist` contents and rebuild the checked-in bundle assets.

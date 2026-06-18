@@ -166,7 +166,9 @@
   .alert-warning .alert-message { color: var(--c-abaci); }
   .alert-error .alert-message { color: var(--c-accent); }
   .alert-info .alert-message { color: var(--c-mauk); }
+  .alert-action { margin-top: 0.4rem; }
   .alert-action a { color: inherit; text-decoration: underline; text-underline-offset: 2px; }
+  .alert-action a:hover { opacity: 0.8; }
 
   /* Spinner — colour driven by --spin-color (defaults to primary green) */
   .spinner { display: flex; flex-direction: column; align-items: center; gap: 0.5rem; }
@@ -539,10 +541,11 @@
       <div class="alert-header">
         <div>
           <div class="alert-title">Attention Required</div>
-          <div class="alert-message">Memory fragmentation detected in sector 7G.</div>
+          <div class="alert-message">This action may have side effects.</div>
         </div>
         <button class="alert-dismiss">✕</button>
       </div>
+      <div class="alert-action"><a href="#">Learn more →</a></div>
     </div>
     <div class="demo-label">Error</div>
     <div class="alert alert-error">
@@ -553,6 +556,7 @@
         </div>
         <button class="alert-dismiss">✕</button>
       </div>
+      <div class="alert-action"><a href="#">View logs →</a></div>
     </div>
     <div class="demo-label">Info</div>
     <div class="alert alert-info">
@@ -563,6 +567,7 @@
         </div>
         <button class="alert-dismiss">✕</button>
       </div>
+      <div class="alert-action"><a href="#">View details →</a></div>
     </div>
   
       </div>
@@ -683,24 +688,24 @@
       <div class="timeline-event">
         <div class="timeline-dot" style="border-color:var(--c-mauk);color:var(--c-mauk);">1</div>
         <div class="timeline-content">
-          <div class="timeline-title">MAUK Online</div>
-          <div class="timeline-text">GPT-2 model initialized. Personality matrix loaded.</div>
+          <div class="timeline-title" style="color:var(--c-mauk);">MAUK Online</div>
+          <div class="timeline-text" style="color:var(--c-mauk);">GPT-2 model initialized. Personality matrix loaded.</div>
           <div class="timeline-time">00:00:01</div>
         </div>
       </div>
       <div class="timeline-event">
         <div class="timeline-dot" style="border-color:var(--c-abaci);color:var(--c-abaci);">2</div>
         <div class="timeline-content">
-          <div class="timeline-title">ABACI Online</div>
-          <div class="timeline-text">Second agent activated. Dialogue loop begins.</div>
+          <div class="timeline-title" style="color:var(--c-abaci);">ABACI Online</div>
+          <div class="timeline-text" style="color:var(--c-abaci);">Second agent activated. Dialogue loop begins.</div>
           <div class="timeline-time">00:00:03</div>
         </div>
       </div>
       <div class="timeline-event">
         <div class="timeline-dot" style="border-color:var(--c-accent);color:var(--c-accent);">!</div>
         <div class="timeline-content">
-          <div class="timeline-title">First Conflict</div>
-          <div class="timeline-text">Agents disagree on memory interpretation. Escalation detected.</div>
+          <div class="timeline-title" style="color:var(--c-accent);">First Conflict</div>
+          <div class="timeline-text" style="color:var(--c-accent);">Agents disagree on memory interpretation. Escalation detected.</div>
           <div class="timeline-time">00:04:17</div>
         </div>
       </div>

@@ -43,7 +43,6 @@ export function Timeline({
 
   return (
     <div className={cn('relative space-y-8', className)}>
-      {/* Vertical connector line */}
       {showConnectors && events.length > 1 && (
         <div
           className="absolute left-4 top-0 bottom-0 w-px"
@@ -79,7 +78,6 @@ function TimelineEventNode({
 }: TimelineEventNodeProps) {
   return (
     <div className="flex gap-6 relative">
-      {/* Timeline dot */}
       <div className="flex flex-col items-center">
         <div
           className={cn(
@@ -101,7 +99,6 @@ function TimelineEventNode({
         </div>
       </div>
 
-      {/* Event content */}
       <div className="flex-1 pb-8">
         <div
           className={cn(
@@ -112,14 +109,14 @@ function TimelineEventNode({
             borderColor: accentColor,
             backgroundColor: `${accentColor}15`,
           }}>
-          {/* Title — same colour as the body text */}
-          <h3 className="text-sm font-bold uppercase tracking-wide mb-2 text-foreground/80">
+          <h3
+            className="text-sm font-bold uppercase tracking-wide mb-2"
+            style={{ color: accentColor }}>
             {event.title}
           </h3>
 
-          {/* Content */}
           {event.content && (
-            <div className="text-xs text-foreground/80 leading-relaxed font-mono mb-3">
+            <div className="text-xs leading-relaxed font-mono mb-3" style={{ color: accentColor }}>
               {typeof event.content === 'string' ? (
                 <p>{event.content}</p>
               ) : (
@@ -128,7 +125,6 @@ function TimelineEventNode({
             </div>
           )}
 
-          {/* Timestamp and metadata */}
           {(event.timestamp || event.metadata) && (
             <div className="pt-2 border-t border-border/30 space-y-1">
               {event.timestamp && (
@@ -169,7 +165,6 @@ function HorizontalTimeline({
 }) {
   return (
     <div className={cn('relative', className)}>
-      {/* Horizontal connector line */}
       <div
         className="absolute top-4 left-0 right-0 h-px"
         style={{ backgroundColor: `${accentColor}40` }}
@@ -179,7 +174,6 @@ function HorizontalTimeline({
         {events.map((event) => (
           <div key={event.id} className="flex-shrink-0 w-64">
             <div className="flex flex-col items-center gap-4">
-              {/* Timeline dot */}
               <div
                 className={cn(
                   'w-8 h-8 rounded-full border-2 flex items-center justify-center relative z-10',
@@ -199,14 +193,13 @@ function HorizontalTimeline({
                 )}
               </div>
 
-              {/* Event card */}
               <div
                 className="backdrop-blur-md border rounded-lg p-3 text-center w-full"
                 style={{
                   borderColor: event.color || accentColor,
                   backgroundColor: `${event.color || accentColor}15`,
                 }}>
-                <h3 className="text-xs font-bold uppercase tracking-wide mb-2 text-foreground/80">
+                <h3 className="text-xs font-bold uppercase tracking-wide mb-2" style={{ color: event.color || accentColor }}>
                   {event.title}
                 </h3>
                 {event.timestamp && (

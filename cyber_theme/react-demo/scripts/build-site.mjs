@@ -24,6 +24,9 @@ const files = [
   'primary_theme/components/primary-theme.js',
   'primary_theme/components/Alert.html',
   'primary_theme/README.md',
+  'mod_theme/components/SHOWCASE.html',
+  'mod_theme/components/mod-theme.css',
+  'mod_theme/README.md',
 ];
 
 // Directories copied recursively.
