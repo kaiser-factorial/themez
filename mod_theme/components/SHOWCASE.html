@@ -36,20 +36,20 @@
   </div>
   <div class="mod-nav-links">
     <a href="#colors">Colors</a>
-    <a href="#buttons">Buttons</a>
     <a href="#badges">Badges</a>
-    <a href="#alerts">Alerts</a>
+    <a href="#buttons">Buttons</a>
     <a href="#spinners">Spinners</a>
+    <a href="#textinput">Text Input</a>
     <a href="#progress">Progress</a>
+    <a href="#alerts">Alerts</a>
     <a href="#stats">Stats</a>
     <a href="#timeline">Timeline</a>
     <a href="#dialogue">Dialogue</a>
     <a href="#mission">Mission</a>
     <a href="#schematic">Schematic</a>
-    <a href="#memory">Memory</a>
     <a href="#botcard">Bot Card</a>
+    <a href="#memory">Memory</a>
     <a href="#audit">Audit</a>
-    <a href="#textinput">Text Input</a>
   </div>
 </nav>
 
@@ -74,16 +74,6 @@
     </div>
   </div>
 
-  <!-- BUTTONS -->
-  <div class="mod-section" id="buttons" data-section="buttons">
-    <h2>Buttons</h2>
-    <div class="mod-row mod-mt-1">
-      <button class="btn">Default</button>
-      <button class="btn" style="font-style: italic;">Italic</button>
-      <button class="btn" style="font-weight: bold;">Bold</button>
-    </div>
-  </div>
-
   <!-- BADGES -->
   <div class="mod-section" id="badges" data-section="badges">
     <h2>Badges</h2>
@@ -94,17 +84,13 @@
     </div>
   </div>
 
-  <!-- ALERTS -->
-  <div class="mod-section" id="alerts" data-section="alerts">
-    <h2>Alerts</h2>
-    <div class="alert mod-mt-1">
-      <div class="alert-header">
-        <div>
-          <div class="alert-title">Notice</div>
-          <div class="alert-message">This is a neutral alert. Edit its appearance via the panel.</div>
-        </div>
-        <button class="alert-dismiss">✕</button>
-      </div>
+  <!-- BUTTONS -->
+  <div class="mod-section" id="buttons" data-section="buttons">
+    <h2>Buttons</h2>
+    <div class="mod-row mod-mt-1">
+      <button class="btn">Default</button>
+      <button class="btn" style="font-style: italic;">Italic</button>
+      <button class="btn" style="font-weight: bold;">Bold</button>
     </div>
   </div>
 
@@ -119,6 +105,23 @@
     </div>
   </div>
 
+  <!-- TEXT INPUT -->
+  <div class="mod-section" id="textinput" data-section="textinput">
+    <h2>Text Input</h2>
+    <div class="mod-mt-1">
+      <label class="ti-label">Input Label</label>
+      <div class="ti-field" style="max-width: 360px;">
+        <textarea class="ti-input" rows="1" placeholder="Type something…"></textarea>
+      </div>
+      <label class="ti-label" style="margin-top:1rem;">With Actions</label>
+      <div class="ti-field" style="max-width: 460px;">
+        <div class="ti-adornment"><button class="ti-icon-btn" aria-label="Attach">📎</button></div>
+        <textarea class="ti-input" rows="1" placeholder="Message…"></textarea>
+        <div class="ti-adornment"><button class="ti-icon-btn" aria-label="Send">➤</button></div>
+      </div>
+    </div>
+  </div>
+
   <!-- PROGRESS -->
   <div class="mod-section" id="progress" data-section="progress">
     <h2>Progress</h2>
@@ -129,6 +132,20 @@
       </div>
       <div class="progress-track">
         <div class="progress-fill" style="width: 65%;"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ALERTS -->
+  <div class="mod-section" id="alerts" data-section="alerts">
+    <h2>Alerts</h2>
+    <div class="alert mod-mt-1">
+      <div class="alert-header">
+        <div>
+          <div class="alert-title">Notice</div>
+          <div class="alert-message">This is a neutral alert. Edit its appearance via the panel.</div>
+        </div>
+        <button class="alert-dismiss">✕</button>
       </div>
     </div>
   </div>
@@ -250,6 +267,23 @@
     </div>
   </div>
 
+  <!-- BOT CARD -->
+  <div class="mod-section" id="botcard" data-section="botcard">
+    <h2>Bot Name Cards</h2>
+    <div class="mod-grid-2 mod-mt-1">
+      <div class="bot-card">
+        <div class="bot-card-glow"></div>
+        <div class="bot-name">Bot Alpha</div>
+        <div class="bot-desc">A neutral bot card placeholder. Edit borders, padding, glow, and text styling.</div>
+      </div>
+      <div class="bot-card">
+        <div class="bot-card-glow"></div>
+        <div class="bot-name">Bot Beta</div>
+        <div class="bot-desc">Another bot card with the same neutral styling, ready for customization.</div>
+      </div>
+    </div>
+  </div>
+
   <!-- MEMORY -->
   <div class="mod-section" id="memory" data-section="memory">
     <h2>Memory Cards</h2>
@@ -283,23 +317,6 @@
     </div>
   </div>
 
-  <!-- BOT CARD -->
-  <div class="mod-section" id="botcard" data-section="botcard">
-    <h2>Bot Name Cards</h2>
-    <div class="mod-grid-2 mod-mt-1">
-      <div class="bot-card">
-        <div class="bot-card-glow"></div>
-        <div class="bot-name">Bot Alpha</div>
-        <div class="bot-desc">A neutral bot card placeholder. Edit borders, padding, glow, and text styling.</div>
-      </div>
-      <div class="bot-card">
-        <div class="bot-card-glow"></div>
-        <div class="bot-name">Bot Beta</div>
-        <div class="bot-desc">Another bot card with the same neutral styling, ready for customization.</div>
-      </div>
-    </div>
-  </div>
-
   <!-- AUDIT LOG -->
   <div class="mod-section" id="audit" data-section="audit">
     <h2>Audit Log Card</h2>
@@ -328,23 +345,6 @@
             </div>
           </div>
         </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- TEXT INPUT -->
-  <div class="mod-section" id="textinput" data-section="textinput">
-    <h2>Text Input</h2>
-    <div class="mod-mt-1">
-      <label class="ti-label">Input Label</label>
-      <div class="ti-field" style="max-width: 360px;">
-        <textarea class="ti-input" rows="1" placeholder="Type something…"></textarea>
-      </div>
-      <label class="ti-label" style="margin-top:1rem;">With Actions</label>
-      <div class="ti-field" style="max-width: 460px;">
-        <div class="ti-adornment"><button class="ti-icon-btn" aria-label="Attach">📎</button></div>
-        <textarea class="ti-input" rows="1" placeholder="Message…"></textarea>
-        <div class="ti-adornment"><button class="ti-icon-btn" aria-label="Send">➤</button></div>
       </div>
     </div>
   </div>

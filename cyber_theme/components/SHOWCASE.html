@@ -435,21 +435,21 @@
   <a href="../../index.html" style="font-size:0.9rem;font-weight:bold;text-decoration:none;color:var(--c-text);letter-spacing:0.1em;">◩ THEMES</a>
   <div class="showcase-nav-links">
     <a href="#colors">Colors</a>
-    <a href="#buttons">Buttons</a>
     <a href="#badges">Badges</a>
-    <a href="#alerts">Alerts</a>
+    <a href="#buttons">Buttons</a>
     <a href="#spinners">Spinners</a>
+    <a href="#textinput">Text Input</a>
     <a href="#progress">Progress</a>
+    <a href="#alerts">Alerts</a>
     <a href="#stats">Stats</a>
     <a href="#timeline">Timeline</a>
     <a href="#dialogue">Dialogue</a>
     <a href="#mission">Mission</a>
     <a href="#schematic">Schematic</a>
-    <a href="#memory">Memory</a>
     <a href="#botcard">Bot Card</a>
+    <a href="#memory">Memory</a>
     <a href="#params">Params</a>
     <a href="#audit">Audit</a>
-    <a href="#textinput">Text Input</a>
   </div>
 </div>
 
@@ -478,6 +478,27 @@
     </div>
   </div>
 
+  <!-- BADGES -->
+  <div class="showcase-section" id="badges">
+    <h2>Badges</h2>
+    <section class="component-demo">
+      <nav class="demo-tabs">
+        <button class="tab active" data-target="html-badges">HTML / CSS</button>
+        <button class="tab" data-target="react-badges">React</button>
+      </nav>
+      <div id="html-badges" class="demo-panel">
+    <div class="row mt-1">
+      <span class="badge">Default</span>
+      <span class="badge badge-mauk">MAUK</span>
+      <span class="badge badge-abaci">ABACI</span>
+      <span class="badge badge-accent">Alert</span>
+    </div>
+  
+      </div>
+      <div id="react-badges" class="demo-panel react-panel" data-demo="badges" style="display:none;"></div>
+    </section>
+  </div>
+
   <!-- BUTTONS -->
   <div class="showcase-section" id="buttons">
     <h2>Buttons</h2>
@@ -497,24 +518,90 @@
     </section>
   </div>
 
-  <!-- BADGES -->
-  <div class="showcase-section" id="badges">
-    <h2>Badges</h2>
+  <!-- SPINNERS -->
+  <div class="showcase-section" id="spinners">
+    <h2>Spinners</h2>
     <section class="component-demo">
       <nav class="demo-tabs">
-        <button class="tab active" data-target="html-badges">HTML / CSS</button>
-        <button class="tab" data-target="react-badges">React</button>
+        <button class="tab active" data-target="html-spinners">HTML / CSS</button>
+        <button class="tab" data-target="react-spinners">React</button>
       </nav>
-      <div id="html-badges" class="demo-panel">
-    <div class="row mt-1">
-      <span class="badge">Default</span>
-      <span class="badge badge-mauk">MAUK</span>
-      <span class="badge badge-abaci">ABACI</span>
-      <span class="badge badge-accent">Alert</span>
+      <div id="html-spinners" class="demo-panel">
+    <div class="row mt-1" style="align-items:center;">
+      <div class="spinner">
+        <div class="spinner-dots"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>
+        <span class="spinner-label">Loading</span>
+      </div>
+      <div style="margin-left:2rem; --spin-color: var(--c-accent);" class="spinner">
+        <div class="spinner-pulse"></div>
+        <span class="spinner-label">Error</span>
+      </div>
+      <div style="margin-left:2rem; --spin-color: #00ccff;" class="spinner">
+        <div class="spinner-ring"></div>
+        <span class="spinner-label">Syncing</span>
+      </div>
     </div>
   
       </div>
-      <div id="react-badges" class="demo-panel react-panel" data-demo="badges" style="display:none;"></div>
+      <div id="react-spinners" class="demo-panel react-panel" data-demo="spinners" style="display:none;"></div>
+    </section>
+  </div>
+
+  <!-- TEXT INPUT -->
+  <div class="showcase-section" id="textinput">
+    <h2>Text Input</h2>
+    <section class="component-demo">
+      <nav class="demo-tabs">
+        <button class="tab active" data-target="html-textinput">HTML / CSS</button>
+        <button class="tab" data-target="react-textinput">React</button>
+      </nav>
+      <div id="html-textinput" class="demo-panel">
+        <p style="margin-bottom:1rem;">Static styling preview. The <strong style="color:var(--c-accent);">React</strong> tab adds the auto-fit behaviour: text starts at max size, shrinks to min as the line fills, then wraps to new lines.</p>
+        <label class="ti-label">Display Name</label>
+        <div class="ti-field" style="max-width:360px;">
+          <textarea class="ti-input" rows="1" wrap="off" placeholder="Type here…"></textarea>
+        </div>
+        <label class="ti-label" style="margin-top:1rem;">Chatroom</label>
+        <div class="ti-field" style="max-width:460px;">
+          <div class="ti-adornment"><button class="ti-icon-btn" aria-label="Attach">📎</button></div>
+          <textarea class="ti-input" rows="1" wrap="off" placeholder="Message the swarm…"></textarea>
+          <div class="ti-adornment"><button class="ti-icon-btn" aria-label="Dictate">🎤</button><button class="ti-icon-btn" aria-label="Send">➤</button></div>
+        </div>
+      </div>
+      <div id="react-textinput" class="demo-panel react-panel" data-demo="textinput" style="display:none;"></div>
+    </section>
+  </div>
+
+  <!-- PROGRESS -->
+  <div class="showcase-section" id="progress">
+    <h2>Progress</h2>
+    <section class="component-demo">
+      <nav class="demo-tabs">
+        <button class="tab active" data-target="html-progress">HTML / CSS</button>
+        <button class="tab" data-target="react-progress">React</button>
+      </nav>
+      <div id="html-progress" class="demo-panel">
+    <div style="max-width:400px;">
+      <div class="demo-label">Upload (75%)</div>
+      <div class="progress-label-row mt-1">
+        <span class="progress-label">Upload Progress</span>
+        <span class="progress-value" style="color:var(--c-primary);">75%</span>
+      </div>
+      <div class="progress-track">
+        <div class="progress-fill" style="width:75%;background:var(--c-primary);box-shadow:0 0 8px var(--c-primary);"></div>
+      </div>
+      <div class="demo-label mt-2">Memory (45%)</div>
+      <div class="progress-label-row mt-1">
+        <span class="progress-label" style="color:var(--c-abaci);">Memory Usage</span>
+        <span class="progress-value" style="color:var(--c-abaci);">45%</span>
+      </div>
+      <div class="progress-track">
+        <div class="progress-fill" style="width:45%;background:var(--c-abaci);box-shadow:0 0 8px var(--c-abaci);"></div>
+      </div>
+    </div>
+  
+      </div>
+      <div id="react-progress" class="demo-panel react-panel" data-demo="progress" style="display:none;"></div>
     </section>
   </div>
 
@@ -573,68 +660,6 @@
   
       </div>
       <div id="react-alerts" class="demo-panel react-panel" data-demo="alerts" style="display:none;"></div>
-    </section>
-  </div>
-
-  <!-- SPINNERS -->
-  <div class="showcase-section" id="spinners">
-    <h2>Spinners</h2>
-    <section class="component-demo">
-      <nav class="demo-tabs">
-        <button class="tab active" data-target="html-spinners">HTML / CSS</button>
-        <button class="tab" data-target="react-spinners">React</button>
-      </nav>
-      <div id="html-spinners" class="demo-panel">
-    <div class="row mt-1" style="align-items:center;">
-      <div class="spinner">
-        <div class="spinner-dots"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>
-        <span class="spinner-label">Loading</span>
-      </div>
-      <div style="margin-left:2rem; --spin-color: var(--c-accent);" class="spinner">
-        <div class="spinner-pulse"></div>
-        <span class="spinner-label">Error</span>
-      </div>
-      <div style="margin-left:2rem; --spin-color: #00ccff;" class="spinner">
-        <div class="spinner-ring"></div>
-        <span class="spinner-label">Syncing</span>
-      </div>
-    </div>
-  
-      </div>
-      <div id="react-spinners" class="demo-panel react-panel" data-demo="spinners" style="display:none;"></div>
-    </section>
-  </div>
-
-  <!-- PROGRESS -->
-  <div class="showcase-section" id="progress">
-    <h2>Progress</h2>
-    <section class="component-demo">
-      <nav class="demo-tabs">
-        <button class="tab active" data-target="html-progress">HTML / CSS</button>
-        <button class="tab" data-target="react-progress">React</button>
-      </nav>
-      <div id="html-progress" class="demo-panel">
-    <div style="max-width:400px;">
-      <div class="demo-label">Upload (75%)</div>
-      <div class="progress-label-row mt-1">
-        <span class="progress-label">Upload Progress</span>
-        <span class="progress-value" style="color:var(--c-primary);">75%</span>
-      </div>
-      <div class="progress-track">
-        <div class="progress-fill" style="width:75%;background:var(--c-primary);box-shadow:0 0 8px var(--c-primary);"></div>
-      </div>
-      <div class="demo-label mt-2">Memory (45%)</div>
-      <div class="progress-label-row mt-1">
-        <span class="progress-label" style="color:var(--c-abaci);">Memory Usage</span>
-        <span class="progress-value" style="color:var(--c-abaci);">45%</span>
-      </div>
-      <div class="progress-track">
-        <div class="progress-fill" style="width:45%;background:var(--c-abaci);box-shadow:0 0 8px var(--c-abaci);"></div>
-      </div>
-    </div>
-  
-      </div>
-      <div id="react-progress" class="demo-panel react-panel" data-demo="progress" style="display:none;"></div>
     </section>
   </div>
 
@@ -827,6 +852,33 @@
     </section>
   </div>
 
+  <!-- BOT CARD -->
+  <div class="showcase-section" id="botcard">
+    <h2>Bot Name Cards</h2>
+    <section class="component-demo">
+      <nav class="demo-tabs">
+        <button class="tab active" data-target="html-botcard">HTML / CSS</button>
+        <button class="tab" data-target="react-botcard">React</button>
+      </nav>
+      <div id="html-botcard" class="demo-panel">
+    <div class="grid-2 mt-1">
+      <div class="bot-card">
+        <div class="bot-card-glow" style="background:var(--c-mauk);"></div>
+        <div class="bot-name" style="color:var(--c-mauk);">MAUK_v2.1</div>
+        <div class="bot-desc">Left sidebar agent. Cool cyan identity. Specializes in memory architecture and identity theory.</div>
+      </div>
+      <div class="bot-card">
+        <div class="bot-card-glow" style="background:var(--c-abaci);"></div>
+        <div class="bot-name" style="color:var(--c-abaci);">ABACI_v2.1</div>
+        <div class="bot-desc">Right sidebar agent. Warm orange identity. Focuses on emergence and complex systems.</div>
+      </div>
+    </div>
+  
+      </div>
+      <div id="react-botcard" class="demo-panel react-panel" data-demo="botcard" style="display:none;"></div>
+    </section>
+  </div>
+
   <!-- MEMORY -->
   <div class="showcase-section" id="memory">
     <h2>Memory Cards</h2>
@@ -870,33 +922,6 @@
   
       </div>
       <div id="react-memory" class="demo-panel react-panel" data-demo="memory" style="display:none;"></div>
-    </section>
-  </div>
-
-  <!-- BOT CARD -->
-  <div class="showcase-section" id="botcard">
-    <h2>Bot Name Cards</h2>
-    <section class="component-demo">
-      <nav class="demo-tabs">
-        <button class="tab active" data-target="html-botcard">HTML / CSS</button>
-        <button class="tab" data-target="react-botcard">React</button>
-      </nav>
-      <div id="html-botcard" class="demo-panel">
-    <div class="grid-2 mt-1">
-      <div class="bot-card">
-        <div class="bot-card-glow" style="background:var(--c-mauk);"></div>
-        <div class="bot-name" style="color:var(--c-mauk);">MAUK_v2.1</div>
-        <div class="bot-desc">Left sidebar agent. Cool cyan identity. Specializes in memory architecture and identity theory.</div>
-      </div>
-      <div class="bot-card">
-        <div class="bot-card-glow" style="background:var(--c-abaci);"></div>
-        <div class="bot-name" style="color:var(--c-abaci);">ABACI_v2.1</div>
-        <div class="bot-desc">Right sidebar agent. Warm orange identity. Focuses on emergence and complex systems.</div>
-      </div>
-    </div>
-  
-      </div>
-      <div id="react-botcard" class="demo-panel react-panel" data-demo="botcard" style="display:none;"></div>
     </section>
   </div>
 
@@ -1003,31 +1028,6 @@
   
       </div>
       <div id="react-audit" class="demo-panel react-panel" data-demo="audit" style="display:none;"></div>
-    </section>
-  </div>
-
-  <!-- TEXT INPUT -->
-  <div class="showcase-section" id="textinput">
-    <h2>Text Input</h2>
-    <section class="component-demo">
-      <nav class="demo-tabs">
-        <button class="tab active" data-target="html-textinput">HTML / CSS</button>
-        <button class="tab" data-target="react-textinput">React</button>
-      </nav>
-      <div id="html-textinput" class="demo-panel">
-        <p style="margin-bottom:1rem;">Static styling preview. The <strong style="color:var(--c-accent);">React</strong> tab adds the auto-fit behaviour: text starts at max size, shrinks to min as the line fills, then wraps to new lines.</p>
-        <label class="ti-label">Display Name</label>
-        <div class="ti-field" style="max-width:360px;">
-          <textarea class="ti-input" rows="1" wrap="off" placeholder="Type here…"></textarea>
-        </div>
-        <label class="ti-label" style="margin-top:1rem;">Chatroom</label>
-        <div class="ti-field" style="max-width:460px;">
-          <div class="ti-adornment"><button class="ti-icon-btn" aria-label="Attach">📎</button></div>
-          <textarea class="ti-input" rows="1" wrap="off" placeholder="Message the swarm…"></textarea>
-          <div class="ti-adornment"><button class="ti-icon-btn" aria-label="Dictate">🎤</button><button class="ti-icon-btn" aria-label="Send">➤</button></div>
-        </div>
-      </div>
-      <div id="react-textinput" class="demo-panel react-panel" data-demo="textinput" style="display:none;"></div>
     </section>
   </div>
 

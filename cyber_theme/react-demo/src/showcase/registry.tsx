@@ -323,19 +323,19 @@ function TextInputDemo() {
 }
 
 export const demos: Record<string, () => ReactElement> = {
-  buttons: ButtonsDemo,
-  textinput: TextInputDemo,
   badges: BadgesDemo,
-  alerts: AlertsDemo,
+  buttons: ButtonsDemo,
   spinners: SpinnersDemo,
+  textinput: TextInputDemo,
   progress: ProgressDemo,
+  alerts: AlertsDemo,
   stats: StatsDemo,
   timeline: TimelineDemo,
   dialogue: DialogueDemo,
   mission: MissionDemo,
   schematic: SchematicDemo,
-  memory: MemoryDemo,
   botcard: BotCardDemo,
+  memory: MemoryDemo,
   params: ParamsDemo,
   audit: AuditDemo,
 }

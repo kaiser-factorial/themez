@@ -248,21 +248,21 @@ function TextInputDemo() {
 }
 
 export const demos: Record<string, () => ReactElement> = {
-  textinput: TextInputDemo,
-  buttons: ButtonsDemo,
   badges: BadgesDemo,
-  alerts: AlertsDemo,
+  buttons: ButtonsDemo,
   spinners: SpinnersDemo,
-  progress: ProgressDemo,
-  stats: StatsDemo,
   breadcrumb: BreadcrumbDemo,
+  textinput: TextInputDemo,
+  loading: LoadingDemo,
+  progress: ProgressDemo,
+  alerts: AlertsDemo,
+  stats: StatsDemo,
   timeline: TimelineDemo,
   dialogue: DialogueDemo,
   mission: MissionDemo,
   schematic: SchematicDemo,
-  memory: MemoryDemo,
   botcard: BotCardDemo,
+  memory: MemoryDemo,
   params: ParamsDemo,
   audit: AuditDemo,
-  loading: LoadingDemo,
 }

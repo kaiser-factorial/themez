@@ -197,21 +197,23 @@
       THEMES</a>
     <div class="showcase-nav-links">
       <a href="#colors">Colors</a>
-      <a href="#buttons">Buttons</a>
       <a href="#badges">Badges</a>
-      <a href="#alerts">Alerts</a>
+      <a href="#buttons">Buttons</a>
       <a href="#spinners">Spinners</a>
+      <a href="#breadcrumb">Breadcrumb</a>
+      <a href="#textinput">Text Input</a>
+      <a href="#loading">Loading</a>
       <a href="#progress">Progress</a>
+      <a href="#alerts">Alerts</a>
       <a href="#stats">Stats</a>
       <a href="#timeline">Timeline</a>
       <a href="#dialogue">Dialogue</a>
       <a href="#mission">Mission</a>
       <a href="#schematic">Schematic</a>
-      <a href="#memory">Memory</a>
       <a href="#botcard">Bot Card</a>
+      <a href="#memory">Memory</a>
       <a href="#params">Params</a>
       <a href="#audit">Audit</a>
-      <a href="#textinput">Text Input</a>
       <a href="#backgrounds">Backgrounds</a>
     </div>
   </div>
@@ -255,6 +257,45 @@
       </div>
     </div>
 
+    <!-- ===== BADGES ===== -->
+    <div class="showcase-section" id="badges">
+      <h2>Badges</h2>
+      <section class="component-demo">
+        <nav class="demo-tabs">
+          <button class="tab active" data-target="html-badges">HTML / CSS</button>
+          <button class="tab" data-target="react-badges">React</button>
+        </nav>
+        <div id="html-badges" class="demo-panel">
+      <p>Tags, labels, and status indicators. 4 variants × 5 colors.</p>
+      <div class="demo-label">Outline Variants</div>
+      <div class="row mt-1">
+        <span class="badge">Default</span>
+        <span class="badge badge-red">Red</span>
+        <span class="badge badge-blue">Blue</span>
+        <span class="badge badge-yellow">Yellow</span>
+        <span class="badge badge-green">Green</span>
+      </div>
+      <div class="demo-label mt-2">Solid Variants</div>
+      <div class="row mt-1">
+        <span class="badge badge-solid-black">Black</span>
+        <span class="badge badge-solid-red">Red</span>
+        <span class="badge badge-solid-blue">Blue</span>
+        <span class="badge badge-solid-yellow">Yellow</span>
+        <span class="badge badge-solid-green">Green</span>
+      </div>
+      <div class="demo-label mt-2">With Icons</div>
+      <div class="row mt-1">
+        <span class="badge badge-solid-red">✕ Error</span>
+        <span class="badge badge-solid-blue">ℹ Info</span>
+        <span class="badge badge-solid-yellow">⚠ Warning</span>
+        <span class="badge badge-solid-black">◆ System</span>
+      </div>
+    
+        </div>
+        <div id="react-badges" class="demo-panel react-panel" data-demo="badges" style="display:none;"></div>
+      </section>
+    </div>
+
     <!-- ===== BUTTONS ===== -->
     <div class="showcase-section" id="buttons">
       <h2>Buttons</h2>
@@ -294,42 +335,178 @@
       </section>
     </div>
 
-    <!-- ===== BADGES ===== -->
-    <div class="showcase-section" id="badges">
-      <h2>Badges</h2>
+    <!-- ===== SPINNERS ===== -->
+    <div class="showcase-section" id="spinners">
+      <h2>Spinners</h2>
       <section class="component-demo">
         <nav class="demo-tabs">
-          <button class="tab active" data-target="html-badges">HTML / CSS</button>
-          <button class="tab" data-target="react-badges">React</button>
+          <button class="tab active" data-target="html-spinners">HTML / CSS</button>
+          <button class="tab" data-target="react-spinners">React</button>
         </nav>
-        <div id="html-badges" class="demo-panel">
-      <p>Tags, labels, and status indicators. 4 variants × 5 colors.</p>
-      <div class="demo-label">Outline Variants</div>
-      <div class="row mt-1">
-        <span class="badge">Default</span>
-        <span class="badge badge-red">Red</span>
-        <span class="badge badge-blue">Blue</span>
-        <span class="badge badge-yellow">Yellow</span>
-        <span class="badge badge-green">Green</span>
+        <div id="html-spinners" class="demo-panel">
+      <p>Loading indicators. Ring, dots, and pulse variants.</p>
+      <div class="row mt-1" style="align-items:center;">
+        <div class="spinner spinner-md">
+          <div class="spinner-ring"></div>
+          <span class="spinner-label">Loading</span>
+        </div>
+        <div style="margin-left:2rem;" class="spinner spinner-md">
+          <div class="spinner-dots">
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+          </div>
+          <span class="spinner-label">Processing</span>
+        </div>
+        <div style="margin-left:2rem;">
+          <div class="spinner spinner-md">
+            <div class="spinner-dots">
+              <div class="dot"></div>
+            </div>
+            <span class="spinner-label" style="color:var(--p-red);">Error</span>
+          </div>
+        </div>
       </div>
-      <div class="demo-label mt-2">Solid Variants</div>
-      <div class="row mt-1">
-        <span class="badge badge-solid-black">Black</span>
-        <span class="badge badge-solid-red">Red</span>
-        <span class="badge badge-solid-blue">Blue</span>
-        <span class="badge badge-solid-yellow">Yellow</span>
-        <span class="badge badge-solid-green">Green</span>
-      </div>
-      <div class="demo-label mt-2">With Icons</div>
-      <div class="row mt-1">
-        <span class="badge badge-solid-red">✕ Error</span>
-        <span class="badge badge-solid-blue">ℹ Info</span>
-        <span class="badge badge-solid-yellow">⚠ Warning</span>
-        <span class="badge badge-solid-black">◆ System</span>
+      <div class="demo-label mt-2">Sizes</div>
+      <div class="row mt-1" style="align-items:center;">
+        <div class="spinner spinner-sm">
+          <div class="spinner-ring"></div>
+        </div>
+        <div class="spinner spinner-md" style="margin-left:1rem;">
+          <div class="spinner-ring"></div>
+        </div>
+        <div class="spinner spinner-lg" style="margin-left:1rem;">
+          <div class="spinner-ring"></div>
+        </div>
       </div>
     
         </div>
-        <div id="react-badges" class="demo-panel react-panel" data-demo="badges" style="display:none;"></div>
+        <div id="react-spinners" class="demo-panel react-panel" data-demo="spinners" style="display:none;"></div>
+      </section>
+    </div>
+
+    <!-- ===== BREADCRUMB ===== -->
+    <div class="showcase-section" id="breadcrumb">
+      <h2>Breadcrumb</h2>
+      <section class="component-demo">
+        <nav class="demo-tabs">
+          <button class="tab active" data-target="html-breadcrumb">HTML / CSS</button>
+          <button class="tab" data-target="react-breadcrumb">React</button>
+        </nav>
+        <div id="html-breadcrumb" class="demo-panel">
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <ol>
+          <li><a href="#">Home</a></li>
+          <li><a href="#">Themes</a></li>
+          <li><a href="#">Primary</a></li>
+          <li><span aria-current="page">Components</span></li>
+        </ol>
+      </nav>
+    
+        </div>
+        <div id="react-breadcrumb" class="demo-panel react-panel" data-demo="breadcrumb" style="display:none;"></div>
+      </section>
+    </div>
+
+    <!-- ===== TEXT INPUT ===== -->
+    <div class="showcase-section" id="textinput">
+      <h2>Text Input</h2>
+      <section class="component-demo">
+        <nav class="demo-tabs">
+          <button class="tab active" data-target="html-textinput">HTML / CSS</button>
+          <button class="tab" data-target="react-textinput">React</button>
+        </nav>
+        <div id="html-textinput" class="demo-panel">
+          <p style="margin-bottom:1rem;">Static styling preview. The <strong style="color:var(--p-red);">React</strong> tab adds the auto-fit behaviour: text starts at max size, shrinks to min as the line fills, then wraps to new lines.</p>
+          <label class="ti-label">Display Name</label>
+          <div class="ti-field" style="max-width:360px;">
+            <textarea class="ti-input" rows="1" wrap="off" placeholder="Type here…"></textarea>
+          </div>
+          <label class="ti-label" style="margin-top:1rem;">Chatroom</label>
+          <div class="ti-field" style="max-width:460px;">
+            <div class="ti-adornment"><button class="ti-icon-btn" aria-label="Attach">📎</button></div>
+            <textarea class="ti-input" rows="1" wrap="off" placeholder="Type a message…"></textarea>
+            <div class="ti-adornment"><button class="ti-icon-btn" aria-label="Dictate">🎤</button><button class="ti-icon-btn" aria-label="Send">➤</button></div>
+          </div>
+        </div>
+        <div id="react-textinput" class="demo-panel react-panel" data-demo="textinput" style="display:none;"></div>
+      </section>
+    </div>
+
+    <!-- ===== LOADING PROGRESS ===== -->
+    <div class="showcase-section" id="loading">
+      <h2>Loading Progress Bar</h2>
+      <section class="component-demo">
+        <nav class="demo-tabs">
+          <button class="tab active" data-target="html-loading">HTML / CSS</button>
+          <button class="tab" data-target="react-loading">React</button>
+        </nav>
+        <div id="html-loading" class="demo-panel">
+      <p>Fixed-position progress bar for page transitions.</p>
+      <button class="btn" data-loading-trigger style="margin-top:0.5rem;">Simulate Page Load</button>
+      <div id="demo-loading-bar" class="loading-bar loading-bar-top" style="opacity:0;">
+        <div class="loading-bar-fill" style="width:0%;background:var(--p-blue);"></div>
+      </div>
+    
+        </div>
+        <div id="react-loading" class="demo-panel react-panel" data-demo="loading" style="display:none;"></div>
+      </section>
+    </div>
+
+    <!-- ===== PROGRESS ===== -->
+    <div class="showcase-section" id="progress">
+      <h2>Progress Indicators</h2>
+      <section class="component-demo">
+        <nav class="demo-tabs">
+          <button class="tab active" data-target="html-progress">HTML / CSS</button>
+          <button class="tab" data-target="react-progress">React</button>
+        </nav>
+        <div id="html-progress" class="demo-panel">
+      <p>Linear bars with optional stripes and animation.</p>
+      <div style="max-width:500px;">
+        <div class="demo-label">Linear — Blue (75%)</div>
+        <div class="progress progress-md mt-1">
+          <div class="progress-label-row">
+            <span class="progress-label" style="color:var(--p-blue);">Upload Progress</span>
+            <span class="progress-value">75%</span>
+          </div>
+          <div class="progress-track">
+            <div class="progress-fill" style="width:75%;background:var(--p-blue);"></div>
+          </div>
+        </div>
+
+        <div class="demo-label mt-2">Linear — Red, Striped (45%)</div>
+        <div class="progress progress-md progress-striped mt-1">
+          <div class="progress-label-row">
+            <span class="progress-label" style="color:var(--p-red);">Error Rate</span>
+            <span class="progress-value">45%</span>
+          </div>
+          <div class="progress-track">
+            <div class="progress-fill" style="width:45%;background:var(--p-red);"></div>
+          </div>
+        </div>
+
+        <div class="demo-label mt-2">Linear — Yellow, Large (90%)</div>
+        <div class="progress progress-lg mt-1">
+          <div class="progress-label-row">
+            <span class="progress-label" style="color:#b89600;">Memory Usage</span>
+            <span class="progress-value">90%</span>
+          </div>
+          <div class="progress-track">
+            <div class="progress-fill" style="width:90%;background:var(--p-yellow);"></div>
+          </div>
+        </div>
+
+        <div class="demo-label mt-2">Small — Minimal (60%)</div>
+        <div class="progress progress-sm mt-1">
+          <div class="progress-track">
+            <div class="progress-fill" style="width:60%;background:var(--p-black);"></div>
+          </div>
+        </div>
+      </div>
+    
+        </div>
+        <div id="react-progress" class="demo-panel react-panel" data-demo="progress" style="display:none;"></div>
       </section>
     </div>
 
@@ -445,113 +622,6 @@
       </section>
     </div>
 
-    <!-- ===== SPINNERS ===== -->
-    <div class="showcase-section" id="spinners">
-      <h2>Spinners</h2>
-      <section class="component-demo">
-        <nav class="demo-tabs">
-          <button class="tab active" data-target="html-spinners">HTML / CSS</button>
-          <button class="tab" data-target="react-spinners">React</button>
-        </nav>
-        <div id="html-spinners" class="demo-panel">
-      <p>Loading indicators. Ring, dots, and pulse variants.</p>
-      <div class="row mt-1" style="align-items:center;">
-        <div class="spinner spinner-md">
-          <div class="spinner-ring"></div>
-          <span class="spinner-label">Loading</span>
-        </div>
-        <div style="margin-left:2rem;" class="spinner spinner-md">
-          <div class="spinner-dots">
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-          </div>
-          <span class="spinner-label">Processing</span>
-        </div>
-        <div style="margin-left:2rem;">
-          <div class="spinner spinner-md">
-            <div class="spinner-dots">
-              <div class="dot"></div>
-            </div>
-            <span class="spinner-label" style="color:var(--p-red);">Error</span>
-          </div>
-        </div>
-      </div>
-      <div class="demo-label mt-2">Sizes</div>
-      <div class="row mt-1" style="align-items:center;">
-        <div class="spinner spinner-sm">
-          <div class="spinner-ring"></div>
-        </div>
-        <div class="spinner spinner-md" style="margin-left:1rem;">
-          <div class="spinner-ring"></div>
-        </div>
-        <div class="spinner spinner-lg" style="margin-left:1rem;">
-          <div class="spinner-ring"></div>
-        </div>
-      </div>
-    
-        </div>
-        <div id="react-spinners" class="demo-panel react-panel" data-demo="spinners" style="display:none;"></div>
-      </section>
-    </div>
-
-    <!-- ===== PROGRESS ===== -->
-    <div class="showcase-section" id="progress">
-      <h2>Progress Indicators</h2>
-      <section class="component-demo">
-        <nav class="demo-tabs">
-          <button class="tab active" data-target="html-progress">HTML / CSS</button>
-          <button class="tab" data-target="react-progress">React</button>
-        </nav>
-        <div id="html-progress" class="demo-panel">
-      <p>Linear bars with optional stripes and animation.</p>
-      <div style="max-width:500px;">
-        <div class="demo-label">Linear — Blue (75%)</div>
-        <div class="progress progress-md mt-1">
-          <div class="progress-label-row">
-            <span class="progress-label" style="color:var(--p-blue);">Upload Progress</span>
-            <span class="progress-value">75%</span>
-          </div>
-          <div class="progress-track">
-            <div class="progress-fill" style="width:75%;background:var(--p-blue);"></div>
-          </div>
-        </div>
-
-        <div class="demo-label mt-2">Linear — Red, Striped (45%)</div>
-        <div class="progress progress-md progress-striped mt-1">
-          <div class="progress-label-row">
-            <span class="progress-label" style="color:var(--p-red);">Error Rate</span>
-            <span class="progress-value">45%</span>
-          </div>
-          <div class="progress-track">
-            <div class="progress-fill" style="width:45%;background:var(--p-red);"></div>
-          </div>
-        </div>
-
-        <div class="demo-label mt-2">Linear — Yellow, Large (90%)</div>
-        <div class="progress progress-lg mt-1">
-          <div class="progress-label-row">
-            <span class="progress-label" style="color:#b89600;">Memory Usage</span>
-            <span class="progress-value">90%</span>
-          </div>
-          <div class="progress-track">
-            <div class="progress-fill" style="width:90%;background:var(--p-yellow);"></div>
-          </div>
-        </div>
-
-        <div class="demo-label mt-2">Small — Minimal (60%)</div>
-        <div class="progress progress-sm mt-1">
-          <div class="progress-track">
-            <div class="progress-fill" style="width:60%;background:var(--p-black);"></div>
-          </div>
-        </div>
-      </div>
-    
-        </div>
-        <div id="react-progress" class="demo-panel react-panel" data-demo="progress" style="display:none;"></div>
-      </section>
-    </div>
-
     <!-- ===== STATS DISPLAY ===== -->
     <div class="showcase-section" id="stats">
       <h2>Stats Display</h2>
@@ -599,29 +669,6 @@
     
         </div>
         <div id="react-stats" class="demo-panel react-panel" data-demo="stats" style="display:none;"></div>
-      </section>
-    </div>
-
-    <!-- ===== BREADCRUMB ===== -->
-    <div class="showcase-section" id="breadcrumb">
-      <h2>Breadcrumb</h2>
-      <section class="component-demo">
-        <nav class="demo-tabs">
-          <button class="tab active" data-target="html-breadcrumb">HTML / CSS</button>
-          <button class="tab" data-target="react-breadcrumb">React</button>
-        </nav>
-        <div id="html-breadcrumb" class="demo-panel">
-      <nav class="breadcrumb" aria-label="Breadcrumb">
-        <ol>
-          <li><a href="#">Home</a></li>
-          <li><a href="#">Themes</a></li>
-          <li><a href="#">Primary</a></li>
-          <li><span aria-current="page">Components</span></li>
-        </ol>
-      </nav>
-    
-        </div>
-        <div id="react-breadcrumb" class="demo-panel react-panel" data-demo="breadcrumb" style="display:none;"></div>
       </section>
     </div>
 
@@ -794,6 +841,36 @@
       </section>
     </div>
 
+    <!-- ===== BOT NAME CARD ===== -->
+    <div class="showcase-section" id="botcard">
+      <h2>Bot Name Cards</h2>
+      <section class="component-demo">
+        <nav class="demo-tabs">
+          <button class="tab active" data-target="html-botcard">HTML / CSS</button>
+          <button class="tab" data-target="react-botcard">React</button>
+        </nav>
+        <div id="html-botcard" class="demo-panel">
+      <p>Agent/bot profile displays with glow effects.</p>
+      <div class="grid-2 mt-1">
+        <div class="bot-card">
+          <div class="bot-card-glow" style="background:var(--p-blue);"></div>
+          <div class="bot-name" style="color:var(--p-blue);">CATCH_v1.0</div>
+          <div class="bot-desc">Primary game engine. Handles rendering, physics, and input. Built on p5.js with ml5 face
+            tracking.</div>
+        </div>
+        <div class="bot-card">
+          <div class="bot-card-glow" style="background:var(--p-red);"></div>
+          <div class="bot-name" style="color:var(--p-red);">FALL_v1.0</div>
+          <div class="bot-desc">Difficulty scaling system. Manages fire objects, catch objects, and level progression.
+          </div>
+        </div>
+      </div>
+    
+        </div>
+        <div id="react-botcard" class="demo-panel react-panel" data-demo="botcard" style="display:none;"></div>
+      </section>
+    </div>
+
     <!-- ===== MEMORY CARD ===== -->
     <div class="showcase-section" id="memory">
       <h2>Memory Cards</h2>
@@ -857,36 +934,6 @@
     
         </div>
         <div id="react-memory" class="demo-panel react-panel" data-demo="memory" style="display:none;"></div>
-      </section>
-    </div>
-
-    <!-- ===== BOT NAME CARD ===== -->
-    <div class="showcase-section" id="botcard">
-      <h2>Bot Name Cards</h2>
-      <section class="component-demo">
-        <nav class="demo-tabs">
-          <button class="tab active" data-target="html-botcard">HTML / CSS</button>
-          <button class="tab" data-target="react-botcard">React</button>
-        </nav>
-        <div id="html-botcard" class="demo-panel">
-      <p>Agent/bot profile displays with glow effects.</p>
-      <div class="grid-2 mt-1">
-        <div class="bot-card">
-          <div class="bot-card-glow" style="background:var(--p-blue);"></div>
-          <div class="bot-name" style="color:var(--p-blue);">CATCH_v1.0</div>
-          <div class="bot-desc">Primary game engine. Handles rendering, physics, and input. Built on p5.js with ml5 face
-            tracking.</div>
-        </div>
-        <div class="bot-card">
-          <div class="bot-card-glow" style="background:var(--p-red);"></div>
-          <div class="bot-name" style="color:var(--p-red);">FALL_v1.0</div>
-          <div class="bot-desc">Difficulty scaling system. Manages fire objects, catch objects, and level progression.
-          </div>
-        </div>
-      </div>
-    
-        </div>
-        <div id="react-botcard" class="demo-panel react-panel" data-demo="botcard" style="display:none;"></div>
       </section>
     </div>
 
@@ -1030,51 +1077,6 @@
     
         </div>
         <div id="react-audit" class="demo-panel react-panel" data-demo="audit" style="display:none;"></div>
-      </section>
-    </div>
-
-    <!-- ===== TEXT INPUT ===== -->
-    <div class="showcase-section" id="textinput">
-      <h2>Text Input</h2>
-      <section class="component-demo">
-        <nav class="demo-tabs">
-          <button class="tab active" data-target="html-textinput">HTML / CSS</button>
-          <button class="tab" data-target="react-textinput">React</button>
-        </nav>
-        <div id="html-textinput" class="demo-panel">
-          <p style="margin-bottom:1rem;">Static styling preview. The <strong style="color:var(--p-red);">React</strong> tab adds the auto-fit behaviour: text starts at max size, shrinks to min as the line fills, then wraps to new lines.</p>
-          <label class="ti-label">Display Name</label>
-          <div class="ti-field" style="max-width:360px;">
-            <textarea class="ti-input" rows="1" wrap="off" placeholder="Type here…"></textarea>
-          </div>
-          <label class="ti-label" style="margin-top:1rem;">Chatroom</label>
-          <div class="ti-field" style="max-width:460px;">
-            <div class="ti-adornment"><button class="ti-icon-btn" aria-label="Attach">📎</button></div>
-            <textarea class="ti-input" rows="1" wrap="off" placeholder="Type a message…"></textarea>
-            <div class="ti-adornment"><button class="ti-icon-btn" aria-label="Dictate">🎤</button><button class="ti-icon-btn" aria-label="Send">➤</button></div>
-          </div>
-        </div>
-        <div id="react-textinput" class="demo-panel react-panel" data-demo="textinput" style="display:none;"></div>
-      </section>
-    </div>
-
-    <!-- ===== LOADING PROGRESS ===== -->
-    <div class="showcase-section" id="loading">
-      <h2>Loading Progress Bar</h2>
-      <section class="component-demo">
-        <nav class="demo-tabs">
-          <button class="tab active" data-target="html-loading">HTML / CSS</button>
-          <button class="tab" data-target="react-loading">React</button>
-        </nav>
-        <div id="html-loading" class="demo-panel">
-      <p>Fixed-position progress bar for page transitions.</p>
-      <button class="btn" data-loading-trigger style="margin-top:0.5rem;">Simulate Page Load</button>
-      <div id="demo-loading-bar" class="loading-bar loading-bar-top" style="opacity:0;">
-        <div class="loading-bar-fill" style="width:0%;background:var(--p-blue);"></div>
-      </div>
-    
-        </div>
-        <div id="react-loading" class="demo-panel react-panel" data-demo="loading" style="display:none;"></div>
       </section>
     </div>
 
