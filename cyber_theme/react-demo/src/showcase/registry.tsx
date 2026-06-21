@@ -23,6 +23,7 @@ import { AuditLogCard } from '@/components/AuditLogCard'
  * show the same thing built two ways.
  */
 
+// BEGIN badges
 function BadgesDemo() {
   return (
     <div className="space-y-6">
@@ -53,7 +54,9 @@ function BadgesDemo() {
     </div>
   )
 }
+// END badges
 
+// BEGIN alerts
 function AlertsDemo() {
   return (
     <div className="space-y-4">
@@ -65,7 +68,9 @@ function AlertsDemo() {
     </div>
   )
 }
+// END alerts
 
+// BEGIN buttons
 function ButtonsDemo() {
   return (
     <div className="flex gap-3 flex-wrap items-center">
@@ -75,7 +80,9 @@ function ButtonsDemo() {
     </div>
   )
 }
+// END buttons
 
+// BEGIN spinners
 function SpinnersDemo() {
   return (
     <div className="flex gap-12">
@@ -85,7 +92,9 @@ function SpinnersDemo() {
     </div>
   )
 }
+// END spinners
 
+// BEGIN progress
 function ProgressDemo() {
   const [isLoading, setIsLoading] = useState(false)
   return (
@@ -119,7 +128,9 @@ function ProgressDemo() {
     </div>
   )
 }
+// END progress
 
+// BEGIN stats
 function StatsDemo() {
   return (
     <StatsDisplay
@@ -133,7 +144,9 @@ function StatsDemo() {
     />
   )
 }
+// END stats
 
+// BEGIN timeline
 function TimelineDemo() {
   return (
     <Timeline
@@ -147,7 +160,9 @@ function TimelineDemo() {
     />
   )
 }
+// END timeline
 
+// BEGIN dialogue
 function DialogueDemo() {
   return (
     <ConversationThread
@@ -159,7 +174,9 @@ function DialogueDemo() {
     />
   )
 }
+// END dialogue
 
+// BEGIN mission
 function MissionDemo() {
   return (
     <MissionStatement
@@ -172,7 +189,9 @@ function MissionDemo() {
     />
   )
 }
+// END mission
 
+// BEGIN schematic
 function SchematicDemo() {
   return (
     <TechnicalSchematic
@@ -188,7 +207,9 @@ function SchematicDemo() {
     />
   )
 }
+// END schematic
 
+// BEGIN memory
 function MemoryDemo() {
   return (
     <div className="grid grid-cols-3 gap-4">
@@ -219,7 +240,9 @@ function MemoryDemo() {
     </div>
   )
 }
+// END memory
 
+// BEGIN botcard
 function BotCardDemo() {
   return (
     <BotNameCardGrid
@@ -231,7 +254,9 @@ function BotCardDemo() {
     />
   )
 }
+// END botcard
 
+// BEGIN params
 function ParamsDemo() {
   const [values, setValues] = useState<Record<string, unknown>>({
     temperature: 0.7,
@@ -261,7 +286,9 @@ function ParamsDemo() {
     />
   )
 }
+// END params
 
+// BEGIN audit
 function AuditDemo() {
   return (
     <AuditLogCard
@@ -281,11 +308,13 @@ function AuditDemo() {
     />
   )
 }
+// END audit
 
 function TIcon({ children, label }: { children: ReactNode; label: string }) {
   return <button type="button" className="ti-icon-btn" aria-label={label}>{children}</button>
 }
 
+// BEGIN textinput
 function TextInputDemo() {
   return (
     <div className="space-y-6" style={{ maxWidth: 480 }}>
@@ -321,6 +350,7 @@ function TextInputDemo() {
     </div>
   )
 }
+// END textinput
 
 export const demos: Record<string, () => ReactElement> = {
   badges: BadgesDemo,

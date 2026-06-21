@@ -8,6 +8,7 @@ import {
 
 const BLUE = 'var(--p-blue)', RED = 'var(--p-red)', YEL = '#b89600', BLACK = 'var(--p-black)'
 
+// BEGIN buttons
 function ButtonsDemo() {
   return (
     <div className="row mt-1" style={{ gap: '0.5rem', flexWrap: 'wrap' }}>
@@ -21,7 +22,9 @@ function ButtonsDemo() {
     </div>
   )
 }
+// END buttons
 
+// BEGIN badges
 function BadgesDemo() {
   return (
     <div>
@@ -43,7 +46,9 @@ function BadgesDemo() {
     </div>
   )
 }
+// END badges
 
+// BEGIN alerts
 function AlertsDemo() {
   return (
     <div>
@@ -64,7 +69,9 @@ function AlertsDemo() {
     </div>
   )
 }
+// END alerts
 
+// BEGIN spinners
 function SpinnersDemo() {
   return (
     <div>
@@ -80,7 +87,9 @@ function SpinnersDemo() {
     </div>
   )
 }
+// END spinners
 
+// BEGIN progress
 function ProgressDemo() {
   return (
     <div style={{ maxWidth: 500 }}>
@@ -95,7 +104,9 @@ function ProgressDemo() {
     </div>
   )
 }
+// END progress
 
+// BEGIN stats
 function StatsDemo() {
   return (
     <StatsDisplay columns={4} stats={[
@@ -106,11 +117,15 @@ function StatsDemo() {
     ]} />
   )
 }
+// END stats
 
+// BEGIN breadcrumb
 function BreadcrumbDemo() {
   return <Breadcrumb items={[{ label: 'Home', href: '#' }, { label: 'Themes', href: '#' }, { label: 'Primary', href: '#' }, { label: 'Components' }]} />
 }
+// END breadcrumb
 
+// BEGIN timeline
 function TimelineDemo() {
   return (
     <Timeline events={[
@@ -121,7 +136,9 @@ function TimelineDemo() {
     ]} />
   )
 }
+// END timeline
 
+// BEGIN dialogue
 function DialogueDemo() {
   return (
     <ConversationThread messages={[
@@ -132,7 +149,9 @@ function DialogueDemo() {
     ]} />
   )
 }
+// END dialogue
 
+// BEGIN mission
 function MissionDemo() {
   return (
     <MissionStatement title="[MISSION_EXPERIMENT]" color={RED} version="v1.0.0" actionLabel="View Source →" paragraphs={[
@@ -141,7 +160,9 @@ function MissionDemo() {
     ]} />
   )
 }
+// END mission
 
+// BEGIN schematic
 function SchematicDemo() {
   return (
     <TechnicalSchematic title="[SYSTEM_ARCHITECTURE]" color={BLACK} columns={4} items={[
@@ -152,7 +173,9 @@ function SchematicDemo() {
     ]} />
   )
 }
+// END schematic
 
+// BEGIN memory
 function MemoryDemo() {
   return (
     <MemoryGrid columns={[
@@ -162,7 +185,9 @@ function MemoryDemo() {
     ]} />
   )
 }
+// END memory
 
+// BEGIN botcard
 function BotCardDemo() {
   return (
     <BotNameCardGrid columns={2} bots={[
@@ -171,7 +196,9 @@ function BotCardDemo() {
     ]} />
   )
 }
+// END botcard
 
+// BEGIN params
 function ParamsDemo() {
   return (
     <ParameterPanel name="GEMINI_CONFIG" color={BLUE} status="ACTIVE"
@@ -184,7 +211,9 @@ function ParamsDemo() {
       ]} />
   )
 }
+// END params
 
+// BEGIN audit
 function AuditDemo() {
   return (
     <AuditLogCard title="LEVEL_TRANSITION" color={BLUE} badge="SUCCESS" time="14:23:45 // 06-16-2026" sections={[
@@ -202,13 +231,17 @@ function AuditDemo() {
     ]} />
   )
 }
+// END audit
 
+// BEGIN loading
 function LoadingDemo() { return <LoadingBar color={BLUE} /> }
+// END loading
 
 function TIcon({ children, label }: { children: ReactNode; label: string }) {
   return <button type="button" className="ti-icon-btn" aria-label={label}>{children}</button>
 }
 
+// BEGIN textinput
 function TextInputDemo() {
   return (
     <div style={{ maxWidth: 480, display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
@@ -246,6 +279,7 @@ function TextInputDemo() {
     </div>
   )
 }
+// END textinput
 
 export const demos: Record<string, () => ReactElement> = {
   badges: BadgesDemo,

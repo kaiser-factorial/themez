@@ -4,6 +4,7 @@ import { createRoot } from 'react-dom/client'
 // single self-contained .js file (no separate stylesheet to link).
 import css from '../index.css?inline'
 import { demos } from './registry'
+import { sources } from './cyber-sources-data'
 
 const STYLE_ID = 'cyber-demo-styles'
 
@@ -44,4 +45,5 @@ export function mountAll(root: ParentNode = document) {
   })
 }
 
+export { sources }
 export const availableDemos = Object.keys(demos)

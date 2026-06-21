@@ -1,6 +1,7 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import { demos } from './primary-registry'
+import { sources } from './primary-sources-data'
 
 /**
  * Mounts the Primary React demos into every [data-demo] panel. The Primary
@@ -30,4 +31,5 @@ export function mountAll(root: ParentNode = document) {
   })
 }
 
+export { sources }
 export const availableDemos = Object.keys(demos)

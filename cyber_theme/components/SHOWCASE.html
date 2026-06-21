@@ -1170,12 +1170,19 @@
         panel.dataset.filled = 'true';
         const html = dedent(htmlPanel.innerHTML);
         const css = cssBySection[sid];
+        const reactSrc = window.CyberDemo && window.CyberDemo.sources && window.CyberDemo.sources[sid];
         panel.appendChild(makeCodeBlock('HTML', html));
         if (css) {
           const sep = document.createElement('hr');
           sep.className = 'code-sep';
           panel.appendChild(sep);
           panel.appendChild(makeCodeBlock('CSS', css));
+        }
+        if (reactSrc) {
+          const sep = document.createElement('hr');
+          sep.className = 'code-sep';
+          panel.appendChild(sep);
+          panel.appendChild(makeCodeBlock('React', reactSrc));
         }
       }
 
