@@ -169,7 +169,7 @@
       font-family: var(--p-font);
     }
   
-    /* Component demo tabs (HTML | React) */
+    /* Component demo tabs */
     .component-demo { border: var(--p-border-w) solid var(--p-black); margin-top: 0.75rem; background: var(--p-surface); box-shadow: var(--p-shadow-sm); }
     .demo-tabs { display: flex; border-bottom: var(--p-border-w) solid var(--p-black); }
     .demo-tabs .tab {
@@ -180,12 +180,36 @@
     }
     .demo-tabs .tab:hover { background: var(--p-yellow); }
     .demo-tabs .tab.active { background: var(--p-black); color: var(--p-white); }
-    /* React tab in primary red so it's clearly distinct */
+    /* React tab: red */
     .demo-tabs .tab[data-target^="react-"] { color: var(--p-red); }
     .demo-tabs .tab[data-target^="react-"]:hover { background: var(--p-red); color: var(--p-white); }
     .demo-tabs .tab[data-target^="react-"].active { background: var(--p-red); color: var(--p-white); }
+    /* Code tab: blue */
+    .demo-tabs .tab[data-target^="code-"] { color: var(--p-blue); }
+    .demo-tabs .tab[data-target^="code-"]:hover { background: var(--p-blue); color: var(--p-white); }
+    .demo-tabs .tab[data-target^="code-"].active { background: var(--p-blue); color: var(--p-white); }
     .demo-panel { padding: 1.5rem; }
     .react-panel:empty::after { content: 'Loading React component\2026'; color: var(--p-red); font-size: 0.75rem; }
+    /* Code panels */
+    .code-panel { position: relative; }
+    .code-panel pre {
+      background: #f3f0eb; border: none; margin: 0; padding: 1.25rem 1rem;
+      overflow-x: auto; overflow-y: auto; max-height: 440px;
+      font-family: var(--p-font); font-size: 0.7rem; line-height: 1.6;
+      color: #444; tab-size: 2; white-space: pre;
+    }
+    .code-panel pre code { background: none; border: none; padding: 0; font-size: inherit; color: inherit; }
+    .code-panel .code-sep { border: none; border-top: var(--p-border-w) solid var(--p-black); margin: 0; }
+    .copy-btn {
+      position: absolute; top: 0.6rem; right: 0.6rem; z-index: 5;
+      font-family: var(--p-font); font-size: 0.6rem; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.08em;
+      padding: 0.2rem 0.55rem; cursor: pointer;
+      border: 2px solid var(--p-black); background: var(--p-surface); color: var(--p-black);
+      box-shadow: 2px 2px 0 var(--p-black); transition: all 0.1s;
+    }
+    .copy-btn:hover { background: var(--p-black); color: var(--p-white); box-shadow: none; transform: translate(2px,2px); }
+    .copy-btn.copied { background: var(--p-blue); color: var(--p-white); border-color: var(--p-blue); box-shadow: none; transform: translate(2px,2px); }
   </style>
 </head>
 
@@ -262,8 +286,9 @@
       <h2>Badges</h2>
       <section class="component-demo">
         <nav class="demo-tabs">
-          <button class="tab active" data-target="html-badges">HTML / CSS</button>
-          <button class="tab" data-target="react-badges">React</button>
+          <button class="tab active" data-target="html-badges">Preview</button>
+          <button class="tab" data-target="code-<button class="tab" data-target="react-badges">React</button>">Code</button>
+          badges
         </nav>
         <div id="html-badges" class="demo-panel">
       <p>Tags, labels, and status indicators. 4 variants × 5 colors.</p>
@@ -292,6 +317,7 @@
       </div>
     
         </div>
+        <div id="code-badges" class="demo-panel code-panel" style="display:none;"></div>
         <div id="react-badges" class="demo-panel react-panel" data-demo="badges" style="display:none;"></div>
       </section>
     </div>
@@ -301,8 +327,9 @@
       <h2>Buttons</h2>
       <section class="component-demo">
         <nav class="demo-tabs">
-          <button class="tab active" data-target="html-buttons">HTML / CSS</button>
-          <button class="tab" data-target="react-buttons">React</button>
+          <button class="tab active" data-target="html-buttons">Preview</button>
+          <button class="tab" data-target="code-<button class="tab" data-target="react-buttons">React</button>">Code</button>
+          buttons
         </nav>
         <div id="html-buttons" class="demo-panel">
       <p>Hard shadow offset, sharp corners, press-down interaction.</p>
@@ -331,6 +358,7 @@
       </div>
     
         </div>
+        <div id="code-buttons" class="demo-panel code-panel" style="display:none;"></div>
         <div id="react-buttons" class="demo-panel react-panel" data-demo="buttons" style="display:none;"></div>
       </section>
     </div>
@@ -340,8 +368,9 @@
       <h2>Spinners</h2>
       <section class="component-demo">
         <nav class="demo-tabs">
-          <button class="tab active" data-target="html-spinners">HTML / CSS</button>
-          <button class="tab" data-target="react-spinners">React</button>
+          <button class="tab active" data-target="html-spinners">Preview</button>
+          <button class="tab" data-target="code-<button class="tab" data-target="react-spinners">React</button>">Code</button>
+          spinners
         </nav>
         <div id="html-spinners" class="demo-panel">
       <p>Loading indicators. Ring, dots, and pulse variants.</p>
@@ -381,6 +410,7 @@
       </div>
     
         </div>
+        <div id="code-spinners" class="demo-panel code-panel" style="display:none;"></div>
         <div id="react-spinners" class="demo-panel react-panel" data-demo="spinners" style="display:none;"></div>
       </section>
     </div>
@@ -390,8 +420,9 @@
       <h2>Breadcrumb</h2>
       <section class="component-demo">
         <nav class="demo-tabs">
-          <button class="tab active" data-target="html-breadcrumb">HTML / CSS</button>
-          <button class="tab" data-target="react-breadcrumb">React</button>
+          <button class="tab active" data-target="html-breadcrumb">Preview</button>
+          <button class="tab" data-target="code-<button class="tab" data-target="react-breadcrumb">React</button>">Code</button>
+          breadcrumb
         </nav>
         <div id="html-breadcrumb" class="demo-panel">
       <nav class="breadcrumb" aria-label="Breadcrumb">
@@ -404,6 +435,7 @@
       </nav>
     
         </div>
+        <div id="code-breadcrumb" class="demo-panel code-panel" style="display:none;"></div>
         <div id="react-breadcrumb" class="demo-panel react-panel" data-demo="breadcrumb" style="display:none;"></div>
       </section>
     </div>
@@ -413,8 +445,9 @@
       <h2>Text Input</h2>
       <section class="component-demo">
         <nav class="demo-tabs">
-          <button class="tab active" data-target="html-textinput">HTML / CSS</button>
-          <button class="tab" data-target="react-textinput">React</button>
+          <button class="tab active" data-target="html-textinput">Preview</button>
+          <button class="tab" data-target="code-<button class="tab" data-target="react-textinput">React</button>">Code</button>
+          textinput
         </nav>
         <div id="html-textinput" class="demo-panel">
           <p style="margin-bottom:1rem;">Static styling preview. The <strong style="color:var(--p-red);">React</strong> tab adds the auto-fit behaviour: text starts at max size, shrinks to min as the line fills, then wraps to new lines.</p>
@@ -429,6 +462,7 @@
             <div class="ti-adornment"><button class="ti-icon-btn" aria-label="Dictate">🎤</button><button class="ti-icon-btn" aria-label="Send">➤</button></div>
           </div>
         </div>
+        <div id="code-textinput" class="demo-panel code-panel" style="display:none;"></div>
         <div id="react-textinput" class="demo-panel react-panel" data-demo="textinput" style="display:none;"></div>
       </section>
     </div>
@@ -438,8 +472,9 @@
       <h2>Loading Progress Bar</h2>
       <section class="component-demo">
         <nav class="demo-tabs">
-          <button class="tab active" data-target="html-loading">HTML / CSS</button>
-          <button class="tab" data-target="react-loading">React</button>
+          <button class="tab active" data-target="html-loading">Preview</button>
+          <button class="tab" data-target="code-<button class="tab" data-target="react-loading">React</button>">Code</button>
+          loading
         </nav>
         <div id="html-loading" class="demo-panel">
       <p>Fixed-position progress bar for page transitions.</p>
@@ -449,6 +484,7 @@
       </div>
     
         </div>
+        <div id="code-loading" class="demo-panel code-panel" style="display:none;"></div>
         <div id="react-loading" class="demo-panel react-panel" data-demo="loading" style="display:none;"></div>
       </section>
     </div>
@@ -458,8 +494,9 @@
       <h2>Progress Indicators</h2>
       <section class="component-demo">
         <nav class="demo-tabs">
-          <button class="tab active" data-target="html-progress">HTML / CSS</button>
-          <button class="tab" data-target="react-progress">React</button>
+          <button class="tab active" data-target="html-progress">Preview</button>
+          <button class="tab" data-target="code-<button class="tab" data-target="react-progress">React</button>">Code</button>
+          progress
         </nav>
         <div id="html-progress" class="demo-panel">
       <p>Linear bars with optional stripes and animation.</p>
@@ -506,6 +543,7 @@
       </div>
     
         </div>
+        <div id="code-progress" class="demo-panel code-panel" style="display:none;"></div>
         <div id="react-progress" class="demo-panel react-panel" data-demo="progress" style="display:none;"></div>
       </section>
     </div>
@@ -515,8 +553,9 @@
       <h2>Alerts</h2>
       <section class="component-demo">
         <nav class="demo-tabs">
-          <button class="tab active" data-target="html-alerts">HTML / CSS</button>
-          <button class="tab" data-target="react-alerts">React</button>
+          <button class="tab active" data-target="html-alerts">Preview</button>
+          <button class="tab" data-target="code-<button class="tab" data-target="react-alerts">React</button>">Code</button>
+          alerts
         </nav>
         <div id="html-alerts" class="demo-panel">
       <p>System notifications with severity levels. Default, compact, and inline variants.</p>
@@ -618,6 +657,7 @@
       </div>
     
         </div>
+        <div id="code-alerts" class="demo-panel code-panel" style="display:none;"></div>
         <div id="react-alerts" class="demo-panel react-panel" data-demo="alerts" style="display:none;"></div>
       </section>
     </div>
@@ -627,8 +667,9 @@
       <h2>Stats Display</h2>
       <section class="component-demo">
         <nav class="demo-tabs">
-          <button class="tab active" data-target="html-stats">HTML / CSS</button>
-          <button class="tab" data-target="react-stats">React</button>
+          <button class="tab active" data-target="html-stats">Preview</button>
+          <button class="tab" data-target="code-<button class="tab" data-target="react-stats">React</button>">Code</button>
+          stats
         </nav>
         <div id="html-stats" class="demo-panel">
       <p>Metric cards with change indicators.</p>
@@ -668,6 +709,7 @@
       </div>
     
         </div>
+        <div id="code-stats" class="demo-panel code-panel" style="display:none;"></div>
         <div id="react-stats" class="demo-panel react-panel" data-demo="stats" style="display:none;"></div>
       </section>
     </div>
@@ -677,8 +719,9 @@
       <h2>Timeline</h2>
       <section class="component-demo">
         <nav class="demo-tabs">
-          <button class="tab active" data-target="html-timeline">HTML / CSS</button>
-          <button class="tab" data-target="react-timeline">React</button>
+          <button class="tab active" data-target="html-timeline">Preview</button>
+          <button class="tab" data-target="code-<button class="tab" data-target="react-timeline">React</button>">Code</button>
+          timeline
         </nav>
         <div id="html-timeline" class="demo-panel">
       <p>Chronological event display with connecting lines.</p>
@@ -719,6 +762,7 @@
       </div>
     
         </div>
+        <div id="code-timeline" class="demo-panel code-panel" style="display:none;"></div>
         <div id="react-timeline" class="demo-panel react-panel" data-demo="timeline" style="display:none;"></div>
       </section>
     </div>
@@ -728,8 +772,9 @@
       <h2>Dialogue Messages</h2>
       <section class="component-demo">
         <nav class="demo-tabs">
-          <button class="tab active" data-target="html-dialogue">HTML / CSS</button>
-          <button class="tab" data-target="react-dialogue">React</button>
+          <button class="tab active" data-target="html-dialogue">Preview</button>
+          <button class="tab" data-target="code-<button class="tab" data-target="react-dialogue">React</button>">Code</button>
+          dialogue
         </nav>
         <div id="html-dialogue" class="demo-panel">
       <p>Conversation bubbles with speaker identification.</p>
@@ -766,6 +811,7 @@
       </div>
     
         </div>
+        <div id="code-dialogue" class="demo-panel code-panel" style="display:none;"></div>
         <div id="react-dialogue" class="demo-panel react-panel" data-demo="dialogue" style="display:none;"></div>
       </section>
     </div>
@@ -775,8 +821,9 @@
       <h2>Mission Statement</h2>
       <section class="component-demo">
         <nav class="demo-tabs">
-          <button class="tab active" data-target="html-mission">HTML / CSS</button>
-          <button class="tab" data-target="react-mission">React</button>
+          <button class="tab active" data-target="html-mission">Preview</button>
+          <button class="tab" data-target="code-<button class="tab" data-target="react-mission">React</button>">Code</button>
+          mission
         </nav>
         <div id="html-mission" class="demo-panel">
       <p>Feature/vision cards with metadata and action buttons.</p>
@@ -796,6 +843,7 @@
       </div>
     
         </div>
+        <div id="code-mission" class="demo-panel code-panel" style="display:none;"></div>
         <div id="react-mission" class="demo-panel react-panel" data-demo="mission" style="display:none;"></div>
       </section>
     </div>
@@ -805,8 +853,9 @@
       <h2>Technical Schematic</h2>
       <section class="component-demo">
         <nav class="demo-tabs">
-          <button class="tab active" data-target="html-schematic">HTML / CSS</button>
-          <button class="tab" data-target="react-schematic">React</button>
+          <button class="tab active" data-target="html-schematic">Preview</button>
+          <button class="tab" data-target="code-<button class="tab" data-target="react-schematic">React</button>">Code</button>
+          schematic
         </nav>
         <div id="html-schematic" class="demo-panel">
       <p>System architecture grid display.</p>
@@ -837,6 +886,7 @@
       </div>
     
         </div>
+        <div id="code-schematic" class="demo-panel code-panel" style="display:none;"></div>
         <div id="react-schematic" class="demo-panel react-panel" data-demo="schematic" style="display:none;"></div>
       </section>
     </div>
@@ -846,8 +896,9 @@
       <h2>Bot Name Cards</h2>
       <section class="component-demo">
         <nav class="demo-tabs">
-          <button class="tab active" data-target="html-botcard">HTML / CSS</button>
-          <button class="tab" data-target="react-botcard">React</button>
+          <button class="tab active" data-target="html-botcard">Preview</button>
+          <button class="tab" data-target="code-<button class="tab" data-target="react-botcard">React</button>">Code</button>
+          botcard
         </nav>
         <div id="html-botcard" class="demo-panel">
       <p>Agent/bot profile displays with glow effects.</p>
@@ -867,6 +918,7 @@
       </div>
     
         </div>
+        <div id="code-botcard" class="demo-panel code-panel" style="display:none;"></div>
         <div id="react-botcard" class="demo-panel react-panel" data-demo="botcard" style="display:none;"></div>
       </section>
     </div>
@@ -876,8 +928,9 @@
       <h2>Memory Cards</h2>
       <section class="component-demo">
         <nav class="demo-tabs">
-          <button class="tab active" data-target="html-memory">HTML / CSS</button>
-          <button class="tab" data-target="react-memory">React</button>
+          <button class="tab active" data-target="html-memory">Preview</button>
+          <button class="tab" data-target="code-<button class="tab" data-target="react-memory">React</button>">Code</button>
+          memory
         </nav>
         <div id="html-memory" class="demo-panel">
       <p>Concept archive cards with alignment and dot indicators.</p>
@@ -933,6 +986,7 @@
       </div>
     
         </div>
+        <div id="code-memory" class="demo-panel code-panel" style="display:none;"></div>
         <div id="react-memory" class="demo-panel react-panel" data-demo="memory" style="display:none;"></div>
       </section>
     </div>
@@ -942,8 +996,9 @@
       <h2>Parameter Panel</h2>
       <section class="component-demo">
         <nav class="demo-tabs">
-          <button class="tab active" data-target="html-params">HTML / CSS</button>
-          <button class="tab" data-target="react-params">React</button>
+          <button class="tab active" data-target="html-params">Preview</button>
+          <button class="tab" data-target="code-<button class="tab" data-target="react-params">React</button>">Code</button>
+          params
         </nav>
         <div id="html-params" class="demo-panel">
       <p>Collapsible configuration interface with multiple input types.</p>
@@ -995,6 +1050,7 @@
       </div>
     
         </div>
+        <div id="code-params" class="demo-panel code-panel" style="display:none;"></div>
         <div id="react-params" class="demo-panel react-panel" data-demo="params" style="display:none;"></div>
       </section>
     </div>
@@ -1004,8 +1060,9 @@
       <h2>Audit Log Card</h2>
       <section class="component-demo">
         <nav class="demo-tabs">
-          <button class="tab active" data-target="html-audit">HTML / CSS</button>
-          <button class="tab" data-target="react-audit">React</button>
+          <button class="tab active" data-target="html-audit">Preview</button>
+          <button class="tab" data-target="code-<button class="tab" data-target="react-audit">React</button>">Code</button>
+          audit
         </nav>
         <div id="html-audit" class="demo-panel">
       <p>Collapsible event/log entries with multiple section types.</p>
@@ -1076,6 +1133,7 @@
       </div>
     
         </div>
+        <div id="code-audit" class="demo-panel code-panel" style="display:none;"></div>
         <div id="react-audit" class="demo-panel react-panel" data-demo="audit" style="display:none;"></div>
       </section>
     </div>
@@ -1192,17 +1250,55 @@
   <!-- React showcase bundle (built from primary_theme/components/PrimaryComponents.tsx) -->
   <script src="primary-showcase.js" defer></script>
   <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      document.querySelectorAll('.demo-tabs .tab').forEach(btn => {
-        btn.addEventListener('click', () => {
-          const parent = btn.closest('.component-demo');
-          parent.querySelectorAll('.demo-panel').forEach(p => { p.style.display = 'none'; });
-          parent.querySelectorAll('.demo-tabs .tab').forEach(t => t.classList.remove('active'));
-          const target = parent.querySelector('#' + btn.dataset.target);
-          if (target) target.style.display = 'block';
-          btn.classList.add('active');
-          if (btn.dataset.target.startsWith('react-') && window.PrimaryDemo) window.PrimaryDemo.mountAll();
+    function dedent(html) {
+      const lines = html.split('\n');
+      const min = lines.filter(l => l.trim()).reduce((acc, l) => {
+        const m = l.match(/^ +/); return m ? Math.min(acc, m[0].length) : acc;
+      }, Infinity);
+      return lines.map(l => l.slice(min === Infinity ? 0 : min)).join('\n').trim();
+    }
+
+    function makeCodeBlock(label, text) {
+      const wrap = document.createElement('div');
+      wrap.style.position = 'relative';
+      const btn = document.createElement('button');
+      btn.className = 'copy-btn';
+      btn.textContent = 'Copy ' + label;
+      btn.addEventListener('click', () => {
+        navigator.clipboard.writeText(text).then(() => {
+          btn.className = 'copy-btn copied'; btn.textContent = 'Copied!';
+          setTimeout(() => { btn.className = 'copy-btn'; btn.textContent = 'Copy ' + label; }, 2000);
         });
+      });
+      const pre = document.createElement('pre');
+      const code = document.createElement('code');
+      code.textContent = text;
+      pre.appendChild(code);
+      wrap.appendChild(btn); wrap.appendChild(pre);
+      return wrap;
+    }
+
+    function fillCodePanel(panel, htmlPanel) {
+      if (panel.dataset.filled) return;
+      panel.dataset.filled = 'true';
+      const html = dedent(htmlPanel.innerHTML);
+      panel.appendChild(makeCodeBlock('HTML', html));
+    }
+
+    document.querySelectorAll('.demo-tabs .tab').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const parent = btn.closest('.component-demo');
+        parent.querySelectorAll('.demo-panel').forEach(p => { p.style.display = 'none'; });
+        parent.querySelectorAll('.demo-tabs .tab').forEach(t => t.classList.remove('active'));
+        const target = parent.querySelector('#' + btn.dataset.target);
+        if (target) target.style.display = 'block';
+        btn.classList.add('active');
+        if (btn.dataset.target.startsWith('react-') && window.PrimaryDemo) window.PrimaryDemo.mountAll();
+        if (btn.dataset.target.startsWith('code-')) {
+          const sid = btn.dataset.target.replace('code-', '');
+          const htmlPanel = parent.querySelector('#html-' + sid);
+          if (target && htmlPanel) fillCodePanel(target, htmlPanel);
+        }
       });
     });
   </script>

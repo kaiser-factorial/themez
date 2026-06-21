@@ -5,6 +5,39 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Mod Theme — Neutral Component Library</title>
 <link rel="stylesheet" href="mod-theme.css">
+<style>
+  /* Code toggle */
+  .code-toggle-btn {
+    display: inline-block; margin-top: 0.9rem;
+    font-size: 0.7rem; font-family: monospace; letter-spacing: 0.05em;
+    padding: 0.2rem 0.55rem; cursor: pointer;
+    border: 1px solid var(--colors-border, #d4cfc6);
+    background: transparent; color: var(--colors-accent, #6b6b6b);
+    border-radius: 2px; transition: background 0.15s, color 0.15s;
+  }
+  .code-toggle-btn:hover { background: var(--colors-accent, #6b6b6b); color: var(--colors-bg, #fff); }
+  .code-toggle-btn.open { background: var(--colors-accent, #6b6b6b); color: var(--colors-bg, #fff); }
+  .code-block-wrap { display: none; margin-top: 0.75rem; position: relative; }
+  .code-block-wrap.open { display: block; }
+  .code-block-wrap pre {
+    background: var(--colors-surface, #f8f5f0); border: 1px solid var(--colors-border, #d4cfc6);
+    margin: 0; padding: 1rem; overflow-x: auto; overflow-y: auto; max-height: 400px;
+    font-family: monospace; font-size: 0.7rem; line-height: 1.6; color: var(--colors-text, #2a2a2a);
+    white-space: pre; tab-size: 2;
+  }
+  .code-block-wrap pre code { background: none; border: none; padding: 0; font-size: inherit; color: inherit; }
+  .code-copy-btn {
+    position: absolute; top: 0.5rem; right: 0.5rem;
+    font-size: 0.6rem; font-family: monospace; letter-spacing: 0.05em;
+    padding: 0.15rem 0.45rem; cursor: pointer;
+    border: 1px solid var(--colors-border, #d4cfc6);
+    background: var(--colors-bg, #fff); color: var(--colors-accent, #6b6b6b);
+    border-radius: 2px; transition: background 0.15s, color 0.15s;
+  }
+  .code-copy-btn:hover, .code-copy-btn.copied {
+    background: var(--colors-accent, #6b6b6b); color: var(--colors-bg, #fff);
+  }
+</style>
 </head>
 <body>
 
@@ -673,6 +706,61 @@
   // Init
   buildPanel();
   applyState();
+})();
+</script>
+<script>
+// Code toggles — one per .mod-section
+(function() {
+  function dedent(html) {
+    const lines = html.split('\n');
+    const min = lines.filter(l => l.trim()).reduce((acc, l) => {
+      const m = l.match(/^ +/); return m ? Math.min(acc, m[0].length) : acc;
+    }, Infinity);
+    return lines.map(l => l.slice(min === Infinity ? 0 : min)).join('\n').trim();
+  }
+
+  document.querySelectorAll('.mod-section').forEach(section => {
+    const h2 = section.querySelector('h2');
+    if (!h2) return;
+
+    const toggleBtn = document.createElement('button');
+    toggleBtn.className = 'code-toggle-btn';
+    toggleBtn.textContent = '{ } code';
+
+    const blockWrap = document.createElement('div');
+    blockWrap.className = 'code-block-wrap';
+
+    const pre = document.createElement('pre');
+    const code = document.createElement('code');
+    pre.appendChild(code);
+
+    const copyBtn = document.createElement('button');
+    copyBtn.className = 'code-copy-btn';
+    copyBtn.textContent = 'Copy';
+
+    blockWrap.appendChild(copyBtn);
+    blockWrap.appendChild(pre);
+
+    toggleBtn.addEventListener('click', () => {
+      const isOpen = blockWrap.classList.contains('open');
+      if (!isOpen && !blockWrap.dataset.filled) {
+        code.textContent = dedent(section.outerHTML);
+        blockWrap.dataset.filled = 'true';
+      }
+      blockWrap.classList.toggle('open', !isOpen);
+      toggleBtn.classList.toggle('open', !isOpen);
+    });
+
+    copyBtn.addEventListener('click', () => {
+      navigator.clipboard.writeText(code.textContent).then(() => {
+        copyBtn.classList.add('copied'); copyBtn.textContent = 'Copied!';
+        setTimeout(() => { copyBtn.classList.remove('copied'); copyBtn.textContent = 'Copy'; }, 2000);
+      });
+    });
+
+    h2.after(toggleBtn);
+    toggleBtn.after(blockWrap);
+  });
 })();
 </script>
 </body>

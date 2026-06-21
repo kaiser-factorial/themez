@@ -394,7 +394,7 @@
     .hero h1 { font-size: 1.6rem; }
   }
 
-  /* Component demo tabs (HTML | React) */
+  /* Component demo tabs */
   .component-demo { border: 1px solid var(--c-border); margin-top: 0.75rem; background: rgba(0,8,0,0.4); }
   .demo-tabs { display: flex; border-bottom: 1px solid var(--c-border); background: rgba(0,255,65,0.03); }
   .demo-tabs .tab {
@@ -406,12 +406,35 @@
   }
   .demo-tabs .tab:hover { color: var(--c-text); background: rgba(0,255,65,0.05); }
   .demo-tabs .tab.active { color: #000; background: var(--c-primary); }
-  /* React tab styled in accent red so it's clearly distinct from the CSS tab */
+  /* React tab: accent red */
   .demo-tabs .tab[data-target^="react-"] { color: var(--c-accent); border-right-color: var(--c-accent); }
   .demo-tabs .tab[data-target^="react-"]:hover { color: #000; background: var(--c-accent); }
   .demo-tabs .tab[data-target^="react-"].active { color: #000; background: var(--c-accent); box-shadow: 0 0 12px rgba(230,57,70,0.5); }
+  /* Code tab: cyan */
+  .demo-tabs .tab[data-target^="code-"] { color: var(--c-mauk); border-right-color: rgba(3,166,161,0.35); }
+  .demo-tabs .tab[data-target^="code-"]:hover { color: #000; background: var(--c-mauk); }
+  .demo-tabs .tab[data-target^="code-"].active { color: #000; background: var(--c-mauk); box-shadow: 0 0 12px rgba(3,166,161,0.4); }
   .demo-panel { padding: 1.5rem; }
   .react-panel:empty::after { content: 'Loading React component\2026'; color: var(--c-accent); font-size: 0.7rem; }
+  /* Code panels */
+  .code-panel { position: relative; }
+  .code-panel pre {
+    background: var(--c-bg); border: none; margin: 0; padding: 1.25rem 1rem;
+    overflow-x: auto; overflow-y: auto; max-height: 440px;
+    font-family: var(--c-font); font-size: 0.7rem; line-height: 1.6;
+    color: var(--c-secondary); tab-size: 2; white-space: pre;
+  }
+  .code-panel pre code { background: none; border: none; padding: 0; font-size: inherit; color: inherit; }
+  .code-panel .code-sep { border-top: 1px solid var(--c-border); margin: 0; }
+  .copy-btn {
+    position: absolute; top: 0.6rem; right: 0.6rem; z-index: 5;
+    font-family: var(--c-font); font-size: 0.55rem; font-weight: bold;
+    text-transform: uppercase; letter-spacing: 0.12em;
+    padding: 0.2rem 0.5rem; cursor: pointer; transition: all 0.2s;
+    border: 1px solid var(--c-border); background: var(--c-surface); color: var(--c-secondary);
+  }
+  .copy-btn:hover { border-color: var(--c-mauk); color: var(--c-mauk); }
+  .copy-btn.copied { border-color: var(--c-primary); color: var(--c-primary); background: rgba(0,255,65,0.08); }
 
   /* Text input */
   .ti-label { display: block; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--c-secondary); margin-bottom: 0.4rem; }
@@ -483,8 +506,9 @@
     <h2>Badges</h2>
     <section class="component-demo">
       <nav class="demo-tabs">
-        <button class="tab active" data-target="html-badges">HTML / CSS</button>
-        <button class="tab" data-target="react-badges">React</button>
+        <button class="tab active" data-target="html-badges">Preview</button>
+        <button class="tab" data-target="code-<button class="tab" data-target="react-badges">React</button>">Code</button>
+        badges
       </nav>
       <div id="html-badges" class="demo-panel">
     <div class="row mt-1">
@@ -495,6 +519,7 @@
     </div>
   
       </div>
+      <div id="code-badges" class="demo-panel code-panel" style="display:none;"></div>
       <div id="react-badges" class="demo-panel react-panel" data-demo="badges" style="display:none;"></div>
     </section>
   </div>
@@ -504,8 +529,9 @@
     <h2>Buttons</h2>
     <section class="component-demo">
       <nav class="demo-tabs">
-        <button class="tab active" data-target="html-buttons">HTML / CSS</button>
-        <button class="tab" data-target="react-buttons">React</button>
+        <button class="tab active" data-target="html-buttons">Preview</button>
+        <button class="tab" data-target="code-<button class="tab" data-target="react-buttons">React</button>">Code</button>
+        buttons
       </nav>
       <div id="html-buttons" class="demo-panel">
         <div class="row mt-1">
@@ -514,6 +540,7 @@
           <button class="btn" style="opacity:0.4;cursor:not-allowed;">Disabled</button>
         </div>
       </div>
+      <div id="code-buttons" class="demo-panel code-panel" style="display:none;"></div>
       <div id="react-buttons" class="demo-panel react-panel" data-demo="buttons" style="display:none;"></div>
     </section>
   </div>
@@ -523,8 +550,9 @@
     <h2>Spinners</h2>
     <section class="component-demo">
       <nav class="demo-tabs">
-        <button class="tab active" data-target="html-spinners">HTML / CSS</button>
-        <button class="tab" data-target="react-spinners">React</button>
+        <button class="tab active" data-target="html-spinners">Preview</button>
+        <button class="tab" data-target="code-<button class="tab" data-target="react-spinners">React</button>">Code</button>
+        spinners
       </nav>
       <div id="html-spinners" class="demo-panel">
     <div class="row mt-1" style="align-items:center;">
@@ -543,6 +571,7 @@
     </div>
   
       </div>
+      <div id="code-spinners" class="demo-panel code-panel" style="display:none;"></div>
       <div id="react-spinners" class="demo-panel react-panel" data-demo="spinners" style="display:none;"></div>
     </section>
   </div>
@@ -552,8 +581,9 @@
     <h2>Text Input</h2>
     <section class="component-demo">
       <nav class="demo-tabs">
-        <button class="tab active" data-target="html-textinput">HTML / CSS</button>
-        <button class="tab" data-target="react-textinput">React</button>
+        <button class="tab active" data-target="html-textinput">Preview</button>
+        <button class="tab" data-target="code-<button class="tab" data-target="react-textinput">React</button>">Code</button>
+        textinput
       </nav>
       <div id="html-textinput" class="demo-panel">
         <p style="margin-bottom:1rem;">Static styling preview. The <strong style="color:var(--c-accent);">React</strong> tab adds the auto-fit behaviour: text starts at max size, shrinks to min as the line fills, then wraps to new lines.</p>
@@ -568,6 +598,7 @@
           <div class="ti-adornment"><button class="ti-icon-btn" aria-label="Dictate">🎤</button><button class="ti-icon-btn" aria-label="Send">➤</button></div>
         </div>
       </div>
+      <div id="code-textinput" class="demo-panel code-panel" style="display:none;"></div>
       <div id="react-textinput" class="demo-panel react-panel" data-demo="textinput" style="display:none;"></div>
     </section>
   </div>
@@ -577,8 +608,9 @@
     <h2>Progress</h2>
     <section class="component-demo">
       <nav class="demo-tabs">
-        <button class="tab active" data-target="html-progress">HTML / CSS</button>
-        <button class="tab" data-target="react-progress">React</button>
+        <button class="tab active" data-target="html-progress">Preview</button>
+        <button class="tab" data-target="code-<button class="tab" data-target="react-progress">React</button>">Code</button>
+        progress
       </nav>
       <div id="html-progress" class="demo-panel">
     <div style="max-width:400px;">
@@ -601,6 +633,7 @@
     </div>
   
       </div>
+      <div id="code-progress" class="demo-panel code-panel" style="display:none;"></div>
       <div id="react-progress" class="demo-panel react-panel" data-demo="progress" style="display:none;"></div>
     </section>
   </div>
@@ -610,8 +643,9 @@
     <h2>Alerts</h2>
     <section class="component-demo">
       <nav class="demo-tabs">
-        <button class="tab active" data-target="html-alerts">HTML / CSS</button>
-        <button class="tab" data-target="react-alerts">React</button>
+        <button class="tab active" data-target="html-alerts">Preview</button>
+        <button class="tab" data-target="code-<button class="tab" data-target="react-alerts">React</button>">Code</button>
+        alerts
       </nav>
       <div id="html-alerts" class="demo-panel">
     <div class="demo-label">Success</div>
@@ -659,6 +693,7 @@
     </div>
   
       </div>
+      <div id="code-alerts" class="demo-panel code-panel" style="display:none;"></div>
       <div id="react-alerts" class="demo-panel react-panel" data-demo="alerts" style="display:none;"></div>
     </section>
   </div>
@@ -668,8 +703,9 @@
     <h2>Stats Display</h2>
     <section class="component-demo">
       <nav class="demo-tabs">
-        <button class="tab active" data-target="html-stats">HTML / CSS</button>
-        <button class="tab" data-target="react-stats">React</button>
+        <button class="tab active" data-target="html-stats">Preview</button>
+        <button class="tab" data-target="code-<button class="tab" data-target="react-stats">React</button>">Code</button>
+        stats
       </nav>
       <div id="html-stats" class="demo-panel">
     <div class="grid-4 mt-1">
@@ -696,6 +732,7 @@
     </div>
   
       </div>
+      <div id="code-stats" class="demo-panel code-panel" style="display:none;"></div>
       <div id="react-stats" class="demo-panel react-panel" data-demo="stats" style="display:none;"></div>
     </section>
   </div>
@@ -705,8 +742,9 @@
     <h2>Timeline</h2>
     <section class="component-demo">
       <nav class="demo-tabs">
-        <button class="tab active" data-target="html-timeline">HTML / CSS</button>
-        <button class="tab" data-target="react-timeline">React</button>
+        <button class="tab active" data-target="html-timeline">Preview</button>
+        <button class="tab" data-target="code-<button class="tab" data-target="react-timeline">React</button>">Code</button>
+        timeline
       </nav>
       <div id="html-timeline" class="demo-panel">
     <div class="timeline mt-1" style="max-width:500px;">
@@ -738,6 +776,7 @@
     </div>
   
       </div>
+      <div id="code-timeline" class="demo-panel code-panel" style="display:none;"></div>
       <div id="react-timeline" class="demo-panel react-panel" data-demo="timeline" style="display:none;"></div>
     </section>
   </div>
@@ -747,8 +786,9 @@
     <h2>Dialogue Messages</h2>
     <section class="component-demo">
       <nav class="demo-tabs">
-        <button class="tab active" data-target="html-dialogue">HTML / CSS</button>
-        <button class="tab" data-target="react-dialogue">React</button>
+        <button class="tab active" data-target="html-dialogue">Preview</button>
+        <button class="tab" data-target="code-<button class="tab" data-target="react-dialogue">React</button>">Code</button>
+        dialogue
       </nav>
       <div id="html-dialogue" class="demo-panel">
     <div style="max-width:600px;">
@@ -783,6 +823,7 @@
     </div>
   
       </div>
+      <div id="code-dialogue" class="demo-panel code-panel" style="display:none;"></div>
       <div id="react-dialogue" class="demo-panel react-panel" data-demo="dialogue" style="display:none;"></div>
     </section>
   </div>
@@ -792,8 +833,9 @@
     <h2>Mission Statement</h2>
     <section class="component-demo">
       <nav class="demo-tabs">
-        <button class="tab active" data-target="html-mission">HTML / CSS</button>
-        <button class="tab" data-target="react-mission">React</button>
+        <button class="tab active" data-target="html-mission">Preview</button>
+        <button class="tab" data-target="code-<button class="tab" data-target="react-mission">React</button>">Code</button>
+        mission
       </nav>
       <div id="html-mission" class="demo-panel">
     <div class="mission mt-1" style="max-width:500px;">
@@ -808,6 +850,7 @@
     </div>
   
       </div>
+      <div id="code-mission" class="demo-panel code-panel" style="display:none;"></div>
       <div id="react-mission" class="demo-panel react-panel" data-demo="mission" style="display:none;"></div>
     </section>
   </div>
@@ -817,8 +860,9 @@
     <h2>Technical Schematic</h2>
     <section class="component-demo">
       <nav class="demo-tabs">
-        <button class="tab active" data-target="html-schematic">HTML / CSS</button>
-        <button class="tab" data-target="react-schematic">React</button>
+        <button class="tab active" data-target="html-schematic">Preview</button>
+        <button class="tab" data-target="code-<button class="tab" data-target="react-schematic">React</button>">Code</button>
+        schematic
       </nav>
       <div id="html-schematic" class="demo-panel">
     <div class="mt-1">
@@ -848,6 +892,7 @@
     </div>
   
       </div>
+      <div id="code-schematic" class="demo-panel code-panel" style="display:none;"></div>
       <div id="react-schematic" class="demo-panel react-panel" data-demo="schematic" style="display:none;"></div>
     </section>
   </div>
@@ -857,8 +902,9 @@
     <h2>Bot Name Cards</h2>
     <section class="component-demo">
       <nav class="demo-tabs">
-        <button class="tab active" data-target="html-botcard">HTML / CSS</button>
-        <button class="tab" data-target="react-botcard">React</button>
+        <button class="tab active" data-target="html-botcard">Preview</button>
+        <button class="tab" data-target="code-<button class="tab" data-target="react-botcard">React</button>">Code</button>
+        botcard
       </nav>
       <div id="html-botcard" class="demo-panel">
     <div class="grid-2 mt-1">
@@ -875,6 +921,7 @@
     </div>
   
       </div>
+      <div id="code-botcard" class="demo-panel code-panel" style="display:none;"></div>
       <div id="react-botcard" class="demo-panel react-panel" data-demo="botcard" style="display:none;"></div>
     </section>
   </div>
@@ -884,8 +931,9 @@
     <h2>Memory Cards</h2>
     <section class="component-demo">
       <nav class="demo-tabs">
-        <button class="tab active" data-target="html-memory">HTML / CSS</button>
-        <button class="tab" data-target="react-memory">React</button>
+        <button class="tab active" data-target="html-memory">Preview</button>
+        <button class="tab" data-target="code-<button class="tab" data-target="react-memory">React</button>">Code</button>
+        memory
       </nav>
       <div id="html-memory" class="demo-panel">
     <div class="grid-3 mt-1">
@@ -921,6 +969,7 @@
     </div>
   
       </div>
+      <div id="code-memory" class="demo-panel code-panel" style="display:none;"></div>
       <div id="react-memory" class="demo-panel react-panel" data-demo="memory" style="display:none;"></div>
     </section>
   </div>
@@ -930,8 +979,9 @@
     <h2>Parameter Panel</h2>
     <section class="component-demo">
       <nav class="demo-tabs">
-        <button class="tab active" data-target="html-params">HTML / CSS</button>
-        <button class="tab" data-target="react-params">React</button>
+        <button class="tab active" data-target="html-params">Preview</button>
+        <button class="tab" data-target="code-<button class="tab" data-target="react-params">React</button>">Code</button>
+        params
       </nav>
       <div id="html-params" class="demo-panel">
     <div class="param-panel mt-1" style="max-width:450px;">
@@ -971,6 +1021,7 @@
     </div>
   
       </div>
+      <div id="code-params" class="demo-panel code-panel" style="display:none;"></div>
       <div id="react-params" class="demo-panel react-panel" data-demo="params" style="display:none;"></div>
     </section>
   </div>
@@ -980,8 +1031,9 @@
     <h2>Audit Log Card</h2>
     <section class="component-demo">
       <nav class="demo-tabs">
-        <button class="tab active" data-target="html-audit">HTML / CSS</button>
-        <button class="tab" data-target="react-audit">React</button>
+        <button class="tab active" data-target="html-audit">Preview</button>
+        <button class="tab" data-target="code-<button class="tab" data-target="react-audit">React</button>">Code</button>
+        audit
       </nav>
       <div id="html-audit" class="demo-panel">
     <div class="audit-card mt-1" style="max-width:500px;">
@@ -1027,6 +1079,7 @@
     </div>
   
       </div>
+      <div id="code-audit" class="demo-panel code-panel" style="display:none;"></div>
       <div id="react-audit" class="demo-panel react-panel" data-demo="audit" style="display:none;"></div>
     </section>
   </div>
@@ -1050,6 +1103,82 @@
   <script src="cyber-showcase.js" defer></script>
   <script>
     document.addEventListener('DOMContentLoaded', () => {
+      // Extract per-component CSS from the inline <style> block
+      const cssBySection = (() => {
+        const styleEl = document.querySelector('style');
+        if (!styleEl) return {};
+        const text = styleEl.textContent;
+        const re = /\/\*\s*([\s\S]*?)\s*\*\/([\s\S]*?)(?=\n\s*\/\*|$)/g;
+        const raw = {};
+        let m;
+        while ((m = re.exec(text)) !== null) raw[m[1].trim()] = m[2].trim();
+        const lookup = {
+          buttons:  ['Buttons'],
+          badges:   ['Badges'],
+          alerts:   ['Alerts', "Message text matches the alert's severity colour"],
+          spinners: ['Spinner — colour driven by --spin-color (defaults to primary green)', 'Dots', 'Pulse'],
+          progress: ['Progress'],
+          stats:    ['Stats'],
+          timeline: ['Timeline'],
+          dialogue: ['Dialogue'],
+          mission:  ['Mission'],
+          schematic:['Schematic'],
+          memory:   ['Memory'],
+          botcard:  ['Bot Card'],
+          audit:    ['Audit'],
+          params:   ['Param Panel'],
+          textinput:['Text input'],
+        };
+        const out = {};
+        for (const [id, keys] of Object.entries(lookup)) {
+          const parts = keys.map(k => raw[k]).filter(Boolean);
+          if (parts.length) out[id] = parts.join('\n\n');
+        }
+        return out;
+      })();
+
+      function dedent(html) {
+        const lines = html.split('\n');
+        const min = lines.filter(l => l.trim()).reduce((acc, l) => {
+          const m = l.match(/^ +/); return m ? Math.min(acc, m[0].length) : acc;
+        }, Infinity);
+        return lines.map(l => l.slice(min === Infinity ? 0 : min)).join('\n').trim();
+      }
+
+      function makeCodeBlock(label, text) {
+        const wrap = document.createElement('div');
+        wrap.style.position = 'relative';
+        const btn = document.createElement('button');
+        btn.className = 'copy-btn';
+        btn.textContent = 'Copy ' + label;
+        btn.addEventListener('click', () => {
+          navigator.clipboard.writeText(text).then(() => {
+            btn.className = 'copy-btn copied'; btn.textContent = 'Copied!';
+            setTimeout(() => { btn.className = 'copy-btn'; btn.textContent = 'Copy ' + label; }, 2000);
+          });
+        });
+        const pre = document.createElement('pre');
+        const code = document.createElement('code');
+        code.textContent = text;
+        pre.appendChild(code);
+        wrap.appendChild(btn); wrap.appendChild(pre);
+        return wrap;
+      }
+
+      function fillCodePanel(panel, sid, htmlPanel) {
+        if (panel.dataset.filled) return;
+        panel.dataset.filled = 'true';
+        const html = dedent(htmlPanel.innerHTML);
+        const css = cssBySection[sid];
+        panel.appendChild(makeCodeBlock('HTML', html));
+        if (css) {
+          const sep = document.createElement('hr');
+          sep.className = 'code-sep';
+          panel.appendChild(sep);
+          panel.appendChild(makeCodeBlock('CSS', css));
+        }
+      }
+
       document.querySelectorAll('.demo-tabs .tab').forEach(btn => {
         btn.addEventListener('click', () => {
           const parent = btn.closest('.component-demo');
@@ -1058,8 +1187,11 @@
           const target = parent.querySelector('#' + btn.dataset.target);
           if (target) target.style.display = 'block';
           btn.classList.add('active');
-          if (btn.dataset.target.startsWith('react-') && window.CyberDemo) {
-            window.CyberDemo.mountAll();
+          if (btn.dataset.target.startsWith('react-') && window.CyberDemo) window.CyberDemo.mountAll();
+          if (btn.dataset.target.startsWith('code-')) {
+            const sid = btn.dataset.target.replace('code-', '');
+            const htmlPanel = parent.querySelector('#html-' + sid);
+            if (target && htmlPanel) fillCodePanel(target, sid, htmlPanel);
           }
         });
       });
