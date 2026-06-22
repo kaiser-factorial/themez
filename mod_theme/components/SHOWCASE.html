@@ -676,12 +676,23 @@
 
   // Apply state to DOM
   function applyState() {
+    // Apply token values to all elements matching the data-section
     for (const [section, tokens] of Object.entries(state)) {
-      const el = document.querySelector(`[data-section="${section}"]`);
-      if (!el) continue;
-      for (const [token, value] of Object.entries(tokens)) {
-        el.style.setProperty(token, formatValue(token, value));
+      const els = document.querySelectorAll(`[data-section="${section}"]`);
+      if (els.length) {
+        els.forEach(el => {
+          for (const [token, value] of Object.entries(tokens)) {
+            el.style.setProperty(token, formatValue(token, value));
+          }
+        });
       }
+      // Also set tokens globally on :root for colors section (background/text)
+      if (section === 'colors') {
+        for (const [token, value] of Object.entries(tokens)) {
+          document.documentElement.style.setProperty(token, formatValue(token, value));
+        }
+      }
+      console.log('Applied state for section', section);
     }
   }
 
