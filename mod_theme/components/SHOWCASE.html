@@ -664,6 +664,8 @@
       }
     }
   };
+  // Order of sections as they appear in the page
+  const SECTION_ORDER = ['colors','badges','buttons','spinners','textinput','progress','alerts','stats','timeline','dialogue','mission','schematic','botcard','memory','audit','breadcrumb','loading','param'];
 
   // State: current token values
   const state = {};
@@ -711,7 +713,10 @@
   // Build panel UI
   function buildPanel() {
     const body = document.getElementById('panelBody');
-    for (const [section, def] of Object.entries(TOKEN_DEFS)) {
+    // Build panel UI respecting SECTION_ORDER
+    for (const section of SECTION_ORDER) {
+      const def = TOKEN_DEFS[section];
+      if (!def) continue;
       const sectionEl = document.createElement('div');
       sectionEl.className = 'mod-panel-section expanded';
       sectionEl.innerHTML = `
