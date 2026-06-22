@@ -1,0 +1,944 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mod Theme — Neutral Component Library</title>
+<link rel="stylesheet" href="mod-theme.css">
+<style>
+  /* Code toggle */
+  .code-toggle-btn {
+    display: inline-block; margin-top: 0.9rem;
+    font-size: 0.7rem; font-family: monospace; letter-spacing: 0.05em;
+    padding: 0.2rem 0.55rem; cursor: pointer;
+    border: 1px solid var(--colors-border, #d4cfc6);
+    background: transparent; color: var(--colors-accent, #6b6b6b);
+    border-radius: 2px; transition: background 0.15s, color 0.15s;
+  }
+  .code-toggle-btn:hover { background: var(--colors-accent, #6b6b6b); color: var(--colors-bg, #fff); }
+  .code-toggle-btn.open { background: var(--colors-accent, #6b6b6b); color: var(--colors-bg, #fff); }
+  .code-block-wrap { display: none; margin-top: 0.75rem; position: relative; }
+  .code-block-wrap.open { display: block; }
+  .code-block-wrap pre {
+    background: var(--colors-surface, #f8f5f0); border: 1px solid var(--colors-border, #d4cfc6);
+    margin: 0; padding: 1rem; overflow-x: auto; overflow-y: auto; max-height: 400px;
+    font-family: monospace; font-size: 0.7rem; line-height: 1.6; color: var(--colors-text, #2a2a2a);
+    white-space: pre; tab-size: 2;
+  }
+  .code-block-wrap pre code { background: none; border: none; padding: 0; font-size: inherit; color: inherit; }
+  .code-copy-btn {
+    position: absolute; top: 0.5rem; right: 0.5rem;
+    font-size: 0.6rem; font-family: monospace; letter-spacing: 0.05em;
+    padding: 0.15rem 0.45rem; cursor: pointer;
+    border: 1px solid var(--colors-border, #d4cfc6);
+    background: var(--colors-bg, #fff); color: var(--colors-accent, #6b6b6b);
+    border-radius: 2px; transition: background 0.15s, color 0.15s;
+  }
+  .code-copy-btn:hover, .code-copy-btn.copied {
+    background: var(--colors-accent, #6b6b6b); color: var(--colors-bg, #fff);
+  }
+</style>
+</head>
+<body>
+
+<!-- Manipulation Panel Toggle -->
+<button class="mod-panel-toggle" id="panelToggle">⚙ THEME</button>
+
+<!-- Manipulation Panel -->
+<aside class="mod-panel" id="modPanel">
+  <div class="mod-panel-header">
+    <h3>Theme Manipulator</h3>
+    <p>Edit design tokens to transform this page in real time.</p>
+  </div>
+  <div class="mod-panel-body" id="panelBody">
+    <!-- Panel sections injected by JS -->
+  </div>
+  <div class="mod-panel-footer">
+    <button class="mod-btn-primary" id="panelApply">Apply</button>
+    <button id="panelReset">Reset</button>
+    <button id="panelExport">Export</button>
+  </div>
+</aside>
+
+<!-- Navigation -->
+<nav class="mod-nav">
+  <a href="../../index.html" style="font-size:0.85rem;font-weight:normal;font-style:italic;text-decoration:none;color:var(--mod-page-text);letter-spacing:0.05em;">← themes</a>
+  <div style="display:flex;gap:0.5rem;flex-wrap:wrap;">
+    <a href="../../primary_theme/components/SHOWCASE.html" style="font-size:0.65rem;padding:0.3rem 0.7rem;display:inline-block;font-family:'Courier Prime','Courier New',monospace;font-weight:bold;text-transform:uppercase;letter-spacing:0.05em;border:3px solid #2a2a2a;border-radius:0;background:transparent;color:#2a2a2a;text-decoration:none;box-shadow:3px 3px 0 #2a2a2a;transition:all 0.1s;">← Primary</a>
+    <a href="../../cyber_theme/components/SHOWCASE.html" style="font-size:0.65rem;padding:0.3rem 0.7rem;display:inline-block;font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace;font-weight:bold;text-transform:uppercase;letter-spacing:0.15em;border:1px solid #00ff41;border-radius:0;background:transparent;color:#00ff41;text-decoration:none;transition:all 0.3s;">← Terminal</a>
+  </div>
+  <div class="mod-nav-links">
+    <a href="#colors">Colors</a>
+    <a href="#badges">Badges</a>
+    <a href="#buttons">Buttons</a>
+    <a href="#spinners">Spinners</a>
+    <a href="#textinput">Text Input</a>
+    <a href="#progress">Progress</a>
+    <a href="#alerts">Alerts</a>
+    <a href="#stats">Stats</a>
+    <a href="#timeline">Timeline</a>
+    <a href="#dialogue">Dialogue</a>
+    <a href="#mission">Mission</a>
+    <a href="#schematic">Schematic</a>
+    <a href="#botcard">Bot Card</a>
+    <a href="#memory">Memory</a>
+    <a href="#audit">Audit</a>
+    <a href="#breadcrumb">Breadcrumb</a>
+    <a href="#loading">Loading</a>
+    <a href="#param">Parameter Panel</a>
+  </div>
+</nav>
+
+<div class="container">
+
+  <!-- Hero -->
+  <div class="mod-hero">
+    <h1>Mod Theme</h1>
+    <p>A neutral component canvas. Every element is a design variable waiting to be shaped.</p>
+  </div>
+
+  <!-- COLORS -->
+  <div class="mod-section" id="colors" data-section="colors">
+    <h2>Color Palette</h2>
+    <div class="mod-row mod-mt-1">
+      <div><div class="color-swatch" style="background:var(--colors-accent);">Accent</div></div>
+      <div><div class="color-swatch" style="background:var(--colors-accent2);">Accent 2</div></div>
+      <div><div class="color-swatch" style="background:var(--colors-accent3);">Accent 3</div></div>
+      <div><div class="color-swatch" style="background:var(--colors-text);">Text</div></div>
+      <div><div class="color-swatch" style="background:var(--colors-surface);">Surface</div></div>
+      <div><div class="color-swatch" style="background:var(--colors-border);">Border</div></div>
+    </div>
+  </div>
+
+  <!-- BADGES -->
+  <div class="mod-section" id="badges" data-section="badges">
+    <h2>Badges</h2>
+    <div class="mod-row mod-mt-1">
+      <span class="badge">Default</span>
+      <span class="badge" style="font-style: italic;">Italic</span>
+      <span class="badge" style="font-weight: bold;">Bold</span>
+    </div>
+  </div>
+
+  <!-- BUTTONS -->
+  <div class="mod-section" id="buttons" data-section="buttons">
+    <h2>Buttons</h2>
+    <div class="mod-row mod-mt-1">
+      <button class="btn">Default</button>
+      <button class="btn" style="font-style: italic;">Italic</button>
+      <button class="btn" style="font-weight: bold;">Bold</button>
+    </div>
+  </div>
+
+  <!-- SPINNERS -->
+  <div class="mod-section" id="spinners" data-section="spinners">
+    <h2>Spinners</h2>
+    <div class="mod-row mod-mt-1" style="align-items: center;">
+      <div class="spinner">
+        <div class="spinner-ring"></div>
+        <span class="spinner-label">Loading</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- TEXT INPUT -->
+  <div class="mod-section" id="textinput" data-section="textinput">
+    <h2>Text Input</h2>
+    <div class="mod-mt-1">
+      <label class="ti-label">Input Label</label>
+      <div class="ti-field" style="max-width: 360px;">
+        <textarea class="ti-input" rows="1" placeholder="Type something…"></textarea>
+      </div>
+      <label class="ti-label" style="margin-top:1rem;">With Actions</label>
+      <div class="ti-field" style="max-width: 460px;">
+        <div class="ti-adornment"><button class="ti-icon-btn" aria-label="Attach">📎</button></div>
+        <textarea class="ti-input" rows="1" placeholder="Message…"></textarea>
+        <div class="ti-adornment"><button class="ti-icon-btn" aria-label="Send">➤</button></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PROGRESS -->
+  <div class="mod-section" id="progress" data-section="progress">
+    <h2>Progress</h2>
+    <div class="mod-mt-1" style="max-width: 400px;">
+      <div class="progress-label-row">
+        <span class="progress-label">Progress</span>
+        <span class="progress-value">65%</span>
+      </div>
+      <div class="progress-track">
+        <div class="progress-fill" style="width: 65%;"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ALERTS -->
+  <div class="mod-section" id="alerts" data-section="alerts">
+    <h2>Alerts</h2>
+    <div class="alert mod-mt-1">
+      <div class="alert-header">
+        <div>
+          <div class="alert-title">Notice</div>
+          <div class="alert-message">This is a neutral alert. Edit its appearance via the panel.</div>
+        </div>
+        <button class="alert-dismiss">✕</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- STATS -->
+  <div class="mod-section" id="stats" data-section="stats">
+    <h2>Stats Display</h2>
+    <div class="mod-grid-4 mod-mt-1">
+      <div class="stat-card">
+        <div class="stat-label">Metric A</div>
+        <div class="stat-value">1,247</div>
+        <div class="stat-change positive">+12</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Metric B</div>
+        <div class="stat-value">5,847</div>
+        <div class="stat-change negative">-23</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Metric C</div>
+        <div class="stat-value">2.3GB</div>
+        <div class="stat-change neutral">±0</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Metric D</div>
+        <div class="stat-value">47d</div>
+        <div class="stat-change positive">Stable</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TIMELINE -->
+  <div class="mod-section" id="timeline" data-section="timeline">
+    <h2>Timeline</h2>
+    <div class="timeline mod-mt-1" style="max-width: 500px;">
+      <div class="timeline-line"></div>
+      <div class="timeline-event">
+        <div class="timeline-dot">1</div>
+        <div class="timeline-content">
+          <div class="timeline-title">Event One</div>
+          <div class="timeline-text">Description of the first event in this timeline.</div>
+          <div class="timeline-time">00:00:01</div>
+        </div>
+      </div>
+      <div class="timeline-event">
+        <div class="timeline-dot">2</div>
+        <div class="timeline-content">
+          <div class="timeline-title">Event Two</div>
+          <div class="timeline-text">Description of the second event in this timeline.</div>
+          <div class="timeline-time">00:00:03</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- DIALOGUE -->
+  <div class="mod-section" id="dialogue" data-section="dialogue">
+    <h2>Dialogue Messages</h2>
+    <div class="mod-mt-1" style="max-width: 600px;">
+      <div class="dialogue-message">
+        <div class="dialogue-speaker">Speaker A</div>
+        <div class="dialogue-bubble">
+          This is a dialogue bubble. Edit its shape, borders, and colors in the panel.
+          <div class="dialogue-time">14:23:07</div>
+        </div>
+      </div>
+      <div class="dialogue-message">
+        <div class="dialogue-speaker">Speaker B</div>
+        <div class="dialogue-bubble">
+          Another response in the same conversation thread.
+          <div class="dialogue-time">14:23:15</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MISSION -->
+  <div class="mod-section" id="mission" data-section="mission">
+    <h2>Mission Statement</h2>
+    <div class="mission mod-mt-1" style="max-width: 500px;">
+      <div class="mission-title">[Untitled Mission]</div>
+      <div class="mission-content">
+        This is a neutral mission statement placeholder. Edit the title, content, and styling to match your project's identity.
+      </div>
+      <div class="mission-footer">
+        <span class="mission-version">v0.1.0</span>
+        <button class="mission-action">Proceed →</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- SCHEMATIC -->
+  <div class="mod-section" id="schematic" data-section="schematic">
+    <h2>Technical Schematic</h2>
+    <div class="mod-mt-1">
+      <div class="schematic-title">[SCHEMATIC]</div>
+      <div class="schematic-grid schematic-grid-4">
+        <div class="schematic-item">
+          <div class="schematic-component">Module</div>
+          <div class="schematic-location">Location A</div>
+          <div class="schematic-role">Primary Role</div>
+        </div>
+        <div class="schematic-item">
+          <div class="schematic-component">Module</div>
+          <div class="schematic-location">Location B</div>
+          <div class="schematic-role">Secondary Role</div>
+        </div>
+        <div class="schematic-item">
+          <div class="schematic-component">Module</div>
+          <div class="schematic-location">Location C</div>
+          <div class="schematic-role">Tertiary Role</div>
+        </div>
+        <div class="schematic-item">
+          <div class="schematic-component">Module</div>
+          <div class="schematic-location">Location D</div>
+          <div class="schematic-role">Support Role</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- BOT CARD -->
+  <div class="mod-section" id="botcard" data-section="botcard">
+    <h2>Bot Name Cards</h2>
+    <div class="mod-grid-2 mod-mt-1">
+      <div class="bot-card">
+        <div class="bot-card-glow"></div>
+        <div class="bot-name">Bot Alpha</div>
+        <div class="bot-desc">A neutral bot card placeholder. Edit borders, padding, glow, and text styling.</div>
+      </div>
+      <div class="bot-card">
+        <div class="bot-card-glow"></div>
+        <div class="bot-name">Bot Beta</div>
+        <div class="bot-desc">Another bot card with the same neutral styling, ready for customization.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MEMORY -->
+  <div class="mod-section" id="memory" data-section="memory">
+    <h2>Memory Cards</h2>
+    <div class="mod-grid-3 mod-mt-1">
+      <div class="memory-column">
+        <div class="memory-column-header">
+          <span class="memory-dot"></span>
+          Column A
+        </div>
+        <div class="memory-card"><span class="memory-dot"></span><span class="memory-concept">Concept 1</span></div>
+        <div class="memory-card"><span class="memory-dot"></span><span class="memory-concept">Concept 2</span></div>
+        <div class="memory-card"><span class="memory-dot"></span><span class="memory-concept">Concept 3</span></div>
+      </div>
+      <div class="memory-column">
+        <div class="memory-column-header">
+          <span class="memory-dot"></span>
+          Column B
+        </div>
+        <div class="memory-card"><span class="memory-dot"></span><span class="memory-concept">Concept 4</span></div>
+        <div class="memory-card"><span class="memory-dot"></span><span class="memory-concept">Concept 5</span></div>
+      </div>
+      <div class="memory-column">
+        <div class="memory-column-header">
+          <span class="memory-dot"></span>
+          Column C
+        </div>
+        <div class="memory-card"><span class="memory-dot"></span><span class="memory-concept">Concept 6</span></div>
+        <div class="memory-card"><span class="memory-dot"></span><span class="memory-concept">Concept 7</span></div>
+        <div class="memory-card"><span class="memory-dot"></span><span class="memory-concept">Concept 8</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- AUDIT LOG -->
+  <div class="mod-section" id="audit" data-section="audit">
+    <h2>Audit Log Card</h2>
+    <div class="audit-card mod-mt-1" style="max-width: 500px;">
+      <div class="audit-header">
+        <div style="display:flex;align-items:center;gap:0.5rem;">
+          <span class="audit-dot"></span>
+          <span class="audit-title">EVENT_LOG</span>
+          <span class="audit-badge">NEUTRAL</span>
+        </div>
+        <span class="audit-time">00:00:00 // 01-01-2026</span>
+      </div>
+      <div class="audit-sections">
+        <div class="audit-section">
+          <div class="audit-section-title">Description</div>
+          <div class="audit-section-content text-block">
+            "This is a neutral audit log entry. Edit the styling via the manipulation panel."
+          </div>
+        </div>
+        <div class="audit-section">
+          <div class="audit-section-title">Tags</div>
+          <div class="audit-section-content">
+            <div class="audit-tags">
+              <span class="audit-tag">neutral</span>
+              <span class="audit-tag">placeholder</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- BREADCRUMBS -->
+  <div class="mod-section" id="breadcrumb" data-section="breadcrumb">
+    <h2>Breadcrumbs</h2>
+    <div class="mod-row mod-mt-1">
+      <nav class="breadcrumb">
+        <ol>
+          <li><a href="#">Home</a></li>
+          <li><a href="#">Library</a></li>
+          <li aria-current="page">Data</li>
+        </ol>
+      </nav>
+    </div>
+  </div>
+
+  <!-- LOADING PROGRESS -->
+  <div class="mod-section" id="loading" data-section="loading">
+    <h2>Loading Progress Bar</h2>
+    <div class="mod-mt-1" style="max-width: 400px;">
+      <p style="font-size:0.8rem;color:#666;margin-bottom:0.5rem;">Fixed-position page loader simulation.</p>
+      <button class="btn" id="simulateLoadBtn" style="margin-bottom:0.5rem;">Simulate Page Load</button>
+      <div class="loading-bar-inline">
+        <div class="loading-bar-fill" id="showcaseLoadingFill" style="width: 45%;"></div>
+      </div>
+      <!-- Actual fixed loading bar (initially invisible) -->
+      <div id="actualLoadingBar" class="loading-bar loading-bar-top" style="opacity: 0; pointer-events: none;">
+        <div class="loading-bar-fill" id="actualLoadingFill" style="width: 0%;"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PARAMETER PANEL -->
+  <div class="mod-section" id="param" data-section="param">
+    <h2>Parameter Panel</h2>
+    <div class="param-panel mod-mt-1" style="max-width: 400px;">
+      <div class="param-header" id="showcaseParamHeader">
+        <div style="display:flex;align-items:center;gap:0.5rem;">
+          <span class="param-dot"></span>
+          <span class="param-name">System Config</span>
+        </div>
+        <span class="param-status param-status-active">Active</span>
+      </div>
+      <div class="param-sections" id="showcaseParamSections">
+        <div class="param-group-title">Display Settings</div>
+        <div class="param-field">
+          <div class="param-label-row">
+            <span class="param-label">Brightness</span>
+            <span class="param-value">80%</span>
+          </div>
+          <input type="range" class="param-range" min="0" max="100" value="80">
+          <div class="param-range-labels">
+            <span>Min</span>
+            <span>Max</span>
+          </div>
+        </div>
+        <div class="param-field">
+          <div class="param-label-row">
+            <span class="param-label">Node Identifier</span>
+          </div>
+          <input type="text" class="param-input-text" value="node-omega-9">
+          <div class="param-desc">Unique key representing this node in the registry cluster.</div>
+        </div>
+        <button class="param-save-btn">Save Parameters</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div style="text-align:center;padding:3rem 0 1rem;border-top:1px solid #e0dbd3;margin-top:2rem;">
+    <p style="font-size:0.7rem;color:#aaa;font-style:italic;">
+      Mod Theme — A neutral canvas for design exploration ·
+      <a href="../../primary_theme/components/SHOWCASE.html" style="display:inline-block;padding:0.3rem 0.7rem;font-family:'Courier Prime','Courier New',monospace;font-weight:bold;text-transform:uppercase;letter-spacing:0.05em;border:3px solid var(--mod-page-text);border-radius:0;background:transparent;color:var(--mod-page-text);text-decoration:none;box-shadow:3px 3px 0 var(--mod-page-text);transition:all 0.1s;">Primary</a> ·
+      <a href="../../cyber_theme/components/SHOWCASE.html" style="display:inline-block;padding:0.3rem 0.7rem;font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace;font-weight:bold;text-transform:uppercase;letter-spacing:0.15em;border:1px solid var(--mod-page-text);border-radius:0;background:transparent;color:var(--mod-page-text);text-decoration:none;transition:all 0.3s;">Terminal</a>
+    </p>
+  </div>
+
+</div>
+
+<script>
+// ============================================
+// MOD THEME — Live Manipulation Engine
+// ============================================
+
+(function() {
+  'use strict';
+
+  // Token definitions per section
+  const TOKEN_DEFS = {
+    colors: {
+      title: 'Colors',
+      tokens: {
+        '--colors-bg': { type: 'color', label: 'Background', default: '#ffffff' },
+        '--colors-text': { type: 'color', label: 'Text', default: '#2a2a2a' },
+        '--colors-accent': { type: 'color', label: 'Accent', default: '#6b6b6b' },
+        '--colors-accent2': { type: 'color', label: 'Accent 2', default: '#999999' },
+        '--colors-accent3': { type: 'color', label: 'Accent 3', default: '#cccccc' },
+        '--colors-surface': { type: 'color', label: 'Surface', default: '#f8f5f0' },
+        '--colors-border': { type: 'color', label: 'Border', default: '#d4cfc6' }
+      }
+    },
+    buttons: {
+      title: 'Buttons',
+      tokens: {
+        '--btn-radius': { type: 'range', label: 'Radius', default: 2, min: 0, max: 30, unit: 'px' },
+        '--btn-border-w': { type: 'range', label: 'Border Width', default: 1, min: 0, max: 6, unit: 'px' },
+        '--btn-font-size': { type: 'range', label: 'Font Size', default: 0.9, min: 0.5, max: 1.5, step: 0.05, unit: 'rem' },
+        '--btn-padding-v': { type: 'range', label: 'Vertical Pad', default: 0.5, min: 0, max: 1.5, step: 0.05, unit: 'rem' },
+        '--btn-padding-h': { type: 'range', label: 'Horizontal Pad', default: 1.25, min: 0.5, max: 3, step: 0.05, unit: 'rem' },
+        '--btn-border-color': { type: 'color', label: 'Border Color', default: '#2a2a2a' },
+        '--btn-text': { type: 'color', label: 'Text Color', default: '#2a2a2a' },
+        '--btn-hover-bg': { type: 'color', label: 'Hover BG', default: '#2a2a2a' },
+        '--btn-hover-text': { type: 'color', label: 'Hover Text', default: '#ffffff' }
+      }
+    },
+    badges: {
+      title: 'Badges',
+      tokens: {
+        '--badge-radius': { type: 'range', label: 'Radius', default: 2, min: 0, max: 20, unit: 'px' },
+        '--badge-border-w': { type: 'range', label: 'Border Width', default: 1, min: 0, max: 4, unit: 'px' },
+        '--badge-font-size': { type: 'range', label: 'Font Size', default: 0.7, min: 0.5, max: 1, step: 0.05, unit: 'rem' },
+        '--badge-border-color': { type: 'color', label: 'Border Color', default: '#2a2a2a' },
+        '--badge-text': { type: 'color', label: 'Text Color', default: '#2a2a2a' }
+      }
+    },
+    alerts: {
+      title: 'Alerts',
+      tokens: {
+        '--alert-radius': { type: 'range', label: 'Radius', default: 2, min: 0, max: 20, unit: 'px' },
+        '--alert-border-w': { type: 'range', label: 'Border Width', default: 1, min: 0, max: 4, unit: 'px' },
+        '--alert-border-color': { type: 'color', label: 'Border Color', default: '#2a2a2a' },
+        '--alert-padding': { type: 'range', label: 'Padding', default: 1, min: 0.25, max: 2, step: 0.05, unit: 'rem' },
+        '--alert-title-size': { type: 'range', label: 'Title Size', default: 0.85, min: 0.6, max: 1.2, step: 0.05, unit: 'rem' },
+        '--alert-message-size': { type: 'range', label: 'Message Size', default: 0.8, min: 0.5, max: 1, step: 0.05, unit: 'rem' }
+      }
+    },
+    spinners: {
+      title: 'Spinners',
+      tokens: {
+        '--spinner-color': { type: 'color', label: 'Color', default: '#2a2a2a' },
+        '--spinner-size': { type: 'range', label: 'Size', default: 36, min: 16, max: 80, unit: 'px' },
+        '--spinner-ring-w': { type: 'range', label: 'Ring Width', default: 2, min: 1, max: 6, unit: 'px' },
+        '--spinner-speed': { type: 'range', label: 'Speed', default: 1, min: 0.2, max: 3, step: 0.1, unit: 's' }
+      }
+    },
+    progress: {
+      title: 'Progress',
+      tokens: {
+        '--progress-track-h': { type: 'range', label: 'Track Height', default: 8, min: 2, max: 24, unit: 'px' },
+        '--progress-fill-color': { type: 'color', label: 'Fill Color', default: '#2a2a2a' },
+        '--progress-track-bg': { type: 'color', label: 'Track BG', default: '#e0dbd3' },
+        '--progress-radius': { type: 'range', label: 'Radius', default: 0, min: 0, max: 12, unit: 'px' }
+      }
+    },
+    stats: {
+      title: 'Stats',
+      tokens: {
+        '--stat-border-w': { type: 'range', label: 'Border Width', default: 1, min: 0, max: 4, unit: 'px' },
+        '--stat-border-color': { type: 'color', label: 'Border Color', default: '#d4cfc6' },
+        '--stat-padding': { type: 'range', label: 'Padding', default: 1, min: 0.25, max: 2, step: 0.05, unit: 'rem' },
+        '--stat-value-size': { type: 'range', label: 'Value Size', default: 1.3, min: 0.8, max: 2.5, step: 0.1, unit: 'rem' },
+        '--stat-label-size': { type: 'range', label: 'Label Size', default: 0.6, min: 0.4, max: 0.9, step: 0.05, unit: 'rem' }
+      }
+    },
+    timeline: {
+      title: 'Timeline',
+      tokens: {
+        '--timeline-dot-size': { type: 'range', label: 'Dot Size', default: 24, min: 12, max: 40, unit: 'px' },
+        '--timeline-dot-border-color': { type: 'color', label: 'Dot Border', default: '#2a2a2a' },
+        '--timeline-line-color': { type: 'color', label: 'Line Color', default: '#d4cfc6' },
+        '--timeline-content-border-w': { type: 'range', label: 'Card Border', default: 1, min: 0, max: 4, unit: 'px' },
+        '--timeline-content-border-color': { type: 'color', label: 'Card Border Color', default: '#d4cfc6' },
+        '--timeline-content-padding': { type: 'range', label: 'Card Padding', default: 0.75, min: 0.25, max: 1.5, step: 0.05, unit: 'rem' }
+      }
+    },
+    dialogue: {
+      title: 'Dialogue',
+      tokens: {
+        '--dialogue-bubble-radius': { type: 'range', label: 'Bubble Radius', default: 0, min: 0, max: 20, unit: 'px' },
+        '--dialogue-bubble-border-w': { type: 'range', label: 'Bubble Border', default: 1, min: 0, max: 4, unit: 'px' },
+        '--dialogue-bubble-border-color': { type: 'color', label: 'Bubble Border Color', default: '#d4cfc6' },
+        '--dialogue-bubble-padding': { type: 'range', label: 'Bubble Padding', default: 0.75, min: 0.25, max: 1.5, step: 0.05, unit: 'rem' },
+        '--dialogue-speaker-width': { type: 'range', label: 'Speaker Width', default: 80, min: 40, max: 120, unit: 'px' },
+        '--dialogue-speaker-size': { type: 'range', label: 'Speaker Size', default: 0.65, min: 0.5, max: 0.9, step: 0.05, unit: 'rem' }
+      }
+    },
+    mission: {
+      title: 'Mission',
+      tokens: {
+        '--mission-border-w': { type: 'range', label: 'Border Width', default: 1, min: 0, max: 4, unit: 'px' },
+        '--mission-border-color': { type: 'color', label: 'Border Color', default: '#2a2a2a' },
+        '--mission-padding': { type: 'range', label: 'Padding', default: 1.5, min: 0.5, max: 3, step: 0.1, unit: 'rem' },
+        '--mission-title-size': { type: 'range', label: 'Title Size', default: 1, min: 0.7, max: 1.8, step: 0.05, unit: 'rem' },
+        '--mission-radius': { type: 'range', label: 'Radius', default: 0, min: 0, max: 16, unit: 'px' }
+      }
+    },
+    schematic: {
+      title: 'Schematic',
+      tokens: {
+        '--schematic-border-w': { type: 'range', label: 'Border Width', default: 1, min: 0, max: 4, unit: 'px' },
+        '--schematic-border-color': { type: 'color', label: 'Border Color', default: '#d4cfc6' },
+        '--schematic-item-padding': { type: 'range', label: 'Item Padding', default: 0.75, min: 0.25, max: 1.5, step: 0.05, unit: 'rem' },
+        '--schematic-title-size': { type: 'range', label: 'Title Size', default: 0.95, min: 0.7, max: 1.4, step: 0.05, unit: 'rem' },
+        '--schematic-location-size': { type: 'range', label: 'Location Size', default: 0.75, min: 0.5, max: 1, step: 0.05, unit: 'rem' }
+      }
+    },
+    memory: {
+      title: 'Memory',
+      tokens: {
+        '--memory-column-border-w': { type: 'range', label: 'Column Border', default: 1, min: 0, max: 4, unit: 'px' },
+        '--memory-column-border-color': { type: 'color', label: 'Column Border', default: '#d4cfc6' },
+        '--memory-column-padding': { type: 'range', label: 'Column Padding', default: 1, min: 0.25, max: 2, step: 0.05, unit: 'rem' },
+        '--memory-dot-size': { type: 'range', label: 'Dot Size', default: 8, min: 4, max: 16, unit: 'px' },
+        '--memory-header-size': { type: 'range', label: 'Header Size', default: 0.75, min: 0.5, max: 1, step: 0.05, unit: 'rem' }
+      }
+    },
+    botcard: {
+      title: 'Bot Card',
+      tokens: {
+        '--botcard-border-w': { type: 'range', label: 'Border Width', default: 1, min: 0, max: 4, unit: 'px' },
+        '--botcard-border-color': { type: 'color', label: 'Border Color', default: '#2a2a2a' },
+        '--botcard-padding': { type: 'range', label: 'Padding', default: 1.5, min: 0.5, max: 3, step: 0.1, unit: 'rem' },
+        '--botcard-radius': { type: 'range', label: 'Radius', default: 0, min: 0, max: 16, unit: 'px' },
+        '--botcard-title-size': { type: 'range', label: 'Title Size', default: 1.3, min: 0.8, max: 2, step: 0.05, unit: 'rem' },
+        '--botcard-glow-size': { type: 'range', label: 'Glow Size', default: 0, min: 0, max: 50, unit: 'px' },
+        '--botcard-glow-color': { type: 'color', label: 'Glow Color', default: '#2a2a2a' }
+      }
+    },
+    audit: {
+      title: 'Audit Log',
+      tokens: {
+        '--audit-border-w': { type: 'range', label: 'Border Width', default: 1, min: 0, max: 4, unit: 'px' },
+        '--audit-border-color': { type: 'color', label: 'Border Color', default: '#2a2a2a' },
+        '--audit-dot-size': { type: 'range', label: 'Dot Size', default: 8, min: 4, max: 16, unit: 'px' },
+        '--audit-title-size': { type: 'range', label: 'Title Size', default: 0.75, min: 0.5, max: 1, step: 0.05, unit: 'rem' },
+        '--audit-section-padding': { type: 'range', label: 'Section Padding', default: 1, min: 0.25, max: 2, step: 0.05, unit: 'rem' },
+        '--audit-tag-border': { type: 'color', label: 'Tag Border', default: '#2a2a2a' }
+      }
+    },
+    textinput: {
+      title: 'Text Input',
+      tokens: {
+        '--ti-border-w': { type: 'range', label: 'Border Width', default: 1, min: 0, max: 4, unit: 'px' },
+        '--ti-border-color': { type: 'color', label: 'Border Color', default: '#2a2a2a' },
+        '--ti-radius': { type: 'range', label: 'Radius', default: 0, min: 0, max: 16, unit: 'px' },
+        '--ti-font-size': { type: 'range', label: 'Font Size', default: 0.9, min: 0.6, max: 1.4, step: 0.05, unit: 'rem' },
+        '--ti-padding': { type: 'range', label: 'Padding', default: 0.5, min: 0.2, max: 1, step: 0.05, unit: 'rem' }
+      }
+    },
+    breadcrumb: {
+      title: 'Breadcrumbs',
+      tokens: {
+        '--breadcrumb-font-size': { type: 'range', label: 'Font Size', default: 0.75, min: 0.5, max: 1.2, step: 0.05, unit: 'rem' },
+        '--breadcrumb-text-color': { type: 'color', label: 'Text Color', default: '#2a2a2a' },
+        '--breadcrumb-link-color': { type: 'color', label: 'Link Color', default: '#6b6b6b' },
+        '--breadcrumb-separator-color': { type: 'color', label: 'Separator Color', default: '#cccccc' }
+      }
+    },
+    loading: {
+      title: 'Loading Progress',
+      tokens: {
+        '--loading-bar-h': { type: 'range', label: 'Height', default: 4, min: 1, max: 16, unit: 'px' },
+        '--loading-bar-bg': { type: 'color', label: 'Background', default: '#e0dbd3' },
+        '--loading-bar-fill-color': { type: 'color', label: 'Fill Color', default: '#6b6b6b' }
+      }
+    },
+    param: {
+      title: 'Parameter Panel',
+      tokens: {
+        '--param-border-w': { type: 'range', label: 'Border Width', default: 1, min: 0, max: 4, unit: 'px' },
+        '--param-border-color': { type: 'color', label: 'Border Color', default: '#2a2a2a' },
+        '--param-radius': { type: 'range', label: 'Radius', default: 0, min: 0, max: 16, unit: 'px' },
+        '--param-bg': { type: 'color', label: 'Background', default: '#ffffff' },
+        '--param-padding': { type: 'range', label: 'Padding (V)', default: 0.75, min: 0.25, max: 1.5, step: 0.05, unit: 'rem' },
+        '--param-dot-color': { type: 'color', label: 'Dot Color', default: '#6b6b6b' },
+        '--param-title-size': { type: 'range', label: 'Title Size', default: 0.85, min: 0.6, max: 1.3, step: 0.05, unit: 'rem' },
+        '--param-save-bg': { type: 'color', label: 'Save BG', default: '#ffffff' },
+        '--param-save-text': { type: 'color', label: 'Save Text', default: '#2a2a2a' }
+      }
+    }
+  };
+  // Order of sections as they appear in the page
+  const SECTION_ORDER = ['colors','badges','buttons','spinners','textinput','progress','alerts','stats','timeline','dialogue','mission','schematic','botcard','memory','audit','breadcrumb','loading','param'];
+
+  // State: current token values
+  const state = {};
+  for (const [section, def] of Object.entries(TOKEN_DEFS)) {
+    state[section] = {};
+    for (const [token, tokenDef] of Object.entries(def.tokens)) {
+      state[section][token] = tokenDef.default;
+    }
+  }
+
+  // Apply state to DOM
+  function applyState() {
+    // Apply token values to all elements matching the data-section
+    for (const [section, tokens] of Object.entries(state)) {
+      const els = document.querySelectorAll(`[data-section="${section}"]`);
+      if (els.length) {
+        els.forEach(el => {
+          for (const [token, value] of Object.entries(tokens)) {
+            el.style.setProperty(token, formatValue(token, value));
+          }
+        });
+      }
+      // Also set tokens globally on :root for colors section (background/text)
+      if (section === 'colors') {
+        for (const [token, value] of Object.entries(tokens)) {
+          document.documentElement.style.setProperty(token, formatValue(token, value));
+        }
+      }
+      console.log('Applied state for section', section);
+    }
+  }
+
+  function formatValue(token, value) {
+    // Infer unit from token definition
+    for (const def of Object.values(TOKEN_DEFS)) {
+      if (def.tokens[token]) {
+        const td = def.tokens[token];
+        if (td.type === 'color') return value;
+        return value + (td.unit || '');
+      }
+    }
+    return value;
+  }
+
+  // Build panel UI
+  function buildPanel() {
+    const body = document.getElementById('panelBody');
+    // Build panel UI respecting SECTION_ORDER
+    for (const section of SECTION_ORDER) {
+      const def = TOKEN_DEFS[section];
+      if (!def) continue;
+      const sectionEl = document.createElement('div');
+      sectionEl.className = 'mod-panel-section expanded';
+      sectionEl.innerHTML = `
+        <div class="mod-panel-section-title">${def.title}</div>
+        <div class="mod-panel-section-content"></div>
+      `;
+      const content = sectionEl.querySelector('.mod-panel-section-content');
+
+      for (const [token, tokenDef] of Object.entries(def.tokens)) {
+        const field = document.createElement('div');
+        field.className = 'mod-field';
+
+        if (tokenDef.type === 'color') {
+          field.innerHTML = `
+            <div class="mod-field-label">
+              <span>${tokenDef.label}</span>
+              <span class="mod-field-value">${state[section][token]}</span>
+            </div>
+            <input type="color" value="${state[section][token]}" data-section="${section}" data-token="${token}">
+          `;
+        } else {
+          field.innerHTML = `
+            <div class="mod-field-label">
+              <span>${tokenDef.label}</span>
+              <span class="mod-field-value">${state[section][token]}${tokenDef.unit || ''}</span>
+            </div>
+            <input type="range" min="${tokenDef.min}" max="${tokenDef.max}" step="${tokenDef.step || 1}" value="${state[section][token]}" data-section="${section}" data-token="${token}">
+          `;
+        }
+        content.appendChild(field);
+      }
+      body.appendChild(sectionEl);
+    }
+
+    // Section toggle
+    body.addEventListener('click', (e) => {
+      const title = e.target.closest('.mod-panel-section-title');
+      if (title) {
+        title.parentElement.classList.toggle('expanded');
+      }
+    });
+
+    // Input change
+    body.addEventListener('input', (e) => {
+      if (!e.target.dataset.token) return;
+      const { section, token } = e.target.dataset;
+      const val = e.target.type === 'range' ? parseFloat(e.target.value) : e.target.value;
+      state[section][token] = val;
+      // Update display value
+      const label = e.target.closest('.mod-field').querySelector('.mod-field-value');
+      const tokenDef = TOKEN_DEFS[section].tokens[token];
+      label.textContent = val + (tokenDef.unit || '');
+      applyState();
+    });
+  }
+
+  // Panel toggle
+  const panel = document.getElementById('modPanel');
+  const toggle = document.getElementById('panelToggle');
+  toggle.addEventListener('click', () => {
+    panel.classList.toggle('open');
+  });
+
+  // Footer buttons
+  document.getElementById('panelApply').addEventListener('click', () => {
+    // Apply is real-time; this just gives feedback
+    applyState();
+  });
+
+  document.getElementById('panelReset').addEventListener('click', () => {
+    for (const [section, def] of Object.entries(TOKEN_DEFS)) {
+      for (const [token, tokenDef] of Object.entries(def.tokens)) {
+        state[section][token] = tokenDef.default;
+      }
+    }
+    buildPanel(); // Rebuild to reset input values
+    applyState();
+  });
+
+  document.getElementById('panelExport').addEventListener('click', () => {
+    const css = generateCSS();
+    const blob = new Blob([css], { type: 'text/css' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'mod-theme-custom.css';
+    a.click();
+    URL.revokeObjectURL(url);
+  });
+
+  function generateCSS() {
+    let css = '/* Mod Theme — Custom Export */\n';
+    for (const [section, tokens] of Object.entries(state)) {
+      css += `\n/* Section: ${section} */\n[data-section="${section}"] {\n`;
+      for (const [token, value] of Object.entries(tokens)) {
+        css += `  ${token}: ${formatValue(token, value)};\n`;
+      }
+      css += '}\n';
+    }
+    return css;
+  }
+
+  // ===== COLLAPSIBLE PARAMETER PANEL IN SHOWCASE =====
+  const showcaseParamHeader = document.getElementById('showcaseParamHeader');
+  if (showcaseParamHeader) {
+    showcaseParamHeader.addEventListener('click', () => {
+      const sections = document.getElementById('showcaseParamSections');
+      if (sections) {
+        sections.style.display = sections.style.display === 'none' ? '' : 'none';
+      }
+    });
+  }
+
+  // ===== SHOWCASE RANGE SLIDER LABELS =====
+  const paramSliders = document.querySelectorAll('#param .param-range');
+  paramSliders.forEach(slider => {
+    slider.addEventListener('input', (e) => {
+      const valSpan = e.target.closest('.param-field').querySelector('.param-value');
+      if (valSpan) {
+        valSpan.textContent = e.target.value + '%';
+      }
+    });
+  });
+
+  // ===== LOADING BAR SIMULATION =====
+  const simulateBtn = document.getElementById('simulateLoadBtn');
+  if (simulateBtn) {
+    simulateBtn.addEventListener('click', () => {
+      const actualBar = document.getElementById('actualLoadingBar');
+      const actualFill = document.getElementById('actualLoadingFill');
+      const showcaseFill = document.getElementById('showcaseLoadingFill');
+      
+      if (!actualBar || !actualFill) return;
+      
+      actualBar.style.display = 'block';
+      actualBar.style.opacity = '1';
+      simulateBtn.disabled = true;
+      
+      let progress = 0;
+      const interval = setInterval(() => {
+        progress += Math.random() * 15;
+        if (progress >= 100) {
+          progress = 100;
+          clearInterval(interval);
+          actualFill.style.width = '100%';
+          showcaseFill.style.width = '100%';
+          setTimeout(() => {
+            actualBar.style.opacity = '0';
+            setTimeout(() => {
+              actualBar.style.display = 'none';
+              actualFill.style.width = '0%';
+              showcaseFill.style.width = '45%';
+              simulateBtn.disabled = false;
+            }, 300);
+          }, 600);
+        } else {
+          actualFill.style.width = progress + '%';
+          showcaseFill.style.width = progress + '%';
+        }
+      }, 150);
+    });
+  }
+
+  // Init
+  buildPanel();
+  applyState();
+})();
+</script>
+<script>
+// Code toggles — one per .mod-section
+(function() {
+  function dedent(html) {
+    const lines = html.split('\n');
+    const min = lines.filter(l => l.trim()).reduce((acc, l) => {
+      const m = l.match(/^ +/); return m ? Math.min(acc, m[0].length) : acc;
+    }, Infinity);
+    return lines.map(l => l.slice(min === Infinity ? 0 : min)).join('\n').trim();
+  }
+
+  document.querySelectorAll('.mod-section').forEach(section => {
+    const h2 = section.querySelector('h2');
+    if (!h2) return;
+
+    const toggleBtn = document.createElement('button');
+    toggleBtn.className = 'code-toggle-btn';
+    toggleBtn.textContent = '{ } code';
+
+    const blockWrap = document.createElement('div');
+    blockWrap.className = 'code-block-wrap';
+
+    const pre = document.createElement('pre');
+    const code = document.createElement('code');
+    pre.appendChild(code);
+
+    const copyBtn = document.createElement('button');
+    copyBtn.className = 'code-copy-btn';
+    copyBtn.textContent = 'Copy';
+
+    blockWrap.appendChild(copyBtn);
+    blockWrap.appendChild(pre);
+
+    toggleBtn.addEventListener('click', () => {
+      const isOpen = blockWrap.classList.contains('open');
+      if (!isOpen && !blockWrap.dataset.filled) {
+        code.textContent = dedent(section.outerHTML);
+        blockWrap.dataset.filled = 'true';
+      }
+      blockWrap.classList.toggle('open', !isOpen);
+      toggleBtn.classList.toggle('open', !isOpen);
+    });
+
+    copyBtn.addEventListener('click', () => {
+      navigator.clipboard.writeText(code.textContent).then(() => {
+        copyBtn.classList.add('copied'); copyBtn.textContent = 'Copied!';
+        setTimeout(() => { copyBtn.classList.remove('copied'); copyBtn.textContent = 'Copy'; }, 2000);
+      });
+    });
+
+    h2.after(toggleBtn);
+    toggleBtn.after(blockWrap);
+  });
+})();
+</script>
+</body>
+</html>
