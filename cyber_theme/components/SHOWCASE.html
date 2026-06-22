@@ -1165,12 +1165,10 @@
         return wrap;
       }
 
-      function fillCodePanel(panel, sid, htmlPanel) {
+      function fillHtmlCode(panel, htmlPanel, css) {
         if (panel.dataset.filled) return;
         panel.dataset.filled = 'true';
         const html = dedent(htmlPanel.innerHTML);
-        const css = cssBySection[sid];
-        const reactSrc = window.CyberDemo && window.CyberDemo.sources && window.CyberDemo.sources[sid];
         panel.appendChild(makeCodeBlock('HTML', html));
         if (css) {
           const sep = document.createElement('hr');
@@ -1178,30 +1176,70 @@
           panel.appendChild(sep);
           panel.appendChild(makeCodeBlock('CSS', css));
         }
+      }
+
+      function fillReactCode(panel, sid) {
+        if (panel.dataset.filled) return;
+        const reactSrc = window.CyberDemo && window.CyberDemo.sources && window.CyberDemo.sources[sid];
         if (reactSrc) {
-          const sep = document.createElement('hr');
-          sep.className = 'code-sep';
-          panel.appendChild(sep);
+          panel.dataset.filled = 'true';
           panel.appendChild(makeCodeBlock('React', reactSrc));
         }
       }
 
-      // Dynamically add React tab buttons if they exist
+      // Dynamically rebuild tab bars to support: HTML/CSS | HTML Code | React | React Code
       document.querySelectorAll('.demo-tabs').forEach(nav => {
-        const text = Array.from(nav.childNodes)
-          .filter(n => n.nodeType === Node.TEXT_NODE)
-          .map(n => n.textContent.trim())
-          .filter(Boolean)
-          .join('');
-        if (text) {
-          const reactPanel = nav.parentElement.querySelector(`#react-${text}`);
-          if (reactPanel) {
-            const btn = document.createElement('button');
-            btn.className = 'tab';
-            btn.dataset.target = `react-${text}`;
-            btn.textContent = 'React';
-            nav.appendChild(btn);
-          }
+        const previewBtn = nav.querySelector('button[data-target^="html-"]');
+        if (!previewBtn) return;
+        const key = previewBtn.dataset.target.replace('html-', '');
+        
+        // Clear nav contents (removes placeholder text nodes and old buttons)
+        nav.innerHTML = '';
+        
+        // 1. HTML/CSS Tab
+        const tabHtml = document.createElement('button');
+        tabHtml.className = 'tab active';
+        tabHtml.dataset.target = `html-${key}`;
+        tabHtml.textContent = 'HTML/CSS';
+        nav.appendChild(tabHtml);
+        
+        // 2. HTML Code Tab
+        const tabHtmlCode = document.createElement('button');
+        tabHtmlCode.className = 'tab';
+        tabHtmlCode.dataset.target = `code-html-${key}`;
+        tabHtmlCode.textContent = 'HTML Code';
+        nav.appendChild(tabHtmlCode);
+        
+        // Rename original code panel to code-html
+        const parent = nav.closest('.component-demo');
+        const origCodePanel = parent.querySelector(`#code-${key}`);
+        if (origCodePanel) {
+          origCodePanel.id = `code-html-${key}`;
+        }
+        
+        // Check if React panel exists
+        const reactPanel = parent.querySelector(`#react-${key}`);
+        if (reactPanel) {
+          // 3. React Tab
+          const tabReact = document.createElement('button');
+          tabReact.className = 'tab';
+          tabReact.dataset.target = `react-${key}`;
+          tabReact.textContent = 'React';
+          nav.appendChild(tabReact);
+          
+          // 4. React Code Tab
+          const tabReactCode = document.createElement('button');
+          tabReactCode.className = 'tab';
+          tabReactCode.dataset.target = `code-react-${key}`;
+          tabReactCode.textContent = 'React Code';
+          nav.appendChild(tabReactCode);
+          
+          // Create React code panel
+          const reactCodePanel = document.createElement('div');
+          reactCodePanel.id = `code-react-${key}`;
+          reactCodePanel.className = 'demo-panel code-panel';
+          reactCodePanel.style.display = 'none';
+          parent.appendChild(reactCodePanel);
         }
       });
 
@@ -1213,11 +1251,19 @@
           const target = parent.querySelector('#' + btn.dataset.target);
           if (target) target.style.display = 'block';
           btn.classList.add('active');
-          if (btn.dataset.target.startsWith('react-') && window.CyberDemo) window.CyberDemo.mountAll();
-          if (btn.dataset.target.startsWith('code-')) {
-            const sid = btn.dataset.target.replace('code-', '');
+          
+          if (btn.dataset.target.startsWith('react-') && window.CyberDemo) {
+            window.CyberDemo.mountAll();
+          }
+          if (btn.dataset.target.startsWith('code-html-')) {
+            const sid = btn.dataset.target.replace('code-html-', '');
             const htmlPanel = parent.querySelector('#html-' + sid);
-            if (target && htmlPanel) fillCodePanel(target, sid, htmlPanel);
+            const css = cssBySection[sid];
+            if (target && htmlPanel) fillHtmlCode(target, htmlPanel, css);
+          }
+          if (btn.dataset.target.startsWith('code-react-')) {
+            const sid = btn.dataset.target.replace('code-react-', '');
+            if (target) fillReactCode(target, sid);
           }
         });
       });
