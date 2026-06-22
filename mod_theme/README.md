@@ -9,7 +9,7 @@ A deliberately neutral, "empty notebook" component canvas. Every element is a de
 - **Live manipulation** — the built-in panel lets you transform the page in real time
 - **Export-ready** — generate a custom CSS file from your configuration
 
-## Components (14 sections)
+## Components (17 sections)
 
 | Section | Description |
 |---------|-------------|
@@ -28,6 +28,9 @@ A deliberately neutral, "empty notebook" component canvas. Every element is a de
 | Bot Card | Border, padding, radius, glow, title size |
 | Audit Log | Border, dot size, title size, tag border |
 | Text Input | Border, radius, font size, padding |
+| Breadcrumbs | Font size, colors (text, link, separator) |
+| Loading | Height, colors (background, fill) |
+| Parameter Panel | Border width, border/dot/save colors, radius, padding, title size |
 
 ## Usage
 

@@ -83,6 +83,9 @@
     <a href="#botcard">Bot Card</a>
     <a href="#memory">Memory</a>
     <a href="#audit">Audit</a>
+    <a href="#breadcrumb">Breadcrumb</a>
+    <a href="#loading">Loading</a>
+    <a href="#param">Parameter Panel</a>
   </div>
 </nav>
 
@@ -382,6 +385,72 @@
     </div>
   </div>
 
+  <!-- BREADCRUMBS -->
+  <div class="mod-section" id="breadcrumb" data-section="breadcrumb">
+    <h2>Breadcrumbs</h2>
+    <div class="mod-row mod-mt-1">
+      <nav class="breadcrumb">
+        <ol>
+          <li><a href="#">Home</a></li>
+          <li><a href="#">Library</a></li>
+          <li aria-current="page">Data</li>
+        </ol>
+      </nav>
+    </div>
+  </div>
+
+  <!-- LOADING PROGRESS -->
+  <div class="mod-section" id="loading" data-section="loading">
+    <h2>Loading Progress Bar</h2>
+    <div class="mod-mt-1" style="max-width: 400px;">
+      <p style="font-size:0.8rem;color:#666;margin-bottom:0.5rem;">Fixed-position page loader simulation.</p>
+      <button class="btn" id="simulateLoadBtn" style="margin-bottom:0.5rem;">Simulate Page Load</button>
+      <div class="loading-bar-inline">
+        <div class="loading-bar-fill" id="showcaseLoadingFill" style="width: 45%;"></div>
+      </div>
+      <!-- Actual fixed loading bar (initially invisible) -->
+      <div id="actualLoadingBar" class="loading-bar loading-bar-top" style="opacity: 0; pointer-events: none;">
+        <div class="loading-bar-fill" id="actualLoadingFill" style="width: 0%;"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PARAMETER PANEL -->
+  <div class="mod-section" id="param" data-section="param">
+    <h2>Parameter Panel</h2>
+    <div class="param-panel mod-mt-1" style="max-width: 400px;">
+      <div class="param-header" id="showcaseParamHeader">
+        <div style="display:flex;align-items:center;gap:0.5rem;">
+          <span class="param-dot"></span>
+          <span class="param-name">System Config</span>
+        </div>
+        <span class="param-status param-status-active">Active</span>
+      </div>
+      <div class="param-sections" id="showcaseParamSections">
+        <div class="param-group-title">Display Settings</div>
+        <div class="param-field">
+          <div class="param-label-row">
+            <span class="param-label">Brightness</span>
+            <span class="param-value">80%</span>
+          </div>
+          <input type="range" class="param-range" min="0" max="100" value="80">
+          <div class="param-range-labels">
+            <span>Min</span>
+            <span>Max</span>
+          </div>
+        </div>
+        <div class="param-field">
+          <div class="param-label-row">
+            <span class="param-label">Node Identifier</span>
+          </div>
+          <input type="text" class="param-input-text" value="node-omega-9">
+          <div class="param-desc">Unique key representing this node in the registry cluster.</div>
+        </div>
+        <button class="param-save-btn">Save Parameters</button>
+      </div>
+    </div>
+  </div>
+
   <!-- Footer -->
   <div style="text-align:center;padding:3rem 0 1rem;border-top:1px solid #e0dbd3;margin-top:2rem;">
     <p style="font-size:0.7rem;color:#aaa;font-style:italic;">
@@ -562,6 +631,37 @@
         '--ti-font-size': { type: 'range', label: 'Font Size', default: 0.9, min: 0.6, max: 1.4, step: 0.05, unit: 'rem' },
         '--ti-padding': { type: 'range', label: 'Padding', default: 0.5, min: 0.2, max: 1, step: 0.05, unit: 'rem' }
       }
+    },
+    breadcrumb: {
+      title: 'Breadcrumbs',
+      tokens: {
+        '--breadcrumb-font-size': { type: 'range', label: 'Font Size', default: 0.75, min: 0.5, max: 1.2, step: 0.05, unit: 'rem' },
+        '--breadcrumb-text-color': { type: 'color', label: 'Text Color', default: '#2a2a2a' },
+        '--breadcrumb-link-color': { type: 'color', label: 'Link Color', default: '#6b6b6b' },
+        '--breadcrumb-separator-color': { type: 'color', label: 'Separator Color', default: '#cccccc' }
+      }
+    },
+    loading: {
+      title: 'Loading Progress',
+      tokens: {
+        '--loading-bar-h': { type: 'range', label: 'Height', default: 4, min: 1, max: 16, unit: 'px' },
+        '--loading-bar-bg': { type: 'color', label: 'Background', default: '#e0dbd3' },
+        '--loading-bar-fill-color': { type: 'color', label: 'Fill Color', default: '#6b6b6b' }
+      }
+    },
+    param: {
+      title: 'Parameter Panel',
+      tokens: {
+        '--param-border-w': { type: 'range', label: 'Border Width', default: 1, min: 0, max: 4, unit: 'px' },
+        '--param-border-color': { type: 'color', label: 'Border Color', default: '#2a2a2a' },
+        '--param-radius': { type: 'range', label: 'Radius', default: 0, min: 0, max: 16, unit: 'px' },
+        '--param-bg': { type: 'color', label: 'Background', default: '#ffffff' },
+        '--param-padding': { type: 'range', label: 'Padding (V)', default: 0.75, min: 0.25, max: 1.5, step: 0.05, unit: 'rem' },
+        '--param-dot-color': { type: 'color', label: 'Dot Color', default: '#6b6b6b' },
+        '--param-title-size': { type: 'range', label: 'Title Size', default: 0.85, min: 0.6, max: 1.3, step: 0.05, unit: 'rem' },
+        '--param-save-bg': { type: 'color', label: 'Save BG', default: '#ffffff' },
+        '--param-save-text': { type: 'color', label: 'Save Text', default: '#2a2a2a' }
+      }
     }
   };
 
@@ -701,6 +801,67 @@
       css += '}\n';
     }
     return css;
+  }
+
+  // ===== COLLAPSIBLE PARAMETER PANEL IN SHOWCASE =====
+  const showcaseParamHeader = document.getElementById('showcaseParamHeader');
+  if (showcaseParamHeader) {
+    showcaseParamHeader.addEventListener('click', () => {
+      const sections = document.getElementById('showcaseParamSections');
+      if (sections) {
+        sections.style.display = sections.style.display === 'none' ? '' : 'none';
+      }
+    });
+  }
+
+  // ===== SHOWCASE RANGE SLIDER LABELS =====
+  const paramSliders = document.querySelectorAll('#param .param-range');
+  paramSliders.forEach(slider => {
+    slider.addEventListener('input', (e) => {
+      const valSpan = e.target.closest('.param-field').querySelector('.param-value');
+      if (valSpan) {
+        valSpan.textContent = e.target.value + '%';
+      }
+    });
+  });
+
+  // ===== LOADING BAR SIMULATION =====
+  const simulateBtn = document.getElementById('simulateLoadBtn');
+  if (simulateBtn) {
+    simulateBtn.addEventListener('click', () => {
+      const actualBar = document.getElementById('actualLoadingBar');
+      const actualFill = document.getElementById('actualLoadingFill');
+      const showcaseFill = document.getElementById('showcaseLoadingFill');
+      
+      if (!actualBar || !actualFill) return;
+      
+      actualBar.style.display = 'block';
+      actualBar.style.opacity = '1';
+      simulateBtn.disabled = true;
+      
+      let progress = 0;
+      const interval = setInterval(() => {
+        progress += Math.random() * 15;
+        if (progress >= 100) {
+          progress = 100;
+          clearInterval(interval);
+          actualFill.style.width = '100%';
+          showcaseFill.style.width = '100%';
+          setTimeout(() => {
+            actualBar.style.opacity = '0';
+            setTimeout(() => {
+              actualBar.style.display = 'none';
+              actualFill.style.width = '0%';
+              showcaseFill.style.width = '45%';
+              simulateBtn.disabled = false;
+            }, 300);
+          }, 600);
+        } else {
+          actualFill.style.width = progress + '%';
+          showcaseFill.style.width = progress + '%';
+        }
+      }, 150);
+    });
   }
 
   // Init

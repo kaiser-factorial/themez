@@ -1292,6 +1292,25 @@
       }
     }
 
+    // Dynamically add React tab buttons if they exist
+    document.querySelectorAll('.demo-tabs').forEach(nav => {
+      const text = Array.from(nav.childNodes)
+        .filter(n => n.nodeType === Node.TEXT_NODE)
+        .map(n => n.textContent.trim())
+        .filter(Boolean)
+        .join('');
+      if (text) {
+        const reactPanel = nav.parentElement.querySelector(`#react-${text}`);
+        if (reactPanel) {
+          const btn = document.createElement('button');
+          btn.className = 'tab';
+          btn.dataset.target = `react-${text}`;
+          btn.textContent = 'React';
+          nav.appendChild(btn);
+        }
+      }
+    });
+
     document.querySelectorAll('.demo-tabs .tab').forEach(btn => {
       btn.addEventListener('click', () => {
         const parent = btn.closest('.component-demo');

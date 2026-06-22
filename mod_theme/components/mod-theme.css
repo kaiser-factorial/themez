@@ -1061,6 +1061,311 @@ body {
 }
 
 /* ============================================
+   SECTION: BREADCRUMBS
+   ============================================ */
+[data-section="breadcrumb"] {
+  --breadcrumb-font-size: 0.75rem;
+  --breadcrumb-text-color: #2a2a2a;
+  --breadcrumb-link-color: #6b6b6b;
+  --breadcrumb-separator-color: #cccccc;
+}
+
+[data-section="breadcrumb"] .breadcrumb {
+  font-size: var(--breadcrumb-font-size);
+}
+
+[data-section="breadcrumb"] .breadcrumb ol {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+[data-section="breadcrumb"] .breadcrumb li {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--breadcrumb-text-color);
+}
+
+[data-section="breadcrumb"] .breadcrumb li::after {
+  content: '/';
+  color: var(--breadcrumb-separator-color);
+}
+
+[data-section="breadcrumb"] .breadcrumb li:last-child::after {
+  content: '';
+}
+
+[data-section="breadcrumb"] .breadcrumb a {
+  color: var(--breadcrumb-link-color);
+  text-decoration: none;
+}
+
+[data-section="breadcrumb"] .breadcrumb a:hover {
+  text-decoration: underline;
+}
+
+[data-section="breadcrumb"] .breadcrumb [aria-current] {
+  color: var(--breadcrumb-text-color);
+  font-weight: bold;
+}
+
+/* ============================================
+   SECTION: LOADING PROGRESS
+   ============================================ */
+[data-section="loading"] {
+  --loading-bar-h: 4px;
+  --loading-bar-bg: #e0dbd3;
+  --loading-bar-fill-color: #6b6b6b;
+}
+
+[data-section="loading"] .loading-bar {
+  position: fixed;
+  left: 0;
+  right: 0;
+  height: var(--loading-bar-h);
+  background: var(--loading-bar-bg);
+  z-index: 9999;
+}
+
+[data-section="loading"] .loading-bar-top {
+  top: 0;
+}
+
+[data-section="loading"] .loading-bar-bottom {
+  bottom: 0;
+}
+
+[data-section="loading"] .loading-bar-fill {
+  height: 100%;
+  width: 0%;
+  background: var(--loading-bar-fill-color);
+  transition: width 0.3s ease;
+}
+
+/* Inline container version for static showcase preview */
+[data-section="loading"] .loading-bar-inline {
+  position: relative;
+  width: 100%;
+  height: var(--loading-bar-h);
+  background: var(--loading-bar-bg);
+  margin-top: 0.5rem;
+}
+
+/* ============================================
+   SECTION: PARAMETER PANEL
+   ============================================ */
+[data-section="param"] {
+  --param-border-w: 1px;
+  --param-border-color: #2a2a2a;
+  --param-radius: 0;
+  --param-bg: #ffffff;
+  --param-padding: 0.75rem 1.25rem;
+  --param-header-border: #e0dbd3;
+  --param-dot-color: #6b6b6b;
+  --param-title-size: 0.85rem;
+  --param-status-border: #2a2a2a;
+  --param-status-bg: #2a2a2a;
+  --param-status-color: #ffffff;
+  --param-group-title-color: #999;
+  --param-field-margin: 1.25rem;
+  --param-label-color: #666;
+  --param-value-color: #2a2a2a;
+  --param-desc-color: #aaa;
+  --param-input-bg: #f8f8f8;
+  --param-input-border: #d4cfc6;
+  --param-range-track: #e0dbd3;
+  --param-range-thumb: #2a2a2a;
+  --param-save-bg: #ffffff;
+  --param-save-text: #2a2a2a;
+  --param-save-hover-bg: #2a2a2a;
+  --param-save-hover-text: #ffffff;
+}
+
+[data-section="param"] .param-panel {
+  border: var(--param-border-w) solid var(--param-border-color);
+  border-radius: var(--param-radius);
+  overflow: hidden;
+  background: var(--param-bg);
+}
+
+[data-section="param"] .param-header {
+  padding: var(--param-padding);
+  border-bottom: 1px solid var(--param-header-border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+}
+
+[data-section="param"] .param-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--param-dot-color);
+}
+
+@keyframes pulse {
+  0% { opacity: 0.4; }
+  50% { opacity: 1; }
+  100% { opacity: 0.4; }
+}
+
+[data-section="param"] .param-name {
+  font-size: var(--param-title-size);
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+[data-section="param"] .param-status {
+  font-size: 0.6rem;
+  font-weight: bold;
+  padding: 0.15rem 0.5rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+[data-section="param"] .param-status-active {
+  background: var(--param-status-bg);
+  color: var(--param-status-color);
+}
+
+[data-section="param"] .param-status-inactive {
+  border: 1px solid var(--param-status-border);
+}
+
+[data-section="param"] .param-sections {
+  padding: 1.25rem;
+}
+
+[data-section="param"] .param-group-title {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-weight: bold;
+  color: var(--param-group-title-color);
+  margin: 1rem 0 0.75rem;
+  padding-bottom: 0.4rem;
+  border-bottom: 1px solid var(--param-header-border);
+}
+
+[data-section="param"] .param-group-title:first-child {
+  margin-top: 0;
+}
+
+[data-section="param"] .param-field {
+  margin-bottom: var(--param-field-margin);
+}
+
+[data-section="param"] .param-label-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 0.4rem;
+}
+
+[data-section="param"] .param-label {
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-weight: bold;
+  color: var(--param-label-color);
+}
+
+[data-section="param"] .param-value {
+  font-size: 0.75rem;
+  font-weight: bold;
+  color: var(--param-value-color);
+}
+
+[data-section="param"] .param-desc {
+  font-size: 0.6rem;
+  color: var(--param-desc-color);
+  margin-top: 0.25rem;
+}
+
+[data-section="param"] .param-input-text,
+[data-section="param"] .param-input-number,
+[data-section="param"] .param-textarea {
+  width: 100%;
+  padding: 0.5rem 0.75rem;
+  font-family: inherit;
+  font-size: 0.8rem;
+  border: 1px solid var(--param-input-border);
+  border-radius: var(--param-radius);
+  background: var(--param-input-bg);
+  color: var(--param-value-color);
+}
+
+[data-section="param"] .param-input-text:focus,
+[data-section="param"] .param-input-number:focus,
+[data-section="param"] .param-textarea:focus {
+  outline: none;
+  border-color: var(--param-border-color);
+}
+
+[data-section="param"] .param-textarea {
+  resize: vertical;
+}
+
+[data-section="param"] .param-range {
+  width: 100%;
+  -webkit-appearance: none;
+  appearance: none;
+  height: 4px;
+  background: var(--param-range-track);
+  border: none;
+  border-radius: 0;
+}
+
+[data-section="param"] .param-range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 14px;
+  height: 14px;
+  background: var(--param-range-thumb);
+  border: none;
+  border-radius: var(--param-radius);
+  cursor: pointer;
+}
+
+[data-section="param"] .param-range-labels {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.55rem;
+  color: var(--param-desc-color);
+  font-weight: bold;
+  text-transform: uppercase;
+  margin-top: 0.2rem;
+}
+
+[data-section="param"] .param-save-btn {
+  width: 100%;
+  padding: 0.75rem;
+  font-family: inherit;
+  font-size: 0.75rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  border: var(--param-border-w) solid var(--param-border-color);
+  border-radius: var(--param-radius);
+  background: var(--param-save-bg);
+  color: var(--param-save-text);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+[data-section="param"] .param-save-btn:hover {
+  background: var(--param-save-hover-bg);
+  color: var(--param-save-hover-text);
+}
+
+/* ============================================
    MANIPULATION PANEL
    ============================================ */
 .mod-panel {
