@@ -193,6 +193,21 @@ hr { border: none; border-top: 2px solid var(--p-black); margin: 2rem 0; }
   30% { transform: translateY(-8px); opacity: 1; }
 }
 
+/* Color Modifier Classes */
+.spinner-green .spinner-dots .dot { background: var(--p-green); }
+.spinner-green .spinner-label { color: var(--p-green); }
+.spinner-green .spinner-ring::before { border-top-color: var(--p-green); border-right-color: var(--p-green); }
+.spinner-green .spinner-ring::after { border-bottom-color: var(--p-green); }
+
+.spinner-red .spinner-dots .dot { background: var(--p-red); }
+.spinner-red .spinner-label { color: var(--p-red); }
+.spinner-red .spinner-ring::before { border-top-color: var(--p-red); border-right-color: var(--p-red); }
+.spinner-red .spinner-ring::after { border-bottom-color: var(--p-red); }
+.spinner-red .spinner-dots .dot:nth-child(2),
+.spinner-red .spinner-dots .dot:nth-child(3) { display: none; }
+
+
+
 /* ===== PROGRESS INDICATOR ===== */
 .progress-label-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.4rem; }
 .progress-label { font-size: 0.7rem; font-weight: bold; text-transform: uppercase; letter-spacing: 0.08em; }

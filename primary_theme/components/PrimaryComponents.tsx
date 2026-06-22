@@ -107,10 +107,10 @@ export function Alert({
 
 /* ============================ Spinner ============================ */
 export function Spinner({
-  variant = 'ring', size = 'md', label, labelColor,
-}: { variant?: 'ring' | 'dots'; size?: 'sm' | 'md' | 'lg'; label?: string; labelColor?: string }) {
+  variant = 'ring', size = 'md', label, labelColor, className = '',
+}: { variant?: 'ring' | 'dots'; size?: 'sm' | 'md' | 'lg'; label?: string; labelColor?: string; className?: string }) {
   return (
-    <div className={`spinner spinner-${size}`}>
+    <div className={`spinner spinner-${size} ${className}`.trim()}>
       {variant === 'ring'
         ? <div className="spinner-ring" />
         : <div className="spinner-dots"><div className="dot" /><div className="dot" /><div className="dot" /></div>}
